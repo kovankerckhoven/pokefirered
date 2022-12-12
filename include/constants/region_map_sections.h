@@ -1,6 +1,10 @@
 #ifndef GUARD_CONSTANTS_REGION_MAP_SECTIONS_H
 #define GUARD_CONSTANTS_REGION_MAP_SECTIONS_H
 
+// TODO: Adding Multi-Region support: https://github.com/pret/pokeemerald/wiki/Adding-Multi-region-Support
+// TODO: Make these 4 bytes so it can fit more region mapsections?
+// TODO: Redo the adaptation in src/overworld.c to check with x < 88 = HOEHN, x > 88 && < 142 = KANTO, etc. but check special locations!!!
+// HOEHN
 #define MAPSEC_LITTLEROOT_TOWN              0x00
 #define MAPSEC_OLDALE_TOWN                  0x01
 #define MAPSEC_DEWFORD_TOWN                 0x02
@@ -90,6 +94,7 @@
 #define MAPSEC_SECRET_BASE                  0x56
 #define MAPSEC_DYNAMIC                      0x57
 
+// KANTO
 #define MAPSECS_KANTO                       0x58
 
 #define MAPSEC_PALLET_TOWN                  0x58
@@ -148,6 +153,7 @@
 #define MAPSEC_CERULEAN_CAVE                0x8D
 #define MAPSEC_POWER_PLANT                  0x8E
 
+// SEVII ISLANDS
 #define MAPSECS_SEVII_123                   0x8F
 
 #define MAPSEC_ONE_ISLAND                   0x8F
@@ -203,6 +209,8 @@
 #define MAPSEC_RIXY_CHAMBER                 0xC1
 #define MAPSEC_VIAPOIS_CHAMBER              0xC2
 #define MAPSEC_EMBER_SPA                    0xC3
+
+// SPECIAL MAP SECTIONS/LOCATIONS
 #define MAPSEC_SPECIAL_AREA                 0xC4
 #define MAPSEC_NONE                         0xC5
 #define MAPSEC_COUNT                        0xC6
