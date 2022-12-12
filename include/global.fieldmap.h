@@ -181,13 +181,14 @@ struct MapHeader
     /* 0x15 */ u8 cave;
     /* 0x16 */ u8 weather;
     /* 0x17 */ u8 mapType;
-               // fields correspond to the arguments in the map_header_flags macro
+               // fields correspond to the arguments in the map_header_flags macro (asm/macros/map.inc)
     /* 0x18 */ bool8 bikingAllowed;
     /* 0x19 */ bool8 allowEscaping:1; // Escape Rope and Dig
                bool8 allowRunning:1;
                bool8 showMapName:6; // the last 5 bits are unused
     /* 0x1A */ s8 floorNum;
     /* 0x1B */ u8 battleType;
+    // /* 0x1C */ u8 region;
 };
 
 struct ObjectEvent

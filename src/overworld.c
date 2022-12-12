@@ -69,6 +69,32 @@
 #define FACING_FORCED_LEFT 9
 #define FACING_FORCED_RIGHT 10
 
+// TODO: Adding Multi-Region support: https://github.com/pret/pokeemerald/wiki/Adding-Multi-region-Support
+enum {
+    REGION_KANTO, // https://pokemon.fandom.com/wiki/Kanto
+    REGION_SEVII, // Sevii Islands (https://pokemon.fandom.com/wiki/Sevii_Islands)
+    REGION_JOHTO, // https://pokemon.fandom.com/wiki/Johto
+    REGION_HOENN, // https://pokemon.fandom.com/wiki/Hoenn
+    REGION_SINNOH, // https://pokemon.fandom.com/wiki/Sinnoh (old name "Hisui": https://pokemon.fandom.com/wiki/Hisui)
+    REGION_UNOVA, // https://pokemon.fandom.com/wiki/Unova "New York/New Jersey"
+    REGION_KALOS, // https://pokemon.fandom.com/wiki/Kalos "France"
+    REGION_ALOLA, // https://pokemon.fandom.com/wiki/Alola "Hawaii?"
+    REGION_GALAR, // https://pokemon.fandom.com/wiki/Galar "United Kingdom"
+    REGION_PALDEA, // https://pokemon.fandom.com/wiki/Paldea "Iberia"
+    REGION_ORANGE, // Orange Islands (https://pokemon.fandom.com/wiki/Orange_Islands)
+    REGION_BLUE, // Blue Islands near Hoehn?
+    REGION_ORRE, // https://pokemon.fandom.com/wiki/Orre "Arizona desert"
+    REGION_FIORE, // https://pokemon.fandom.com/wiki/Fiore "Italy?"
+    REGION_ALMIA, // https://pokemon.fandom.com/wiki/Almia
+    REGION_OBLIVIA, // https://pokemon.fandom.com/wiki/Oblivia
+    REGION_RANSEI, // https://pokemon.fandom.com/wiki/Ransei
+    REGION_PASIO, // https://pokemon.fandom.com/wiki/Pasio
+    REGION_LENTAL, // https://pokemon.fandom.com/wiki/Lental
+    REGION_AEOS, // Aeos Island (https://pokemon.fandom.com/wiki/Aeos_Island)
+    REGION_DECOLORE, // Decolore Islands (https://pokemon.fandom.com/wiki/Decolore_Islands)
+    // Other regions still possible
+};
+
 typedef u16 (*KeyInterCB)(u32 key);
 
 struct InitialPlayerAvatarState
@@ -545,15 +571,18 @@ struct MapHeader const *const GetDestinationWarpMapHeader(void)
 
 static void LoadCurrentMapData(void)
 {
+    // sLastMapSectionId = gMapHeader.regionMapSectionId; 
     gMapHeader = *Overworld_GetMapHeaderByGroupAndId(gSaveBlock1Ptr->location.mapGroup, gSaveBlock1Ptr->location.mapNum);
     gSaveBlock1Ptr->mapLayoutId = gMapHeader.mapLayoutId;
     gMapHeader.mapLayout = GetMapLayout();
+    // gMapHeader.region = sMapsecToRegion[gMapHeader.regionMapSectionId];
 }
 
 static void LoadSaveblockMapHeader(void)
 {
     gMapHeader = *Overworld_GetMapHeaderByGroupAndId(gSaveBlock1Ptr->location.mapGroup, gSaveBlock1Ptr->location.mapNum);
     gMapHeader.mapLayout = GetMapLayout();
+    // gMapHeader.region = sMapsecToRegion[gMapHeader.regionMapSectionId];
 }
 
 static void SetPlayerCoordsFromWarp(void)
