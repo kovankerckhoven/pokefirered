@@ -6098,6 +6098,24 @@ static const u16 sDeoxysLevelUpLearnset[] = {
     LEVEL_UP_MOVE(50, MOVE_MIRROR_COAT),
     LEVEL_UP_END
 };
+#else
+static const u16 sDeoxysLevelUpLearnset[] = { // TODO: Add the other Deoxys movesets as well or unify them?
+    LEVEL_UP_MOVE(1, MOVE_LEER),
+    LEVEL_UP_MOVE(1, MOVE_WRAP),
+    LEVEL_UP_MOVE(5, MOVE_NIGHT_SHADE),
+    LEVEL_UP_MOVE(10, MOVE_TELEPORT),
+    LEVEL_UP_MOVE(15, MOVE_KNOCK_OFF),
+    LEVEL_UP_MOVE(20, MOVE_SPIKES),
+    LEVEL_UP_MOVE(25, MOVE_PSYCHIC),
+    LEVEL_UP_MOVE(30, MOVE_SNATCH),
+    LEVEL_UP_MOVE(35, MOVE_IRON_DEFENSE),
+    LEVEL_UP_MOVE(35, MOVE_AMNESIA),
+    LEVEL_UP_MOVE(40, MOVE_RECOVER),
+    LEVEL_UP_MOVE(45, MOVE_PSYCHO_BOOST),
+    LEVEL_UP_MOVE(50, MOVE_COUNTER),
+    LEVEL_UP_MOVE(50, MOVE_MIRROR_COAT),
+    LEVEL_UP_END
+};
 #endif
 
 // TODO: Continue with generation 4 (starting at dex #387 Turtwig: https://pokemondb.net/pokedex/national)
