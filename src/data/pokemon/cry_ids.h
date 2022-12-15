@@ -1,4 +1,4 @@
-#define HOENN_MON_SPECIES_START 277
+#define HOENN_MON_SPECIES_START 252
 
 static const u16 sHoennSpeciesIdToCryId[] =
 {
