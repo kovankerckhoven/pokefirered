@@ -153,6 +153,11 @@
 #define MAPSEC_CERULEAN_CAVE                0x8D
 #define MAPSEC_POWER_PLANT                  0x8E
 
+// JOHTO
+#define MAPSECS_JOHTO                       0xC7
+
+#define MAPSEC_NEW_BARK_TOWN                 0xC8
+
 // SEVII ISLANDS
 #define MAPSECS_SEVII_123                   0x8F
 

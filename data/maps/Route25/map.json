@@ -153,12 +153,12 @@
       "x": 26,
       "y": 2,
       "elevation": 3,
-      "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
-      "movement_range_x": 1,
-      "movement_range_y": 1,
+      "movement_type": "MOVEMENT_TYPE_NONE",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
       "trainer_type": "TRAINER_TYPE_NONE",
-      "trainer_sight_or_berry_tree_id": "0",
-      "script": "Route25_EventScript_ItemTM43",
+      "trainer_sight_or_berry_tree_id": "ITEM_TM43",
+      "script": "Common_EventScript_FindItem",
       "flag": "FLAG_HIDE_ROUTE25_TM43"
     },
     {
@@ -213,7 +213,9 @@
       "dest_warp_id": "1"
     }
   ],
-  "coord_events": [],
+  "coord_events": [
+
+  ],
   "bg_events": [
     {
       "type": "sign",

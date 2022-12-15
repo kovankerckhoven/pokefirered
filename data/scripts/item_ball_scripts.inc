@@ -1,3 +1,4 @@
+@ Remove all unused item ball scripts
 Route2_EventScript_ItemEther::
 	finditem ITEM_ETHER
 	end
@@ -668,4 +669,9 @@ SevenIsland_SevaultCanyon_House_EventScript_ItemLuckyPunch::
 
 SilphCo_4F_EventScript_ItemTM41::
 	finditem ITEM_TM41
+	end
+
+Common_EventScript_FindItem::
+	callnative GetObjectEventTrainerRangeFromTemplate
+	finditem VAR_RESULT
 	end
