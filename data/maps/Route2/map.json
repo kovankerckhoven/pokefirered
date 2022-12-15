@@ -88,12 +88,12 @@
       "x": 17,
       "y": 54,
       "elevation": 3,
-      "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
-      "movement_range_x": 1,
-      "movement_range_y": 1,
+      "movement_type": "MOVEMENT_TYPE_NONE",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
       "trainer_type": "TRAINER_TYPE_NONE",
-      "trainer_sight_or_berry_tree_id": "0",
-      "script": "Route2_EventScript_ItemEther",
+      "trainer_sight_or_berry_tree_id": "ITEM_ETHER",
+      "script": "Common_EventScript_FindItem",
       "flag": "FLAG_HIDE_ROUTE2_ETHER"
     },
     {
@@ -102,12 +102,12 @@
       "x": 17,
       "y": 64,
       "elevation": 3,
-      "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
-      "movement_range_x": 1,
-      "movement_range_y": 1,
+      "movement_type": "MOVEMENT_TYPE_NONE",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
       "trainer_type": "TRAINER_TYPE_NONE",
-      "trainer_sight_or_berry_tree_id": "0",
-      "script": "Route2_EventScript_ItemParalyzeHeal",
+      "trainer_sight_or_berry_tree_id": "ITEM_PARALYZE_HEAL",
+      "script": "Common_EventScript_FindItem",
       "flag": "FLAG_HIDE_ROUTE2_PARALYZE_HEAL"
     },
     {
@@ -191,7 +191,9 @@
       "dest_warp_id": "1"
     }
   ],
-  "coord_events": [],
+  "coord_events": [
+
+  ],
   "bg_events": [
     {
       "type": "sign",

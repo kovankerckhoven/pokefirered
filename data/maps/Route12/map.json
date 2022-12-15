@@ -163,12 +163,12 @@
       "x": 18,
       "y": 36,
       "elevation": 3,
-      "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
-      "movement_range_x": 1,
-      "movement_range_y": 1,
+      "movement_type": "MOVEMENT_TYPE_NONE",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
       "trainer_type": "TRAINER_TYPE_NONE",
-      "trainer_sight_or_berry_tree_id": "0",
-      "script": "Route12_EventScript_ItemTM48",
+      "trainer_sight_or_berry_tree_id": "ITEM_TM48",
+      "script": "Common_EventScript_FindItem",
       "flag": "FLAG_HIDE_ROUTE12_TM48"
     },
     {
@@ -177,12 +177,12 @@
       "x": 9,
       "y": 101,
       "elevation": 3,
-      "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
-      "movement_range_x": 1,
-      "movement_range_y": 1,
+      "movement_type": "MOVEMENT_TYPE_NONE",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
       "trainer_type": "TRAINER_TYPE_NONE",
-      "trainer_sight_or_berry_tree_id": "0",
-      "script": "Route12_EventScript_ItemIron",
+      "trainer_sight_or_berry_tree_id": "ITEM_IRON",
+      "script": "Common_EventScript_FindItem",
       "flag": "FLAG_HIDE_ROUTE12_IRON"
     },
     {
@@ -258,7 +258,9 @@
       "dest_warp_id": "2"
     }
   ],
-  "coord_events": [],
+  "coord_events": [
+
+  ],
   "bg_events": [
     {
       "type": "sign",

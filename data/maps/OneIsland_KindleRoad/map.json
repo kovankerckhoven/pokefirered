@@ -391,12 +391,12 @@
       "x": 15,
       "y": 70,
       "elevation": 3,
-      "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
-      "movement_range_x": 1,
-      "movement_range_y": 1,
+      "movement_type": "MOVEMENT_TYPE_NONE",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
       "trainer_type": "TRAINER_TYPE_NONE",
-      "trainer_sight_or_berry_tree_id": "0",
-      "script": "OneIsland_KindleRoad_EventScript_ItemEther",
+      "trainer_sight_or_berry_tree_id": "ITEM_ETHER",
+      "script": "Common_EventScript_FindItem",
       "flag": "FLAG_HIDE_ONE_ISLAND_KINDLE_ROAD_ETHER"
     },
     {
@@ -405,12 +405,12 @@
       "x": 17,
       "y": 103,
       "elevation": 3,
-      "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
-      "movement_range_x": 1,
-      "movement_range_y": 1,
+      "movement_type": "MOVEMENT_TYPE_NONE",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
       "trainer_type": "TRAINER_TYPE_NONE",
-      "trainer_sight_or_berry_tree_id": "0",
-      "script": "OneIsland_KindleRoad_EventScript_ItemMaxRepel",
+      "trainer_sight_or_berry_tree_id": "ITEM_MAX_REPEL",
+      "script": "Common_EventScript_FindItem",
       "flag": "FLAG_HIDE_ONE_ISLAND_KINDLE_ROAD_MAX_REPEL"
     },
     {
@@ -419,12 +419,12 @@
       "x": 18,
       "y": 114,
       "elevation": 4,
-      "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
-      "movement_range_x": 1,
-      "movement_range_y": 1,
+      "movement_type": "MOVEMENT_TYPE_NONE",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
       "trainer_type": "TRAINER_TYPE_NONE",
-      "trainer_sight_or_berry_tree_id": "0",
-      "script": "OneIsland_KindleRoad_EventScript_ItemCarbos",
+      "trainer_sight_or_berry_tree_id": "ITEM_CARBOS",
+      "script": "Common_EventScript_FindItem",
       "flag": "FLAG_HIDE_ONE_ISLAND_KINDLE_ROAD_CARBOS"
     }
   ],
@@ -451,7 +451,9 @@
       "dest_warp_id": "0"
     }
   ],
-  "coord_events": [],
+  "coord_events": [
+
+  ],
   "bg_events": [
     {
       "type": "sign",

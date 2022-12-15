@@ -581,3 +581,8 @@ void InitRamScript_NoObjectEvent(u8 *script, u16 scriptSize)
         scriptSize = sizeof(gSaveBlock1Ptr->ramScript.data.script);
     InitRamScript(script, scriptSize, MAP_GROUP(UNDEFINED), MAP_NUM(UNDEFINED), 0xFF);
 }
+
+void GetObjectEventTrainerRangeFromTemplate(void)
+{
+    gSpecialVar_Result = gMapHeader.events->objectEvents[gSpecialVar_LastTalked - 1].objUnion.normal.trainerRange_berryTreeId;
+}
