@@ -5126,13 +5126,14 @@ u16 HoennToNationalOrder(u16 hoennNum)
 // TODO: Might need to fix the SPECIES_UNOWN_ values here?
 u16 SpeciesToCryId(u16 species)
 {
-    if (species < SPECIES_UNOWN_B - 1)
-        return species;
+    return species;
+    // if (species < SPECIES_UNOWN_B - 1)
+    //     return species;
 
-    if (species <= SPECIES_UNOWN_Z - 1)
-        return SPECIES_UNOWN - 1;
+    // if (species <= SPECIES_UNOWN_Z - 1)
+    //     return SPECIES_UNOWN - 1;
 
-    return sHoennSpeciesIdToCryId[species - ((SPECIES_UNOWN_Z + 1) - 1)];
+    // return sHoennSpeciesIdToCryId[species - ((SPECIES_UNOWN_Z + 1) - 1)];
 }
 
 #define DRAW_SPINDA_SPOTS                                                       \
