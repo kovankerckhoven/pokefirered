@@ -1362,3 +1362,18 @@ Text_TestMsg::
 
 	.include "data/maps/NewBarkTown/scripts.inc"
 	.include "data/maps/NewBarkTown/text.inc"
+
+	.include "data/maps/Route29/scripts.inc"
+	.include "data/maps/Route29/text.inc"
+
+	.include "data/maps/CherrygroveCity/scripts.inc"
+	.include "data/maps/CherrygroveCity/text.inc"
+
+	.include "data/maps/Route30/scripts.inc"
+	.include "data/maps/Route30/text.inc"
+
+	.include "data/maps/Route31/scripts.inc"
+	.include "data/maps/Route31/text.inc"
+
+	.include "data/maps/VioletCity/scripts.inc"
+	.include "data/maps/VioletCity/text.inc"

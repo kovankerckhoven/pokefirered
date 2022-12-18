@@ -306,7 +306,12 @@
     "SevenIsland_SevaultCanyon_Entrance",
     "SevenIsland_SevaultCanyon",
     "SevenIsland_TanobyRuins",
-    "NewBarkTown"
+    "NewBarkTown",
+    "Route29",
+    "CherrygroveCity",
+    "Route30",
+    "Route31",
+    "VioletCity"
   ],
   "gMapGroup_IndoorPallet": [
     "PalletTown_PlayersHouse_1F",

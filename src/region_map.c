@@ -935,6 +935,10 @@ static const u8 sMapFlyDestinations[][3] = {
     [MAPSEC_VIAPOIS_CHAMBER     - MAPSECS_KANTO] = {MAP(PALLET_TOWN),                           0},
     [MAPSEC_EMBER_SPA           - MAPSECS_KANTO] = {MAP(PALLET_TOWN),                           0},
     [MAPSEC_NEW_BARK_TOWN       - MAPSECS_KANTO] = {MAP(NEW_BARK_TOWN),                         SPAWN_NEW_BARK_TOWN},
+    [MAPSEC_ROUTE_29            - MAPSECS_KANTO] = {MAP(ROUTE29),                               0},
+    [MAPSEC_CHERRYGROVE_CITY    - MAPSECS_KANTO] = {MAP(CHERRYGROVE_CITY),                      SPAWN_CHERRYGROVE_CITY},
+    [MAPSEC_ROUTE_30            - MAPSECS_KANTO] = {MAP(ROUTE30),                               0},
+    [MAPSEC_ROUTE_31            - MAPSECS_KANTO] = {MAP(ROUTE31),                               0},
 };
 
 static void RegionMap_DarkenPalette(u16 *pal, u16 size, u16 tint)
@@ -2996,6 +3000,10 @@ static u8 GetMapsecType(u8 mapsec)
         return FlagGet(FLAG_WORLD_MAP_ROUTE4_POKEMON_CENTER_1F) ? MAPSECTYPE_VISITED : MAPSECTYPE_NOT_VISITED;
     case MAPSEC_ROUTE_10_POKECENTER:
         return FlagGet(FLAG_WORLD_MAP_ROUTE10_POKEMON_CENTER_1F) ? MAPSECTYPE_VISITED : MAPSECTYPE_NOT_VISITED;
+    case MAPSEC_NEW_BARK_TOWN:
+        return FlagGet(FLAG_WORLD_MAP_NEW_BARK_TOWN) ? MAPSECTYPE_VISITED : MAPSECTYPE_NOT_VISITED;
+    case MAPSEC_CHERRYGROVE_CITY:
+        return FlagGet(FLAG_WORLD_MAP_CHERRYGROVE_CITY) ? MAPSECTYPE_VISITED : MAPSECTYPE_NOT_VISITED;
     case MAPSEC_NONE:
         return MAPSECTYPE_NONE;
     default:
