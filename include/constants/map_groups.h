@@ -267,6 +267,11 @@
 #define MAP_SEVEN_ISLAND_SEVAULT_CANYON          (64 | (3 << 8))
 #define MAP_SEVEN_ISLAND_TANOBY_RUINS            (65 | (3 << 8))
 #define MAP_NEW_BARK_TOWN                        (66 | (3 << 8))
+#define MAP_ROUTE29                              (67 | (3 << 8))
+#define MAP_CHERRYGROVE_CITY                     (68 | (3 << 8))
+#define MAP_ROUTE30                              (69 | (3 << 8))
+#define MAP_ROUTE31                              (70 | (3 << 8))
+#define MAP_VIOLET_CITY                          (71 | (3 << 8))
 
 // gMapGroup_IndoorPallet
 #define MAP_PALLET_TOWN_PLAYERS_HOUSE_1F   (0 | (4 << 8))
