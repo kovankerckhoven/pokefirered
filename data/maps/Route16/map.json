@@ -234,5 +234,6 @@
       "quantity": 1,
       "underfoot": true
     }
-  ]
+  ],
+  "region_id": 1
 }

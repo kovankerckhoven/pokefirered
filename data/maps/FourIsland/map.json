@@ -282,5 +282,6 @@
       "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
       "script": "FourIsland_EventScript_LoreleisHouseSign"
     }
-  ]
+  ],
+  "region_id": 1
 }

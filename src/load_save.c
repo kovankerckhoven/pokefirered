@@ -188,16 +188,29 @@ void LoadObjectEvents(void)
         gObjectEvents[i] = gSaveBlock1Ptr->objectEvents[i];
 }
 
+// TODO: Multi-region support saving and loading? Also see "SaveSerializedGame" and "LoadSerializedGame"
+// void SaveRegionId(void)
+// {
+//     gSaveBlock1Ptr->regionId = gMapHeader.regionId;
+// }
+
+// void LoadRegionId(void)
+// {
+//     gMapHeader.regionId = gSaveBlock1Ptr->regionId;
+// }
+
 void SaveSerializedGame(void)
 {
     SavePlayerParty();
     SaveObjectEvents();
+    // SaveRegionId();
 }
 
 void LoadSerializedGame(void)
 {
     LoadPlayerParty();
     LoadObjectEvents();
+    // LoadRegionId();
 }
 
 void LoadPlayerBag(void)

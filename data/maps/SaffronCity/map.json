@@ -431,5 +431,6 @@
       "script": "SaffronCity_EventScript_TrainerFanClubSign"
     }
   ],
-  "connections_no_include": true
+  "connections_no_include": true,
+  "region_id": 1
 }

@@ -59,5 +59,6 @@
       "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
       "script": "Route15_WestEntrance_2F_EventScript_RightBinoculars"
     }
-  ]
+  ],
+  "region_id": 1
 }

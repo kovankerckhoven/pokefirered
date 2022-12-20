@@ -177,7 +177,7 @@ struct MapHeader
     /* 0x0C */ const struct MapConnections *connections;
     /* 0x10 */ u16 music;
     /* 0x12 */ u16 mapLayoutId;
-    /* 0x14 */ u8 regionMapSectionId;
+    /* 0x14 */ u8 regionMapSectionId; // MAPSEC_... defined ID from include\constants\region_map_sections.h
     /* 0x15 */ u8 cave;
     /* 0x16 */ u8 weather;
     /* 0x17 */ u8 mapType;
@@ -188,7 +188,7 @@ struct MapHeader
                bool8 showMapName:6; // the last 5 bits are unused
     /* 0x1A */ s8 floorNum;
     /* 0x1B */ u8 battleType;
-    // /* 0x1C */ u8 region;
+    // /* 0x1C */ u8 regionId; // REGION_... defined ID from include\overworld.h
 };
 
 struct ObjectEvent

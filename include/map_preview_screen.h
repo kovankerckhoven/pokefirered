@@ -1,6 +1,7 @@
 #ifndef GUARD_MAP_PREVIEW_SCREEN_H
 #define GUARD_MAP_PREVIEW_SCREEN_H
 
+// TODO: Multi-region support probably also needs to adjust this
 enum MapPreviewScreenId
 {
     MPS_VIRIDIAN_FOREST = 0u,

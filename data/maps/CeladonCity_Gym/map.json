@@ -213,5 +213,6 @@
       "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
       "script": "CeladonCity_Gym_EventScript_GymStatue"
     }
-  ]
+  ],
+  "region_id": 1
 }

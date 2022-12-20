@@ -624,5 +624,6 @@
       "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
       "script": "Route23_EventScript_VictoryRoadGateSign"
     }
-  ]
+  ],
+  "region_id": 1
 }

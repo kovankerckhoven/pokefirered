@@ -47,6 +47,57 @@ struct CreditsOverworldCmd
 #define MUSIC_DISABLE_STOP 1
 #define MUSIC_DISABLE_KEEP 2
 
+#define MAPSECS_KANTO_START     1, // https://pokemon.fandom.com/wiki/Kanto
+#define MAPSECS_SEVII_START     2, // Sevii Islands (https://pokemon.fandom.com/wiki/Sevii_Islands)
+#define MAPSECS_JOHTO_START     3, // https://pokemon.fandom.com/wiki/Johto
+#define MAPSECS_HOENN_START     4, // https://pokemon.fandom.com/wiki/Hoenn
+#define MAPSECS_SINNOH_START    5, // https://pokemon.fandom.com/wiki/Sinnoh (old name "Hisui": https://pokemon.fandom.com/wiki/Hisui)
+#define MAPSECS_UNOVA_START     6, // https://pokemon.fandom.com/wiki/Unova "New York/New Jersey"
+#define MAPSECS_KALOS_START     7, // https://pokemon.fandom.com/wiki/Kalos "France"
+#define MAPSECS_ALOLA_START     8, // https://pokemon.fandom.com/wiki/Alola "Hawaii?"
+#define MAPSECS_GALAR_START     9, // https://pokemon.fandom.com/wiki/Galar "United Kingdom"
+#define MAPSECS_PALDEA_START    10, // https://pokemon.fandom.com/wiki/Paldea "Iberia"
+#define MAPSECS_ORANGE_START    11, // Orange Islands (https://pokemon.fandom.com/wiki/Orange_Islands)
+#define MAPSECS_BLUE_START      12, // Blue Islands near Hoehn?
+#define MAPSECS_ORRE_START      13, // https://pokemon.fandom.com/wiki/Orre "Arizona desert"
+#define MAPSECS_FIORE_START     14, // https://pokemon.fandom.com/wiki/Fiore "Italy?"
+#define MAPSECS_ALMIA_START     15, // https://pokemon.fandom.com/wiki/Almia
+#define MAPSECS_OBLIVIA_START   16, // https://pokemon.fandom.com/wiki/Oblivia
+#define MAPSECS_RANSEI_START    17, // https://pokemon.fandom.com/wiki/Ransei
+#define MAPSECS_PASIO_START     18, // https://pokemon.fandom.com/wiki/Pasio
+#define MAPSECS_LENTAL_START    19, // https://pokemon.fandom.com/wiki/Lental
+#define MAPSECS_AEOS_START      20, // Aeos Island (https://pokemon.fandom.com/wiki/Aeos_Island)
+#define MAPSECS_DECOLORE_START  21, // Decolore Islands (https://pokemon.fandom.com/wiki/Decolore_Islands)
+
+// TODO: Adding Multi-Region support: https://github.com/pret/pokeemerald/wiki/Adding-Multi-region-Support
+enum {
+    REGION_NONE,
+    REGION_KANTO, // https://pokemon.fandom.com/wiki/Kanto
+    REGION_SEVII, // Sevii Islands (https://pokemon.fandom.com/wiki/Sevii_Islands)
+    REGION_JOHTO, // https://pokemon.fandom.com/wiki/Johto
+    REGION_HOENN, // https://pokemon.fandom.com/wiki/Hoenn
+    REGION_SINNOH, // https://pokemon.fandom.com/wiki/Sinnoh (old name "Hisui": https://pokemon.fandom.com/wiki/Hisui)
+    REGION_UNOVA, // https://pokemon.fandom.com/wiki/Unova "New York/New Jersey"
+    REGION_KALOS, // https://pokemon.fandom.com/wiki/Kalos "France"
+    REGION_ALOLA, // https://pokemon.fandom.com/wiki/Alola "Hawaii?"
+    REGION_GALAR, // https://pokemon.fandom.com/wiki/Galar "United Kingdom"
+    REGION_PALDEA, // https://pokemon.fandom.com/wiki/Paldea "Iberia"
+    REGION_ORANGE, // Orange Islands (https://pokemon.fandom.com/wiki/Orange_Islands)
+    REGION_BLUE, // Blue Islands near Hoehn?
+    REGION_ORRE, // https://pokemon.fandom.com/wiki/Orre "Arizona desert"
+    REGION_FIORE, // https://pokemon.fandom.com/wiki/Fiore "Italy?"
+    REGION_ALMIA, // https://pokemon.fandom.com/wiki/Almia
+    REGION_OBLIVIA, // https://pokemon.fandom.com/wiki/Oblivia
+    REGION_RANSEI, // https://pokemon.fandom.com/wiki/Ransei
+    REGION_PASIO, // https://pokemon.fandom.com/wiki/Pasio
+    REGION_LENTAL, // https://pokemon.fandom.com/wiki/Lental
+    REGION_AEOS, // Aeos Island (https://pokemon.fandom.com/wiki/Aeos_Island)
+    REGION_DECOLORE, // Decolore Islands (https://pokemon.fandom.com/wiki/Decolore_Islands)
+    // Other regions still possible
+};
+// u8 sLastRegionId;
+// u8 sLastMapSectionId;
+
 extern const struct Coords32 gDirectionToVectors[];
 
 extern struct LinkPlayerObjectEvent gLinkPlayerObjectEvents[4];

@@ -516,5 +516,6 @@
       "player_facing_dir": "BG_EVENT_PLAYER_FACING_EAST",
       "script": "CeladonCity_GameCorner_EventScript_PhotoPrinter"
     }
-  ]
+  ],
+  "region_id": 1
 }

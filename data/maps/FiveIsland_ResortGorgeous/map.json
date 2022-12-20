@@ -202,5 +202,6 @@
       "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
       "script": "FiveIsland_ResortGorgeous_EventScript_SelphysHouseSign"
     }
-  ]
+  ],
+  "region_id": 1
 }

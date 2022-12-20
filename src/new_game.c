@@ -145,6 +145,7 @@ void NewGameInitData(void)
     ResetMiniGamesResults();
     ClearMysteryGift();
     SetAllRenewableItemFlags();
+    gSaveBlock1Ptr->regionId = REGION_KANTO; // New game always starts in KANTO
     WarpToPlayersRoom();
     RunScriptImmediately(EventScript_ResetAllMapFlags);
     StringCopy(gSaveBlock1Ptr->rivalName, rivalName);
