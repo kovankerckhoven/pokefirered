@@ -559,6 +559,8 @@ static void LoadCurrentMapData(void)
     gMapHeader = *Overworld_GetMapHeaderByGroupAndId(gSaveBlock1Ptr->location.mapGroup, gSaveBlock1Ptr->location.mapNum);
     gSaveBlock1Ptr->mapLayoutId = gMapHeader.mapLayoutId;
     gMapHeader.mapLayout = GetMapLayout();
+    DebugPrintf("LOAD MAP (CURRENT):      MAP GROUP=[%d] MAP NUM=[%d] MAP_SEC=[%d] REGION=[%d]\n", gSaveBlock1Ptr->location.mapGroup, gSaveBlock1Ptr->location.mapNum, gMapHeader.regionMapSectionId, gSaveBlock1Ptr->regionId);
+    // DebugPrintf("LOAD MAP (CURRENT) TEST\n");
     // gMapHeader.regionId = GetRegionId();
 }
 
@@ -567,6 +569,8 @@ static void LoadSaveblockMapHeader(void)
     // TODO: Check if this following line will actually work correctly or not, and if it populates gMapHeader.regionId and gMapHeader.regionMapSectionId correctly
     gMapHeader = *Overworld_GetMapHeaderByGroupAndId(gSaveBlock1Ptr->location.mapGroup, gSaveBlock1Ptr->location.mapNum);
     gMapHeader.mapLayout = GetMapLayout();
+    DebugPrintf("LOAD MAP (SAVEBLOCK):    MAP GROUP=[%d] MAP NUM=[%d] MAP_SEC=[%d] REGION=[%d]\n", gSaveBlock1Ptr->location.mapGroup, gSaveBlock1Ptr->location.mapNum, gMapHeader.regionMapSectionId, gSaveBlock1Ptr->regionId);
+    // DebugPrintf("LOAD MAP (SAVEBLOCK) TEST\n");
     // gMapHeader.regionId = GetRegionId();
 }
 
