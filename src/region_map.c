@@ -26,6 +26,7 @@
 #define SWITCH_BUTTON_X 21
 #define SWITCH_BUTTON_Y 11
 
+// TODO: Change this enum similar to the region defines in include\overworld.h
 enum {
     REGIONMAP_KANTO,
     REGIONMAP_SEVII123,
@@ -1009,6 +1010,7 @@ void InitRegionMapWithExitCB(u8 type, MainCallback cb)
     }
 }
 
+// TODO: Change this to use the same logic as in src\overworld.c `Overworld_GetRegionByGroup` function
 static void InitRegionMapType(void)
 {
     u8 i;

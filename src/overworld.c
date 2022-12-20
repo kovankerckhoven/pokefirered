@@ -551,27 +551,71 @@ struct MapHeader const *const GetDestinationWarpMapHeader(void)
     return Overworld_GetMapHeaderByGroupAndId(sWarpDestination.mapGroup, sWarpDestination.mapNum);
 }
 
+const u8 Overworld_GetRegionByGroup(u16 mapGroup)
+{
+    if (mapGroup < MAPGROUPS_KANTO_START)
+        return REGION_NONE; // Link & SpecialArea
+    else if (mapGroup >= MAPGROUPS_KANTO_START && mapGroup < MAPGROUPS_SEVII_START)
+        return REGION_KANTO; // https://pokemon.fandom.com/wiki/Kanto
+    else if (mapGroup >= MAPGROUPS_SEVII_START && mapGroup < MAPGROUPS_JOHTO_START)
+        return REGION_SEVII; // Sevii Islands (https://pokemon.fandom.com/wiki/Sevii_Islands)
+    else if (mapGroup >= MAPGROUPS_JOHTO_START && mapGroup < MAPGROUPS_HOENN_START)
+        return REGION_JOHTO; // https://pokemon.fandom.com/wiki/Johto
+    else if (mapGroup >= MAPGROUPS_HOENN_START && mapGroup < MAPGROUPS_SINNOH_START)
+        return REGION_HOENN; // https://pokemon.fandom.com/wiki/Hoenn
+    else if (mapGroup >= MAPGROUPS_SINNOH_START && mapGroup < MAPGROUPS_UNOVA_START)
+        return REGION_SINNOH; // https://pokemon.fandom.com/wiki/Sinnoh (old name "Hisui": https://pokemon.fandom.com/wiki/Hisui)
+    else if (mapGroup >= MAPGROUPS_UNOVA_START && mapGroup < MAPGROUPS_KALOS_START)
+        return REGION_UNOVA; // https://pokemon.fandom.com/wiki/Unova "New York/New Jersey"
+    else if (mapGroup >= MAPGROUPS_KALOS_START && mapGroup < MAPGROUPS_ALOLA_START)
+        return REGION_KALOS; // https://pokemon.fandom.com/wiki/Kalos "France"
+    else if (mapGroup >= MAPGROUPS_ALOLA_START && mapGroup < MAPGROUPS_GALAR_START)
+        return REGION_ALOLA; // https://pokemon.fandom.com/wiki/Alola "Hawaii?"
+    else if (mapGroup >= MAPGROUPS_GALAR_START && mapGroup < MAPGROUPS_PALDEA_START)
+        return REGION_GALAR; // https://pokemon.fandom.com/wiki/Galar "United Kingdom"
+    else if (mapGroup >= MAPGROUPS_PALDEA_START && mapGroup < MAPGROUPS_ORANGE_START)
+        return REGION_PALDEA; // https://pokemon.fandom.com/wiki/Paldea "Iberia"
+    else if (mapGroup >= MAPGROUPS_ORANGE_START && mapGroup < MAPGROUPS_BLUE_START)
+        return REGION_ORANGE; // Orange Islands (https://pokemon.fandom.com/wiki/Orange_Islands)
+    else if (mapGroup >= MAPGROUPS_BLUE_START && mapGroup < MAPGROUPS_ORRE_START)
+        return REGION_BLUE; // Blue Islands near Hoehn?
+    else if (mapGroup >= MAPGROUPS_ORRE_START && mapGroup < MAPGROUPS_FIORE_START)
+        return REGION_ORRE; // https://pokemon.fandom.com/wiki/Orre "Arizona desert"
+    else if (mapGroup >= MAPGROUPS_FIORE_START && mapGroup < MAPGROUPS_ALMIA_START)
+        return REGION_FIORE; // https://pokemon.fandom.com/wiki/Fiore "Italy?"
+    else if (mapGroup >= MAPGROUPS_ALMIA_START && mapGroup < MAPGROUPS_OBLIVIA_START)
+        return REGION_ALMIA; // https://pokemon.fandom.com/wiki/Almia
+    else if (mapGroup >= MAPGROUPS_OBLIVIA_START && mapGroup < MAPGROUPS_RANSEI_START)
+        return REGION_OBLIVIA; // https://pokemon.fandom.com/wiki/Oblivia
+    else if (mapGroup >= MAPGROUPS_RANSEI_START && mapGroup < MAPGROUPS_PASIO_START)
+        return REGION_RANSEI; // https://pokemon.fandom.com/wiki/Ransei
+    else if (mapGroup >= MAPGROUPS_PASIO_START && mapGroup < MAPGROUPS_LENTAL_START)
+        return REGION_PASIO; // https://pokemon.fandom.com/wiki/Pasio
+    else if (mapGroup >= MAPGROUPS_LENTAL_START && mapGroup < MAPGROUPS_AEOS_START)
+        return REGION_LENTAL; // https://pokemon.fandom.com/wiki/Lental
+    else if (mapGroup >= MAPGROUPS_AEOS_START && mapGroup < MAPGROUPS_DECOLORE_START)
+        return REGION_AEOS; // Aeos Island (https://pokemon.fandom.com/wiki/Aeos_Island)
+    else if (mapGroup >= MAPGROUPS_DECOLORE_START)
+        return REGION_DECOLORE; // Decolore Islands (https://pokemon.fandom.com/wiki/Decolore_Islands)
+    else
+        return REGION_NONE;
+}
+
 static void LoadCurrentMapData(void)
 {
-    // sLastRegionId = gMapHeader.regionId;
-    // sLastMapSectionId = gMapHeader.regionMapSectionId;
-    // TODO: Check if this following line will actually work correctly or not, and if it populates gMapHeader.regionId and gMapHeader.regionMapSectionId correctly
     gMapHeader = *Overworld_GetMapHeaderByGroupAndId(gSaveBlock1Ptr->location.mapGroup, gSaveBlock1Ptr->location.mapNum);
     gSaveBlock1Ptr->mapLayoutId = gMapHeader.mapLayoutId;
+    gSaveBlock1Ptr->regionId = Overworld_GetRegionByGroup(gSaveBlock1Ptr->location.mapGroup);
     gMapHeader.mapLayout = GetMapLayout();
-    DebugPrintf("LOAD MAP (CURRENT):      MAP GROUP=[%d] MAP NUM=[%d] MAP_SEC=[%d] REGION=[%d]\n", gSaveBlock1Ptr->location.mapGroup, gSaveBlock1Ptr->location.mapNum, gMapHeader.regionMapSectionId, gSaveBlock1Ptr->regionId);
-    // DebugPrintf("LOAD MAP (CURRENT) TEST\n");
-    // gMapHeader.regionId = GetRegionId();
+    DebugPrintf("LOAD MAP: GROUP=%d, NUM=%d, MAP_SEC=%d, REGION=%d", gSaveBlock1Ptr->location.mapGroup, gSaveBlock1Ptr->location.mapNum, gMapHeader.regionMapSectionId, gSaveBlock1Ptr->regionId);
 }
 
 static void LoadSaveblockMapHeader(void)
 {
-    // TODO: Check if this following line will actually work correctly or not, and if it populates gMapHeader.regionId and gMapHeader.regionMapSectionId correctly
     gMapHeader = *Overworld_GetMapHeaderByGroupAndId(gSaveBlock1Ptr->location.mapGroup, gSaveBlock1Ptr->location.mapNum);
+    gSaveBlock1Ptr->regionId = Overworld_GetRegionByGroup(gSaveBlock1Ptr->location.mapGroup);
     gMapHeader.mapLayout = GetMapLayout();
-    DebugPrintf("LOAD MAP (SAVEBLOCK):    MAP GROUP=[%d] MAP NUM=[%d] MAP_SEC=[%d] REGION=[%d]\n", gSaveBlock1Ptr->location.mapGroup, gSaveBlock1Ptr->location.mapNum, gMapHeader.regionMapSectionId, gSaveBlock1Ptr->regionId);
-    // DebugPrintf("LOAD MAP (SAVEBLOCK) TEST\n");
-    // gMapHeader.regionId = GetRegionId();
+    DebugPrintf("LOAD MAP: GROUP=%d, NUM=%d, MAP_SEC=%d, REGION=%d", gSaveBlock1Ptr->location.mapGroup, gSaveBlock1Ptr->location.mapNum, gMapHeader.regionMapSectionId, gSaveBlock1Ptr->regionId);
 }
 
 static void SetPlayerCoordsFromWarp(void)
