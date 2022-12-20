@@ -47,31 +47,32 @@ struct CreditsOverworldCmd
 #define MUSIC_DISABLE_STOP 1
 #define MUSIC_DISABLE_KEEP 2
 
-#define MAPSECS_KANTO_START     1, // https://pokemon.fandom.com/wiki/Kanto
-#define MAPSECS_SEVII_START     2, // Sevii Islands (https://pokemon.fandom.com/wiki/Sevii_Islands)
-#define MAPSECS_JOHTO_START     3, // https://pokemon.fandom.com/wiki/Johto
-#define MAPSECS_HOENN_START     4, // https://pokemon.fandom.com/wiki/Hoenn
-#define MAPSECS_SINNOH_START    5, // https://pokemon.fandom.com/wiki/Sinnoh (old name "Hisui": https://pokemon.fandom.com/wiki/Hisui)
-#define MAPSECS_UNOVA_START     6, // https://pokemon.fandom.com/wiki/Unova "New York/New Jersey"
-#define MAPSECS_KALOS_START     7, // https://pokemon.fandom.com/wiki/Kalos "France"
-#define MAPSECS_ALOLA_START     8, // https://pokemon.fandom.com/wiki/Alola "Hawaii?"
-#define MAPSECS_GALAR_START     9, // https://pokemon.fandom.com/wiki/Galar "United Kingdom"
-#define MAPSECS_PALDEA_START    10, // https://pokemon.fandom.com/wiki/Paldea "Iberia"
-#define MAPSECS_ORANGE_START    11, // Orange Islands (https://pokemon.fandom.com/wiki/Orange_Islands)
-#define MAPSECS_BLUE_START      12, // Blue Islands near Hoehn?
-#define MAPSECS_ORRE_START      13, // https://pokemon.fandom.com/wiki/Orre "Arizona desert"
-#define MAPSECS_FIORE_START     14, // https://pokemon.fandom.com/wiki/Fiore "Italy?"
-#define MAPSECS_ALMIA_START     15, // https://pokemon.fandom.com/wiki/Almia
-#define MAPSECS_OBLIVIA_START   16, // https://pokemon.fandom.com/wiki/Oblivia
-#define MAPSECS_RANSEI_START    17, // https://pokemon.fandom.com/wiki/Ransei
-#define MAPSECS_PASIO_START     18, // https://pokemon.fandom.com/wiki/Pasio
-#define MAPSECS_LENTAL_START    19, // https://pokemon.fandom.com/wiki/Lental
-#define MAPSECS_AEOS_START      20, // Aeos Island (https://pokemon.fandom.com/wiki/Aeos_Island)
-#define MAPSECS_DECOLORE_START  21, // Decolore Islands (https://pokemon.fandom.com/wiki/Decolore_Islands)
+#define MAPGROUPS_SPECIAL_START     0 // Link & SpecialArea
+#define MAPGROUPS_KANTO_START       2 // https://pokemon.fandom.com/wiki/Kanto
+#define MAPGROUPS_SEVII_START       5 // Sevii Islands (https://pokemon.fandom.com/wiki/Sevii_Islands)
+#define MAPGROUPS_JOHTO_START       8 // https://pokemon.fandom.com/wiki/Johto
+#define MAPGROUPS_HOENN_START       11 // https://pokemon.fandom.com/wiki/Hoenn
+#define MAPGROUPS_SINNOH_START      14 // https://pokemon.fandom.com/wiki/Sinnoh (old name "Hisui": https://pokemon.fandom.com/wiki/Hisui)
+#define MAPGROUPS_UNOVA_START       17 // https://pokemon.fandom.com/wiki/Unova "New York/New Jersey"
+#define MAPGROUPS_KALOS_START       20 // https://pokemon.fandom.com/wiki/Kalos "France"
+#define MAPGROUPS_ALOLA_START       23 // https://pokemon.fandom.com/wiki/Alola "Hawaii?"
+#define MAPGROUPS_GALAR_START       26 // https://pokemon.fandom.com/wiki/Galar "United Kingdom"
+#define MAPGROUPS_PALDEA_START      29 // https://pokemon.fandom.com/wiki/Paldea "Iberia"
+#define MAPGROUPS_ORANGE_START      32 // Orange Islands (https://pokemon.fandom.com/wiki/Orange_Islands)
+#define MAPGROUPS_BLUE_START        35 // Blue Islands near Hoehn?
+#define MAPGROUPS_ORRE_START        38 // https://pokemon.fandom.com/wiki/Orre "Arizona desert"
+#define MAPGROUPS_FIORE_START       41 // https://pokemon.fandom.com/wiki/Fiore "Italy?"
+#define MAPGROUPS_ALMIA_START       44 // https://pokemon.fandom.com/wiki/Almia
+#define MAPGROUPS_OBLIVIA_START     47 // https://pokemon.fandom.com/wiki/Oblivia
+#define MAPGROUPS_RANSEI_START      50 // https://pokemon.fandom.com/wiki/Ransei
+#define MAPGROUPS_PASIO_START       53 // https://pokemon.fandom.com/wiki/Pasio
+#define MAPGROUPS_LENTAL_START      56 // https://pokemon.fandom.com/wiki/Lental
+#define MAPGROUPS_AEOS_START        59 // Aeos Island (https://pokemon.fandom.com/wiki/Aeos_Island)
+#define MAPGROUPS_DECOLORE_START    62 // Decolore Islands (https://pokemon.fandom.com/wiki/Decolore_Islands)
 
 // TODO: Adding Multi-Region support: https://github.com/pret/pokeemerald/wiki/Adding-Multi-region-Support
 enum {
-    REGION_NONE,
+    REGION_NONE, // Link & SpecialArea + fallthrough
     REGION_KANTO, // https://pokemon.fandom.com/wiki/Kanto
     REGION_SEVII, // Sevii Islands (https://pokemon.fandom.com/wiki/Sevii_Islands)
     REGION_JOHTO, // https://pokemon.fandom.com/wiki/Johto
@@ -139,6 +140,8 @@ bool32 IsUpdateLinkStateCBActive(void);
 
 void ClearLinkPlayerObjectEvents(void);
 const struct MapHeader *const Overworld_GetMapHeaderByGroupAndId(u16, u16);
+const struct MapHeader *const GetDestinationWarpMapHeader(void);
+const u8 Overworld_GetRegionByGroup(u16 mapGroup);
 void ObjectEventMoveDestCoords(struct ObjectEvent *, u32, s16 *, s16 *);
 void CB2_ReturnToField(void);
 void CB2_ReturnToFieldContinueScriptPlayMapMusic(void);
@@ -190,7 +193,6 @@ bool32 Overworld_LinkRecvQueueLengthMoreThan2(void);
 u8 GetCurrentMapType(void);
 
 u8 GetLastUsedWarpMapType(void);
-const struct MapHeader *const GetDestinationWarpMapHeader(void);
 void TryFadeOutOldMapMusic(void);
 void CB2_ReturnToFieldCableClub(void);
 void ResetGameStats(void);
