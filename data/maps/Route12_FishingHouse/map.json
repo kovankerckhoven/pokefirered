@@ -65,5 +65,6 @@
       "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
       "script": "Route12_FishingHouse_EventScript_MagikarpRecordSign"
     }
-  ]
+  ],
+  "region_id": 1
 }

@@ -89,5 +89,6 @@
       "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
       "script": "CeladonCity_DepartmentStore_Roof_EventScript_VendingMachine"
     }
-  ]
+  ],
+  "region_id": 1
 }

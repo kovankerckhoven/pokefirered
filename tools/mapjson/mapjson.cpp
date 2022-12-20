@@ -153,8 +153,13 @@ string generate_map_header_text(Json map_data, Json layouts_data) {
     if (version == "firered")
         text << "\t.byte " << json_to_string(map_data, "floor_number") << "\n";
 
-     text << "\t.byte " << json_to_string(map_data, "battle_scene") << "\n\n";
+    text << "\t.byte " << json_to_string(map_data, "battle_scene") << "\n\n";
 
+    // TODO: Why would this not work??
+    // if (map_data.object_items().find("region_id") != map_data.object_items().end())
+    //     text << "\t.byte " << map_data["region_id"].int_value() << "\n";
+
+    // text << "\n";
     return text.str();
 }
 

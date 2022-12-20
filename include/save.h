@@ -3,10 +3,23 @@
 
 #include "global.h"
 
+// OLD:
 // Each 4 KiB flash sector contains 3968 bytes of actual data followed by a 128 byte footer.
 // Only 12 bytes of the footer are used.
-#define SECTOR_DATA_SIZE 3968
-#define SECTOR_FOOTER_SIZE 128
+
+/*
+    NEW:
+    Each 4 KiB flash sector contains 4084 bytes of data followed by a 12 byte footer, no unused bytes
+    
+    !! Save Slot =/= Save Block =/= Save Sector !!
+    
+    There are 2 save "slots" with each a size of NUM_SECTORS_PER_SLOT sectors
+     + a "Hall of Fame" using NUM_HOF_SECTORS sectors
+     + a "Trainer Tower" using ?the remaining of (SECTORS_COUNT - 2*NUM_SECTORS_PER_SLOT - NUM_HOF_SECTORS)? sectors
+    Also see comments above SAVEBLOCK_CHUNK macro in save.c
+*/
+#define SECTOR_DATA_SIZE 4084
+#define SECTOR_FOOTER_SIZE 12
 #define SECTOR_SIZE (SECTOR_DATA_SIZE + SECTOR_FOOTER_SIZE)
 
 #define NUM_SAVE_SLOTS 2
@@ -63,12 +76,11 @@ struct SaveSectorLocation
 struct SaveSector
 {
     u8 data[SECTOR_DATA_SIZE];
-    u8 unused[SECTOR_FOOTER_SIZE - 12]; // Unused portion of the footer
     u16 id;
     u16 checksum;
     u32 signature;
     u32 counter;
-}; // size is SECTOR_SIZE (0x1000)
+}; // size is SECTOR_SIZE (0x1000 or 4096 bytes or 4KiB)
 
 #define SECTOR_SIGNATURE_OFFSET offsetof(struct SaveSector, signature)
 #define SECTOR_COUNTER_OFFSET   offsetof(struct SaveSector, counter)

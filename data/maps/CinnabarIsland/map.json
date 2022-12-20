@@ -164,5 +164,6 @@
       "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
       "script": "CinnabarIsland_EventScript_PokemonLabSign"
     }
-  ]
+  ],
+  "region_id": 1
 }

@@ -313,6 +313,7 @@ struct BattleTowerData // Leftover from R/S
     /*0x04D1, 0x0581*/ u8 filler_4D1[0x317];
 }; /* size = 0x7E8 */
 
+// TODO: Can become 0xFF4 instead of the current 0xF24 (4084 instead of 3876 bytes)
 struct SaveBlock2
 {
     /*0x000*/ u8 playerName[PLAYER_NAME_LENGTH + 1];
@@ -746,6 +747,7 @@ struct ExternalEventFlags
 
 } __attribute__((packed));/*size = 0x15*/
 
+// TODO: Can become 0x3F38 instead of the current 0x3D68 (16184 instead of 15720 bytes)
 struct SaveBlock1
 {
     /*0x0000*/ struct Coords16 pos;
@@ -772,7 +774,8 @@ struct SaveBlock1
     /*0x054c*/ struct ItemSlot bagPocket_Berries[BAG_BERRIES_COUNT];
     /*0x05F8*/ u8 seen1[DEX_FLAGS_NO];
     /*0x062C*/ u16 berryBlenderRecords[3]; // unused
-    /*0x0632*/ u8 unused_632[6];
+    /*0x0632*/ u8 regionId; // For multi-region support, to be used in conjunction with location->mapGroup, location->mapNum and mapLayoutId
+    /*0x0633*/ u8 unused_632[5];
     /*0x0638*/ u16 trainerRematchStepCounter;
     /*0x063A*/ u8 ALIGNED(2) trainerRematches[MAX_REMATCH_ENTRIES];
     /*0x06A0*/ struct ObjectEvent objectEvents[OBJECT_EVENTS_COUNT];
@@ -809,7 +812,7 @@ struct SaveBlock1
     /*0x3D24*/ u8 unused_3D24[16];
     /*0x3D34*/ u32 towerChallengeId;
     /*0x3D38*/ struct TrainerTower trainerTower[NUM_TOWER_CHALLENGE_TYPES];
-}; // size: 0x3D68
+}; // size: 0x3F38
 
 struct MapPosition
 {

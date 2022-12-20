@@ -53,5 +53,6 @@
       "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
       "script": "CeladonCity_DepartmentStore_Elevator_EventScript_FloorSelect"
     }
-  ]
+  ],
+  "region_id": 1
 }

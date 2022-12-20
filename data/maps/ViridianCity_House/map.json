@@ -93,5 +93,6 @@
       "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
       "script": "ViridianCity_House_EventScript_NicknameSign"
     }
-  ]
+  ],
+  "region_id": 1
 }
