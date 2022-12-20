@@ -91,7 +91,7 @@ void EnableVCountIntrAtLine150(void);
 
 void AgbMain()
 {
-#if MODERN
+    #if MODERN
     // Modern compilers are liberal with the stack on entry to this function,
     // so RegisterRamReset may crash if it resets IWRAM.
     RegisterRamReset(RESET_ALL & ~RESET_IWRAM);
@@ -119,9 +119,9 @@ void AgbMain()
         :
         : "r0", "r1", "r2", "r3", "r4", "r5", "memory"
     );
-#else
+    #else
     RegisterRamReset(RESET_ALL);
-#endif //MODERN
+    #endif //MODERN
     *(vu16 *)BG_PLTT = RGB_WHITE;
     InitGpuRegManager();
     REG_WAITCNT = WAITCNT_PREFETCH_ENABLE | WAITCNT_WS0_S_1 | WAITCNT_WS0_N_3;
@@ -143,18 +143,19 @@ void AgbMain()
 
     SetNotInSaveFailedScreen();
 
-#ifndef NDEBUG
-#if (LOG_HANDLER == LOG_HANDLER_MGBA_PRINT)
-    (void) MgbaOpen();
-#elif (LOG_HANDLER == LOG_HANDLER_AGB_PRINT)
-    AGBPrintInit();
-#endif
-#endif
+    // AGBPrintInit(); TODO: Commented this in favour of the below MgbaOpen() and AGBPrintfInit()
+    #ifndef NDEBUG
+    #if (LOG_HANDLER == LOG_HANDLER_MGBA_PRINT)
+        (void) MgbaOpen();
+    #elif (LOG_HANDLER == LOG_HANDLER_AGB_PRINT)
+        AGBPrintfInit();
+    #endif
+    #endif
 
-#if REVISION == 1
+    #if REVISION == 1
     if (gFlashMemoryPresent != TRUE)
         SetMainCallback2(NULL);
-#endif
+    #endif
 
     gLinkTransferringData = FALSE;
 

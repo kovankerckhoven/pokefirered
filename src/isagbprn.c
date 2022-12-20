@@ -96,9 +96,7 @@ void AGBPrintf(const char *pBuf, ...)
     char bufPrint[0x100];
     va_list vArgv;
     va_start(vArgv, pBuf);
-    #if (PRETTY_PRINT_HANDLER == PRETTY_PRINT_OFF)
-    vsprintf(bufPrint, pBuf, vArgv);
-    #elif (PRETTY_PRINT_HANDLER == PRETTY_PRINT_MINI_PRINTF)
+    #if (PRETTY_PRINT_HANDLER == PRETTY_PRINT_MINI_PRINTF)
     mini_vsnprintf(bufPrint, 0x100, pBuf, vArgv);
     #elif (PRETTY_PRINT_HANDLER == PRETTY_PRINT_LIBC)
     vsnprintf(bufPrint, 0x100, pBuf, vArgv);
@@ -176,6 +174,7 @@ void AGBAssert(const char *pFile, int nLine, const char *pExpression, int nStopP
 
 // no$gba print functions
 #if (LOG_HANDLER == LOG_HANDLER_NOCASH_PRINT)
+
 void NoCashGBAPrint(const char *pBuf)
 {
     *(volatile u32 *)NOCASHGBAPRINTADDR2 = (u32)pBuf;
@@ -186,9 +185,7 @@ void NoCashGBAPrintf(const char *pBuf, ...)
     char bufPrint[0x100];
     va_list vArgv;
     va_start(vArgv, pBuf);
-    #if (PRETTY_PRINT_HANDLER == PRETTY_PRINT_OFF)
-    vsprintf(bufPrint, pBuf, vArgv);
-    #elif (PRETTY_PRINT_HANDLER == PRETTY_PRINT_MINI_PRINTF)
+    #if (PRETTY_PRINT_HANDLER == PRETTY_PRINT_MINI_PRINTF)
     mini_vsnprintf(bufPrint, 0x100, pBuf, vArgv);
     #elif (PRETTY_PRINT_HANDLER == PRETTY_PRINT_LIBC)
     vsnprintf(bufPrint, 0x100, pBuf, vArgv);
@@ -234,9 +231,7 @@ void MgbaPrintf(s32 level, const char* ptr, ...)
 
     level &= 0x7;
     va_start(args, ptr);
-    #if (PRETTY_PRINT_HANDLER == PRETTY_PRINT_OFF)
-    vsprintf(REG_DEBUG_STRING, ptr, args);
-    #elif (PRETTY_PRINT_HANDLER == PRETTY_PRINT_MINI_PRINTF)
+    #if (PRETTY_PRINT_HANDLER == PRETTY_PRINT_MINI_PRINTF)
     mini_vsnprintf(REG_DEBUG_STRING, MGBA_REG_DEBUG_MAX, ptr, args);
     #elif (PRETTY_PRINT_HANDLER == PRETTY_PRINT_LIBC)
     vsnprintf(REG_DEBUG_STRING, MGBA_REG_DEBUG_MAX, ptr, args);
