@@ -2243,7 +2243,7 @@ bool8 ScrCmd_checkmoneventlegal(struct ScriptContext * ctx)
 bool8 ScrCmd_setmonmetlocation(struct ScriptContext * ctx)
 {
     u16 partyIndex = VarGet(ScriptReadHalfword(ctx));
-    u8 location = ScriptReadByte(ctx);
+    u16 location = ScriptReadHalfword(ctx);
 
     if (partyIndex < PARTY_SIZE)
         SetMonData(&gPlayerParty[partyIndex], MON_DATA_MET_LOCATION, &location);

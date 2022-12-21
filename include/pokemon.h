@@ -10,10 +10,11 @@ struct PokemonSubstruct0
 {
  /* 0x00 */ u16 species;
  /* 0x02 */ u16 heldItem;
- /* 0x04 */ u32 experience;
+ /* 0x04 */ u32 experience; // see src\data\pokemon\experience_tables.h
  /* 0x08 */ u8 ppBonuses;
  /* 0x09 */ u8 friendship;
- /* 0x0A */ u16 filler;
+ /* 0x0A */ u8 pokerus;
+ /* 0x0B */ u8 filler;
 }; /* 0x0C = 12 bytes */
 
 struct PokemonSubstruct1
@@ -40,8 +41,7 @@ struct PokemonSubstruct2
 
 struct PokemonSubstruct3
 {
- /* 0x00 */ u16 pokerus:1;
- /* 0x00 */ u16 metLocation:15;
+ /* 0x00 */ u16 metLocation;
 
  /* 0x02 */ u16 metLevel:7;
  /* 0x02 */ u16 metGame:4;
@@ -55,7 +55,7 @@ struct PokemonSubstruct3
  /* 0x05 */ u32 spAttackIV:5;
  /* 0x06 */ u32 spDefenseIV:5;
  /* 0x07 */ u32 isEgg:1;
- /* 0x07 */ u32 abilityNum:1;
+ /* 0x07 */ u32 abilityNum:1; // see src\data\pokemon\base_stats.h
 
  /* 0x08 */ u32 coolRibbon:3;
  /* 0x08 */ u32 beautyRibbon:3;
