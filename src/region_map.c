@@ -3147,7 +3147,7 @@ static void GetPlayerPositionOnRegionMap(void)
         y = gSaveBlock1Ptr->dynamicWarp.y;
         break;
     case MAP_TYPE_INDOOR:
-        if ((sMapCursor->selectedMapsec = gMapHeader.regionMapSectionId) != MAPSEC_SPECIAL_AREA)
+        if ((sMapCursor->selectedMapsec = gMapHeader.regionMapSectionId) != MAPSEC_CELADON_DEPT)
         {
             warp = &gSaveBlock1Ptr->escapeWarp;
             mapHeader = Overworld_GetMapHeaderByGroupAndId(warp->mapGroup, warp->mapNum);
@@ -3814,7 +3814,7 @@ u8 *GetMapName(u8 *dst0, u16 mapsec, u16 fill)
     u8 *dst;
     u16 i;
     u16 idx;
-    if ((idx = mapsec - MAPSECS_KANTO) <= MAPSEC_SPECIAL_AREA - MAPSECS_KANTO)
+    if ((idx = mapsec - MAPSECS_KANTO) <= MAPSEC_CELADON_DEPT - MAPSECS_KANTO)
     {
         if (IsCeladonDeptStoreMapsec(mapsec) == TRUE)
             dst = StringCopy(dst0, sMapsecName_CELADONDEPT);
