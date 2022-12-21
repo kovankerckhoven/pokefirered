@@ -607,7 +607,42 @@ static void LoadCurrentMapData(void)
     gSaveBlock1Ptr->mapLayoutId = gMapHeader.mapLayoutId;
     gSaveBlock1Ptr->regionId = Overworld_GetRegionByGroup(gSaveBlock1Ptr->location.mapGroup);
     gMapHeader.mapLayout = GetMapLayout();
-    DebugPrintf("LOAD MAP: GROUP=%d, NUM=%d, MAP_SEC=%d, REGION=%d", gSaveBlock1Ptr->location.mapGroup, gSaveBlock1Ptr->location.mapNum, gMapHeader.regionMapSectionId, gSaveBlock1Ptr->regionId);
+    DebugPrintf("LOADCMAP: GROUP=%d, NUM=%d, MAP_SEC=%d, REGION=%d, SIZE=%d", gSaveBlock1Ptr->location.mapGroup, gSaveBlock1Ptr->location.mapNum, gMapHeader.regionMapSectionId, gSaveBlock1Ptr->regionId, NUM_SUBSTRUCT_BYTES);
+    DebugPrintf("POKEMON: %d\n%lX\n%lX\n%lX\n%lX\n%lX\n%lX\n%lX\n%lX\n%lX\n%lX\n%lX\n%lX",
+        gSaveBlock1Ptr->playerPartyCount,
+        gSaveBlock1Ptr->playerParty[0].box.secure.raw[0],
+        gSaveBlock1Ptr->playerParty[0].box.secure.raw[1],
+        gSaveBlock1Ptr->playerParty[0].box.secure.raw[2],
+        gSaveBlock1Ptr->playerParty[0].box.secure.raw[3],
+        gSaveBlock1Ptr->playerParty[0].box.secure.raw[4],
+        gSaveBlock1Ptr->playerParty[0].box.secure.raw[5],
+        gSaveBlock1Ptr->playerParty[0].box.secure.raw[6],
+        gSaveBlock1Ptr->playerParty[0].box.secure.raw[7],
+        gSaveBlock1Ptr->playerParty[0].box.secure.raw[8],
+        gSaveBlock1Ptr->playerParty[0].box.secure.raw[9],
+        gSaveBlock1Ptr->playerParty[0].box.secure.raw[10],
+        gSaveBlock1Ptr->playerParty[0].box.secure.raw[11]);
+    //     gSaveBlock1Ptr->playerParty[0].box.secure.substructs->type0.species,
+    //     gSaveBlock1Ptr->playerParty[0].box.secure.substructs->type0.heldItem,
+    //     gSaveBlock1Ptr->playerParty[0].box.secure.substructs->type0.experience,
+    //     gSaveBlock1Ptr->playerParty[0].box.secure.substructs->type0.ppBonuses,
+    //     gSaveBlock1Ptr->playerParty[0].box.secure.substructs->type0.friendship);
+    // DebugPrintf("POKEMON: %d %d %d %d - %d %d %d %d", 
+    //     gSaveBlock1Ptr->playerParty[0].box.secure.substructs->type1.moves[0], 
+    //     gSaveBlock1Ptr->playerParty[0].box.secure.substructs->type1.moves[1],
+    //     gSaveBlock1Ptr->playerParty[0].box.secure.substructs->type1.moves[2],
+    //     gSaveBlock1Ptr->playerParty[0].box.secure.substructs->type1.moves[3],
+    //     gSaveBlock1Ptr->playerParty[0].box.secure.substructs->type1.pp[0], 
+    //     gSaveBlock1Ptr->playerParty[0].box.secure.substructs->type1.pp[1],
+    //     gSaveBlock1Ptr->playerParty[0].box.secure.substructs->type1.pp[2],
+    //     gSaveBlock1Ptr->playerParty[0].box.secure.substructs->type1.pp[3]);
+    // DebugPrintf("POKEMON: %u %u %u %u %u %u", 
+    //     gSaveBlock1Ptr->playerParty[0].box.secure.substructs->type3.pokerus, 
+    //     gSaveBlock1Ptr->playerParty[0].box.secure.substructs->type3.metLocation,
+    //     gSaveBlock1Ptr->playerParty[0].box.secure.substructs->type3.metLevel,
+    //     gSaveBlock1Ptr->playerParty[0].box.secure.substructs->type3.metGame,
+    //     gSaveBlock1Ptr->playerParty[0].box.secure.substructs->type3.pokeball, 
+    //     gSaveBlock1Ptr->playerParty[0].box.secure.substructs->type3.otGender);
 }
 
 static void LoadSaveblockMapHeader(void)
@@ -615,7 +650,7 @@ static void LoadSaveblockMapHeader(void)
     gMapHeader = *Overworld_GetMapHeaderByGroupAndId(gSaveBlock1Ptr->location.mapGroup, gSaveBlock1Ptr->location.mapNum);
     gSaveBlock1Ptr->regionId = Overworld_GetRegionByGroup(gSaveBlock1Ptr->location.mapGroup);
     gMapHeader.mapLayout = GetMapLayout();
-    DebugPrintf("LOAD MAP: GROUP=%d, NUM=%d, MAP_SEC=%d, REGION=%d", gSaveBlock1Ptr->location.mapGroup, gSaveBlock1Ptr->location.mapNum, gMapHeader.regionMapSectionId, gSaveBlock1Ptr->regionId);
+    DebugPrintf("LOADSMAP: GROUP=%d, NUM=%d, MAP_SEC=%d, REGION=%d, SIZE=%d", gSaveBlock1Ptr->location.mapGroup, gSaveBlock1Ptr->location.mapNum, gMapHeader.regionMapSectionId, gSaveBlock1Ptr->regionId, NUM_SUBSTRUCT_BYTES);
 }
 
 static void SetPlayerCoordsFromWarp(void)
