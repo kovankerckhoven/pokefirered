@@ -97,7 +97,7 @@ enum {
     // Other regions still possible
 };
 // u8 sLastRegionId;
-// u8 sLastMapSectionId;
+// u16 sLastMapSectionId;
 
 extern const struct Coords32 gDirectionToVectors[];
 
@@ -160,7 +160,7 @@ void CB2_SetUpOverworldForQLPlaybackWithWarpExit(void);
 void CB2_EnterFieldFromQuestLog(void);
 void Overworld_PlaySpecialMapMusic(void);
 
-u8 GetCurrentRegionMapSectionId(void);
+u16 GetCurrentRegionMapSectionId(void);
 
 void SetCurrentMapLayout(u16 mapLayoutId);
 void SetWarpDestinationToFixedHoleWarp(s16 x, s16 y);
@@ -227,7 +227,7 @@ u16 SetLinkWaitingForScript(void);
 void SetMainCallback1(MainCallback cb);
 void CB1_Overworld(void);
 void CB2_ReturnToFieldContinueScript(void);
-u8 GetLastUsedWarpMapSectionId(void);
+u16 GetLastUsedWarpMapSectionId(void);
 void StoreInitialPlayerAvatarState(void);
 void UpdateEscapeWarp(s16 x, s16 y);
 bool8 SetDiveWarpEmerge(u16 x, u16 y);

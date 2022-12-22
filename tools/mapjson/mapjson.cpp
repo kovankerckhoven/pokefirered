@@ -131,12 +131,12 @@ string generate_map_header_text(Json map_data, Json layouts_data) {
     else
         text << "\t.4byte NULL\n";
 
-    text << "\t.2byte " << json_to_string(map_data, "music") << "\n"
-         << "\t.2byte " << json_to_string(layout, "id") << "\n"
-         << "\t.byte "  << json_to_string(map_data, "region_map_section") << "\n"
-         << "\t.byte "  << json_to_string(map_data, "requires_flash") << "\n"
-         << "\t.byte "  << json_to_string(map_data, "weather") << "\n"
-         << "\t.byte "  << json_to_string(map_data, "map_type") << "\n";
+    text << "\t.2byte " << map_data["music"].string_value() << "\n"
+         << "\t.2byte " << layout["id"].string_value() << "\n"
+         << "\t.2byte " << map_data["region_map_section"].string_value() << "\n"
+         << "\t.byte "  << map_data["requires_flash"].bool_value() << "\n"
+         << "\t.byte "  << map_data["weather"].string_value() << "\n"
+         << "\t.byte "  << map_data["map_type"].string_value() << "\n";
 
     if (version != "firered")
         text << "\t.2byte 0\n";
@@ -153,7 +153,10 @@ string generate_map_header_text(Json map_data, Json layouts_data) {
     if (version == "firered")
         text << "\t.byte " << json_to_string(map_data, "floor_number") << "\n";
 
-    text << "\t.byte " << json_to_string(map_data, "battle_scene") << "\n\n";
+    text << "\t.byte " << map_data["battle_scene"].string_value() << "\n";
+
+    text << "\t.2byte 0\n"; // Padding for the struct Mapheader with 2byte region_map_section
+    text << "\t.byte 0\n\n";
 
     // TODO: Why would this not work??
     // if (map_data.object_items().find("region_id") != map_data.object_items().end())

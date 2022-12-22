@@ -4171,7 +4171,7 @@ struct FieldMoveWarpParams
 {
     u16 species;
     u8 fieldMove;
-    u8 regionMapSectionId;
+    u16 regionMapSectionId;
 };
 
 static void SetUsedFieldMoveQuestLogEvent(struct Pokemon *mon, u8 fieldMove)
@@ -4189,7 +4189,7 @@ static void SetUsedFieldMoveQuestLogEvent(struct Pokemon *mon, u8 fieldMove)
         ptr->regionMapSectionId = gMapHeader.regionMapSectionId;
         break;
     default:
-        ptr->regionMapSectionId = 0xFF;
+        ptr->regionMapSectionId = 0x0000; // MAPSEC_NONE
     }
     SetQuestLogEvent(QL_EVENT_USED_FIELD_MOVE, (u16 *)ptr);
     Free(ptr);

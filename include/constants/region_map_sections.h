@@ -219,12 +219,12 @@
 // #define MAPSEC_SECRET_BASE                  0x0056
 // #define MAPSEC_DYNAMIC                      0x0057
 
-// Make this the same as the last defined MAPSEC
+// Make this the last defined MAPSEC + 1
 #define MAPSEC_COUNT                        0x0086
 
-#define MAPSEC_SPECIAL_AREA                 0x00FC
-#define METLOC_SPECIAL_EGG                  0x00FD
-#define METLOC_IN_GAME_TRADE                0x00FE
-#define METLOC_FATEFUL_ENCOUNTER            0x00FF
+#define MAPSEC_SPECIAL_AREA                 0xFFFC
+#define METLOC_SPECIAL_EGG                  0xFFFD
+#define METLOC_IN_GAME_TRADE                0xFFFE
+#define METLOC_FATEFUL_ENCOUNTER            0xFFFF
 
 #endif //GUARD_CONSTANTS_REGION_MAP_SECTIONS_H

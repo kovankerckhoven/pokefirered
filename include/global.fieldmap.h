@@ -177,18 +177,18 @@ struct MapHeader
     /* 0x0C */ const struct MapConnections *connections;
     /* 0x10 */ u16 music;
     /* 0x12 */ u16 mapLayoutId;
-    /* 0x14 */ u8 regionMapSectionId; // MAPSEC_... defined ID from include\constants\region_map_sections.h
-    /* 0x15 */ u8 cave;
-    /* 0x16 */ u8 weather;
-    /* 0x17 */ u8 mapType;
+    /* 0x14 */ u16 regionMapSectionId; // MAPSEC_... defined ID from include\constants\region_map_sections.h
+    /* 0x16 */ u8 cave;
+    /* 0x17 */ u8 weather;
+    /* 0x18 */ u8 mapType;
                // fields correspond to the arguments in the map_header_flags macro (asm/macros/map.inc)
-    /* 0x18 */ bool8 bikingAllowed;
-    /* 0x19 */ bool8 allowEscaping:1; // Escape Rope and Dig
+    /* 0x19 */ bool8 bikingAllowed;
+    /* 0x1A */ bool8 allowEscaping:1; // Escape Rope and Dig
                bool8 allowRunning:1;
                bool8 showMapName:6; // the last 5 bits are unused
-    /* 0x1A */ s8 floorNum;
-    /* 0x1B */ u8 battleType;
-    // /* 0x1C */ u8 regionId; // REGION_... defined ID from include\overworld.h
+    /* 0x1B */ s8 floorNum;
+    /* 0x1C */ u8 battleType;
+    // Will be padded automatically to 0x1F?
 };
 
 struct ObjectEvent
