@@ -1010,7 +1010,7 @@ void InitRegionMapWithExitCB(u8 type, MainCallback cb)
     }
 }
 
-// TODO: Change this to use the same logic as in src\overworld.c `Overworld_GetRegionByGroup` function
+// TODO: Multi-region Change this to use the same logic as in src\overworld.c `Overworld_GetRegionByGroup` function
 static void InitRegionMapType(void)
 {
     u8 i;
@@ -3814,7 +3814,7 @@ u8 *GetMapName(u8 *dst0, u16 mapsec, u16 fill)
     u8 *dst;
     u16 i;
     u16 idx;
-    if ((idx = mapsec - MAPSECS_KANTO) <= MAPSEC_CELADON_DEPT - MAPSECS_KANTO)
+    if ((idx = mapsec - MAPSECS_KANTO) <= MAPSEC_COUNT - MAPSECS_KANTO)
     {
         if (IsCeladonDeptStoreMapsec(mapsec) == TRUE)
             dst = StringCopy(dst0, sMapsecName_CELADONDEPT);

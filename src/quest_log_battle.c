@@ -13,14 +13,14 @@ struct QuestLogStruct_TrainerBattleRecord
     u16 v2;
     u16 v4;
     u8 v6;
-    u8 v7;
+    u16 v7;
 };
 
 struct QuestLogStruct_WildBattleRecord
 {
     u16 defeatedSpecies;
     u16 caughtSpecies;
-    u8 mapSec;
+    u16 mapSec;
 };
 
 static void sub_812C334(s32 *, s32 *);

@@ -74,8 +74,7 @@ struct MartHistory
     /*0x00*/ u32 unk0;
     /*0x04*/ u16 unk4;
     /*0x06*/ u16 unk6;
-    /*0x08*/ u8 unk8;
-    /*0x09*/ u8 unk9;
+    /*0x08*/ u16 unk8;
     /*0x0A*/ u8 unkA;
     /*0x0B*/ u8 unkB;
 }; /* size = 12 */
@@ -1089,7 +1088,7 @@ void RecordItemPurchase(u16 item, u16 quantity, u8 a2)
     
     if (history->unk4 != 0)
     {
-        history->unk9 = 1;
+        history->unk8 = 1;
     }
     
     history->unk4 = item;

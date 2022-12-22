@@ -1651,7 +1651,7 @@ static void AddHatchedMonToParty(u8 id)
     u8 name[12];
     u16 ball;
     u16 caughtLvl;
-    u8 mapNameID;
+    u16 mapNameID;
     struct Pokemon* mon = &gPlayerParty[id];
 
     CreatedHatchedMon(mon, &gEnemyParty[0]);

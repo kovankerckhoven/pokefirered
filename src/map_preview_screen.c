@@ -324,7 +324,7 @@ static const struct BgTemplate sMapPreviewBgTemplate[1] = {
     }
 };
 
-static u8 GetMapPreviewScreenIdx(u8 mapsec)
+static u8 GetMapPreviewScreenIdx(u16 mapsec)
 {
     s32 i;
 
@@ -338,7 +338,7 @@ static u8 GetMapPreviewScreenIdx(u8 mapsec)
     return MPS_COUNT;
 }
 
-bool8 MapHasPreviewScreen(u8 mapsec, u8 type)
+bool8 MapHasPreviewScreen(u16 mapsec, u8 type)
 {
     u8 idx;
 
@@ -360,7 +360,7 @@ bool8 MapHasPreviewScreen(u8 mapsec, u8 type)
     }
 }
 
-bool32 MapHasPreviewScreen_HandleQLState2(u8 mapsec, u8 type)
+bool32 MapHasPreviewScreen_HandleQLState2(u16 mapsec, u8 type)
 {
     if (gQuestLogState == QL_STATE_PLAYBACK)
     {
@@ -378,7 +378,7 @@ void MapPreview_InitBgs(void)
     ShowBg(0);
 }
 
-void MapPreview_LoadGfx(u8 mapsec)
+void MapPreview_LoadGfx(u16 mapsec)
 {
     u8 idx;
 
@@ -416,7 +416,7 @@ bool32 MapPreview_IsGfxLoadFinished(void)
     return FreeTempTileDataBuffersIfPossible();
 }
 
-void MapPreview_StartForestTransition(u8 mapsec)
+void MapPreview_StartForestTransition(u16 mapsec)
 {
     u8 taskId;
 
@@ -439,26 +439,21 @@ void MapPreview_StartForestTransition(u8 mapsec)
     LockPlayerFieldControls();
 }
 
-u16 MapPreview_CreateMapNameWindow(u8 mapsec)
+u16 MapPreview_CreateMapNameWindow(u16 mapsec)
 {
     u16 windowId;
     u32 xctr;
-    #ifdef BUGFIX
-    // Fixes access violations indicated below.
     u8 color[3];
-    #else
-    u8 color[0];
-    #endif
 
     windowId = AddWindow(&sMapNameWindow);
     FillWindowPixelBuffer(windowId, PIXEL_FILL(1));
     PutWindowTilemap(windowId);
-    color[0] = TEXT_COLOR_WHITE; // Access violation
-    color[1] = TEXT_COLOR_RED; // Access violation
-    color[2] = TEXT_COLOR_LIGHT_GRAY; // Access violation
+    color[0] = TEXT_COLOR_WHITE;
+    color[1] = TEXT_COLOR_RED;
+    color[2] = TEXT_COLOR_LIGHT_GRAY;
     GetMapName(gStringVar4, mapsec, 0);
     xctr = 104 - GetStringWidth(FONT_NORMAL, gStringVar4, 0);
-    AddTextPrinterParameterized4(windowId, FONT_NORMAL, xctr / 2, 2, 0, 0, color/* Access violation */, -1, gStringVar4);
+    AddTextPrinterParameterized4(windowId, FONT_NORMAL, xctr / 2, 2, 0, 0, color, -1, gStringVar4);
     return windowId;
 }
 
@@ -553,7 +548,7 @@ static void Task_RunMapPreviewScreenForest(u8 taskId)
     }
 }
 
-const struct MapPreviewScreen * GetDungeonMapPreviewScreenInfo(u8 mapsec)
+const struct MapPreviewScreen * GetDungeonMapPreviewScreenInfo(u16 mapsec)
 {
     u8 idx;
 
@@ -568,7 +563,7 @@ const struct MapPreviewScreen * GetDungeonMapPreviewScreenInfo(u8 mapsec)
     }
 }
 
-u16 MapPreview_GetDuration(u8 mapsec)
+u16 MapPreview_GetDuration(u16 mapsec)
 {
     u8 idx;
     u16 flagId;

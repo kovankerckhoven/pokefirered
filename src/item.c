@@ -570,7 +570,7 @@ void TrySetObtainedItemQuestLogEvent(u16 itemId)
     struct QuestLogStruct_809A824
     {
         u16 itemId;
-        u8 mapSectionId;
+        u16 mapSectionId;
     } * ptr;
 
     // Only some key items trigger this event
