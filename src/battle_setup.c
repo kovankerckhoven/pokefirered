@@ -217,7 +217,7 @@ static void CreateBattleStartTask(u8 transition, u16 song) // song == 0 means de
     PlayMapChosenOrBattleBGM(song);
 }
 
-static bool8 CheckSilphScopeInPokemonTower(u16 mapGroup, u16 mapNum)
+static bool8 CheckSilphScopeInPokemonTower(u8 mapGroup, u8 mapNum)
 {
     if (mapGroup == MAP_GROUP(POKEMON_TOWER_1F)
      && (mapNum == MAP_NUM(POKEMON_TOWER_1F)

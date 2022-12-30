@@ -61,6 +61,6 @@ Route22_Text_LateRivalVictory::
 	.string "あははーッ！$"
 
 Route22_Text_LeagueGateSign::
-	.string "POKéMON LEAGUE\n"
-	.string "Front Gate$"
+	.string "POKéMON LEAGUE RECEPTION GATE\n"
+	.string "KANTO GATE$"
 

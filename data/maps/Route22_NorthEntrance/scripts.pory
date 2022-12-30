@@ -17,4 +17,16 @@ Route22_NorthEntrance_EventScript_BoulderBadgeGuardTrigger::
 	bufferstdstring STR_VAR_1, STDSTRING_BOULDER_BADGE
 	goto Route23_EventScript_BadgeGuardTrigger
 	end
+
+Route22_EventScript_KantoStatue::
+	msgbox Route22_NorthEntrance_KantoStatue, MSGBOX_SIGN
+	end
+
+Route22_EventScript_JohtoStatue::
+	msgbox Route22_NorthEntrance_JohtoStatue, MSGBOX_SIGN
+	end
+
+Route22_EventScript_MtSilverStatue::
+	msgbox Route22_NorthEntrance_MtSilverStatue, MSGBOX_SIGN
+	end
 `

@@ -197,7 +197,7 @@ static void RunTerminateLinkScript(void);
 static void SpawnLinkPlayerObjectEvent(u8 i, s16 x, s16 y, u8 gender);
 static void InitLinkPlayerObjectEventPos(struct ObjectEvent *objEvent, s16 x, s16 y);
 static u8 GetSpriteForLinkedPlayer(u8 linkPlayerId);
-static void GetLinkPlayerCoords(u8 linkPlayerId, u16 *x, u16 *y);
+static void GetLinkPlayerCoords(u8 linkPlayerId, s16 *x, s16 *y);
 static u8 GetLinkPlayerFacingDirection(u8 linkPlayerId);
 static u8 GetLinkPlayerElevation(u8 linkPlayerId);
 static u8 GetLinkPlayerIdAt(s16 x, s16 y);
@@ -516,7 +516,7 @@ static void ApplyCurrentWarp(void)
     sFixedHoleWarp = sDummyWarpData;
 }
 
-static void SetWarpData(struct WarpData *warp, s8 mapGroup, s8 mapNum, s8 warpId, s8 x, s8 y)
+static void SetWarpData(struct WarpData *warp, u8 mapGroup, u8 mapNum, s8 warpId, s16 x, s16 y)
 {
     warp->mapGroup = mapGroup;
     warp->mapNum = mapNum;
@@ -527,9 +527,9 @@ static void SetWarpData(struct WarpData *warp, s8 mapGroup, s8 mapNum, s8 warpId
 
 static bool32 IsDummyWarp(struct WarpData *warp)
 {
-    if (warp->mapGroup != (s8)MAP_GROUP(UNDEFINED))
+    if (warp->mapGroup != (u8)MAP_GROUP(UNDEFINED))
         return FALSE;
-    else if (warp->mapNum != (s8)MAP_NUM(UNDEFINED))
+    else if (warp->mapNum != (u8)MAP_NUM(UNDEFINED))
         return FALSE;
     else if (warp->warpId != -1)
         return FALSE;
@@ -541,7 +541,7 @@ static bool32 IsDummyWarp(struct WarpData *warp)
         return TRUE;
 }
 
-struct MapHeader const *const Overworld_GetMapHeaderByGroupAndId(u16 mapGroup, u16 mapNum)
+struct MapHeader const *const Overworld_GetMapHeaderByGroupAndId(u8 mapGroup, u8 mapNum)
 {
     return gMapGroups[mapGroup][mapNum];
 }
@@ -551,7 +551,7 @@ struct MapHeader const *const GetDestinationWarpMapHeader(void)
     return Overworld_GetMapHeaderByGroupAndId(sWarpDestination.mapGroup, sWarpDestination.mapNum);
 }
 
-const u8 Overworld_GetRegionByGroup(u16 mapGroup)
+const u8 Overworld_GetRegionByGroup(u8 mapGroup)
 {
     if (mapGroup < MAPGROUPS_KANTO_START)
         return REGION_NONE; // Link & SpecialArea
@@ -679,22 +679,22 @@ void WarpIntoMap(void)
     SetPlayerCoordsFromWarp();
 }
 
-void SetWarpDestination(s8 mapGroup, s8 mapNum, s8 warpId, s8 x, s8 y)
+void SetWarpDestination(u8 mapGroup, u8 mapNum, s8 warpId, s16 x, s16 y)
 {
     SetWarpData(&sWarpDestination, mapGroup, mapNum, warpId, x, y);
 }
 
-void SetWarpDestinationToMapWarp(s8 mapGroup, s8 mapNum, s8 warpId)
+void SetWarpDestinationToMapWarp(u8 mapGroup, u8 mapNum, s8 warpId)
 {
     SetWarpDestination(mapGroup, mapNum, warpId, -1, -1);
 }
 
-void SetDynamicWarp(s32 unused, s8 mapGroup, s8 mapNum, s8 warpId)
+void SetDynamicWarp(s32 unused, u8 mapGroup, u8 mapNum, s8 warpId)
 {
     SetWarpData(&gSaveBlock1Ptr->dynamicWarp, mapGroup, mapNum, warpId, gSaveBlock1Ptr->pos.x, gSaveBlock1Ptr->pos.y);
 }
 
-void SetDynamicWarpWithCoords(s32 unused, s8 mapGroup, s8 mapNum, s8 warpId, s8 x, s8 y)
+void SetDynamicWarpWithCoords(s32 unused, u8 mapGroup, u8 mapNum, s8 warpId, s16 x, s16 y)
 {
     SetWarpData(&gSaveBlock1Ptr->dynamicWarp, mapGroup, mapNum, warpId, x, y);
 }
@@ -740,7 +740,7 @@ void UpdateEscapeWarp(s16 x, s16 y)
     }
 }
 
-void SetEscapeWarp(s8 mapGroup, s8 mapNum, s8 warpId, s8 x, s8 y)
+void SetEscapeWarp(u8 mapGroup, u8 mapNum, s8 warpId, s16 x, s16 y)
 {
     SetWarpData(&gSaveBlock1Ptr->escapeWarp, mapGroup, mapNum, warpId, x, y);
 }
@@ -750,7 +750,7 @@ void SetWarpDestinationToEscapeWarp(void)
     sWarpDestination = gSaveBlock1Ptr->escapeWarp;
 }
 
-void SetFixedDiveWarp(s8 mapGroup, s8 mapNum, s8 warpId, s8 x, s8 y)
+void SetFixedDiveWarp(u8 mapGroup, u8 mapNum, s8 warpId, s16 x, s16 y)
 {
     SetWarpData(&sFixedDiveWarp, mapGroup, mapNum, warpId, x, y);
 }
@@ -760,7 +760,7 @@ static void SetWarpDestinationToDiveWarp(void)
     sWarpDestination = sFixedDiveWarp;
 }
 
-void SetFixedHoleWarp(s8 mapGroup, s8 mapNum, s8 warpId, s8 x, s8 y)
+void SetFixedHoleWarp(u8 mapGroup, u8 mapNum, s8 warpId, s16 x, s16 y)
 {
     SetWarpData(&sFixedHoleWarp, mapGroup, mapNum, warpId, x, y);
 }
@@ -778,7 +778,7 @@ static void SetWarpDestinationToContinueGameWarp(void)
     sWarpDestination = gSaveBlock1Ptr->continueGameWarp;
 }
 
-static void SetContinueGameWarp(s8 mapGroup, s8 mapNum, s8 warpId, s8 x, s8 y)
+static void SetContinueGameWarp(u8 mapGroup, u8 mapNum, s8 warpId, s16 x, s16 y)
 {
     SetWarpData(&gSaveBlock1Ptr->continueGameWarp, mapGroup, mapNum, warpId, x, y);
 }
@@ -811,7 +811,7 @@ static const struct MapConnection * GetMapConnection(u8 dir)
     return NULL;
 }
 
-static bool8 SetDiveWarp(u8 dir, u16 x, u16 y)
+static bool8 SetDiveWarp(u8 dir, s16 x, s16 y)
 {
     const struct MapConnection *connection = GetMapConnection(dir);
 
@@ -829,12 +829,12 @@ static bool8 SetDiveWarp(u8 dir, u16 x, u16 y)
     return TRUE;
 }
 
-bool8 SetDiveWarpEmerge(u16 x, u16 y)
+bool8 SetDiveWarpEmerge(s16 x, s16 y)
 {
     return SetDiveWarp(CONNECTION_EMERGE, x, y);
 }
 
-bool8 SetDiveWarpDive(u16 x, u16 y)
+bool8 SetDiveWarpDive(s16 x, s16 y)
 {
     return SetDiveWarp(CONNECTION_DIVE, x, y);
 }
@@ -1292,7 +1292,7 @@ bool32 Overworld_MusicCanOverrideMapMusic(u16 music)
     return TRUE;
 }
 
-u8 GetMapTypeByGroupAndId(s8 mapGroup, s8 mapNum)
+u8 GetMapTypeByGroupAndId(u8 mapGroup, u8 mapNum)
 {
     return Overworld_GetMapHeaderByGroupAndId(mapGroup, mapNum)->mapType;
 }
@@ -2269,7 +2269,7 @@ static void OffsetCameraFocusByLinkPlayerId(void)
 static void SpawnLinkPlayers(void)
 {
     u16 i;
-    u16 x, y;
+    s16 x, y;
 
     GetCameraFocusCoords(&x, &y);
     x -= gLocalLinkPlayerId;
@@ -3425,7 +3425,7 @@ static u8 GetSpriteForLinkedPlayer(u8 linkPlayerId)
     return objEvent->spriteId;
 }
 
-static void GetLinkPlayerCoords(u8 linkPlayerId, u16 *x, u16 *y)
+static void GetLinkPlayerCoords(u8 linkPlayerId, s16 *x, s16 *y)
 {
     u8 objEventId = gLinkPlayerObjectEvents[linkPlayerId].objEventId;
     struct ObjectEvent *objEvent = &gObjectEvents[objEventId];

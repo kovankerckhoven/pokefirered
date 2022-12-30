@@ -3,7 +3,7 @@
   "name": "Route22_NorthEntrance",
   "layout": "LAYOUT_ROUTE22_NORTH_ENTRANCE",
   "music": "MUS_VIRIDIAN_FOREST",
-  "region_map_section": "MAPSEC_ROUTE_22",
+  "region_map_section": "MAPSEC_POKEMON_LEAGUE",
   "requires_flash": false,
   "weather": "WEATHER_NONE",
   "map_type": "MAP_TYPE_INDOOR",
@@ -18,43 +18,71 @@
     {
       "type": "object",
       "graphics_id": "OBJ_EVENT_GFX_POLICEMAN",
-      "x": 8,
-      "y": 2,
+      "x": 31,
+      "y": 8,
       "elevation": 3,
-      "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
+      "movement_type": "MOVEMENT_TYPE_FACE_DOWN_AND_LEFT",
       "movement_range_x": 1,
       "movement_range_y": 1,
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "Route22_NorthEntrance_EventScript_BoulderBadgeGuard",
       "flag": "0"
+    },
+    {
+      "type": "object",
+      "graphics_id": "OBJ_EVENT_GFX_POLICEMAN",
+      "x": 18,
+      "y": 17,
+      "elevation": 0,
+      "movement_type": "MOVEMENT_TYPE_FACE_UP",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "NULL",
+      "flag": "0"
+    },
+    {
+      "type": "object",
+      "graphics_id": "OBJ_EVENT_GFX_POLICEMAN",
+      "x": 3,
+      "y": 8,
+      "elevation": 0,
+      "movement_type": "MOVEMENT_TYPE_FACE_DOWN_AND_RIGHT",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "NULL",
+      "flag": "0"
     }
   ],
   "warp_events": [
     {
-      "x": 7,
+      "x": 17,
       "y": 1,
       "elevation": 3,
       "dest_map": "MAP_ROUTE23",
       "dest_warp_id": "2"
     },
     {
-      "x": 6,
-      "y": 10,
+      "x": 2,
+      "y": 18,
       "elevation": 3,
-      "dest_map": "MAP_ROUTE22",
+      "dest_map": "MAP_ROUTE28",
       "dest_warp_id": "0"
     },
     {
-      "x": 7,
-      "y": 10,
+      "x": 17,
+      "y": 18,
       "elevation": 3,
-      "dest_map": "MAP_ROUTE22",
+      "dest_map": "MAP_ROUTE26",
       "dest_warp_id": "0"
     },
     {
-      "x": 8,
-      "y": 10,
+      "x": 32,
+      "y": 18,
       "elevation": 3,
       "dest_map": "MAP_ROUTE22",
       "dest_warp_id": "0"
@@ -63,8 +91,8 @@
   "coord_events": [
     {
       "type": "trigger",
-      "x": 7,
-      "y": 2,
+      "x": 31,
+      "y": 9,
       "elevation": 3,
       "var": "VAR_MAP_SCENE_ROUTE23",
       "var_value": "0",
@@ -72,7 +100,29 @@
     }
   ],
   "bg_events": [
-
-  ],
-  "region_id": 1
+    {
+      "type": "sign",
+      "x": 32,
+      "y": 9,
+      "elevation": 0,
+      "player_facing_dir": "BG_EVENT_PLAYER_FACING_NORTH",
+      "script": "Route22_EventScript_KantoStatue"
+    },
+    {
+      "type": "sign",
+      "x": 17,
+      "y": 11,
+      "elevation": 0,
+      "player_facing_dir": "BG_EVENT_PLAYER_FACING_NORTH",
+      "script": "Route22_EventScript_JohtoStatue"
+    },
+    {
+      "type": "sign",
+      "x": 2,
+      "y": 9,
+      "elevation": 0,
+      "player_facing_dir": "BG_EVENT_PLAYER_FACING_NORTH",
+      "script": "Route22_EventScript_MtSilverStatue"
+    }
+  ]
 }

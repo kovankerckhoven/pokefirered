@@ -8,6 +8,6 @@ void ClearRematchStateByTrainerId(void);
 void ClearRematchStateOfLastTalked(void);
 int GetRematchTrainerId(u16 trainerId);
 bool8 UpdateVsSeekerStepCounter(void);
-void MapResetTrainerRematches(u16 mapGroup, u16 mapNum);
+void MapResetTrainerRematches(u8 mapGroup, u8 mapNum);
 
 #endif //GUARD_VS_SEEKER_H

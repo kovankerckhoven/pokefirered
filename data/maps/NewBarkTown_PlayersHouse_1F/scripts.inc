@@ -1,0 +1,56 @@
+.equ LOCALID_MOM, 1
+
+NewBarkTown_PlayersHouse_1F_MapScripts::
+	.byte 0
+
+NewBarkTown_PlayersHouse_1F_EventScript_Silver_Mom::
+	lock
+	faceplayer
+	goto_if_set FLAG_BEAT_RIVAL_IN_OAKS_LAB, NewBarkTown_PlayersHouse_1F_EventScript_MomHeal
+	checkplayergender
+	call_if_eq VAR_RESULT, MALE, NewBarkTown_PlayersHouse_1F_EventScript_MomOakLookingForYouMale
+	call_if_eq VAR_RESULT, FEMALE, NewBarkTown_PlayersHouse_1F_EventScript_MomOakLookingForYouFemale
+	closemessage
+	applymovement LOCALID_MOM, Common_Movement_FaceOriginalDirection
+	waitmovement 0
+	release
+	end
+
+NewBarkTown_PlayersHouse_1F_EventScript_MomOakLookingForYouMale::
+	msgbox NewBarkTown_PlayersHouse_1F_Text_AllBoysLeaveOakLookingForYou
+	return
+
+NewBarkTown_PlayersHouse_1F_EventScript_MomOakLookingForYouFemale::
+	msgbox NewBarkTown_PlayersHouse_1F_Text_AllGirlsLeaveOakLookingForYou
+	return
+
+NewBarkTown_PlayersHouse_1F_EventScript_MomHeal::
+	msgbox NewBarkTown_PlayersHouse_1F_Text_YouShouldTakeQuickRest
+	closemessage
+	call EventScript_OutOfCenterPartyHeal
+	msgbox NewBarkTown_PlayersHouse_1F_Text_LookingGreatTakeCare
+	release
+	end
+
+@ Displays special text if interacted with from side or back (which are normally inaccessible)
+NewBarkTown_PlayersHouse_1F_EventScript_TV::
+	lockall
+	goto_if_eq VAR_FACING, DIR_NORTH, NewBarkTown_PlayersHouse_1F_EventScript_TVScreen
+	msgbox NewBarkTown_PlayersHouse_1F_Text_OopsWrongSide
+	releaseall
+	end
+
+NewBarkTown_PlayersHouse_1F_EventScript_TVScreen::
+	checkplayergender
+	call_if_eq VAR_RESULT, MALE, NewBarkTown_PlayersHouse_1F_EventScript_TVScreenMale
+	call_if_eq VAR_RESULT, FEMALE, NewBarkTown_PlayersHouse_1F_EventScript_TVScreenFemale
+	releaseall
+	end
+
+NewBarkTown_PlayersHouse_1F_EventScript_TVScreenMale::
+	msgbox NewBarkTown_PlayersHouse_1F_Text_MovieOnTVFourBoysOnRailroad
+	return
+
+NewBarkTown_PlayersHouse_1F_EventScript_TVScreenFemale::
+	msgbox NewBarkTown_PlayersHouse_1F_Text_MovieOnTVGirlOnBrickRoad
+	return

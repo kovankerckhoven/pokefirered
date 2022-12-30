@@ -2440,8 +2440,8 @@
     {
       "id": "LAYOUT_ROUTE22_NORTH_ENTRANCE",
       "name": "Route22_NorthEntrance_Layout",
-      "width": 15,
-      "height": 12,
+      "width": 35,
+      "height": 20,
       "border_width": 2,
       "border_height": 2,
       "primary_tileset": "gTileset_Building",
@@ -4452,6 +4452,126 @@
       "secondary_tileset": "gTileset_PewterCity",
       "border_filepath": "data/layouts/VioletCity/border.bin",
       "blockdata_filepath": "data/layouts/VioletCity/map.bin"
+    },
+    {
+      "id": "LAYOUT_NEW_BARK_TOWN_PLAYERS_HOUSE_1F",
+      "name": "NewBarkTown_PlayersHouse_1F_Layout",
+      "width": 13,
+      "height": 10,
+      "border_width": 2,
+      "border_height": 2,
+      "primary_tileset": "gTileset_Building",
+      "secondary_tileset": "gTileset_GenericBuilding2",
+      "border_filepath": "data/layouts/NewBarkTown_PlayersHouse_1F/border.bin",
+      "blockdata_filepath": "data/layouts/NewBarkTown_PlayersHouse_1F/map.bin"
+    },
+    {
+      "id": "LAYOUT_NEW_BARK_TOWN_PLAYERS_HOUSE_2F",
+      "name": "NewBarkTown_PlayersHouse_2F_Layout",
+      "width": 12,
+      "height": 10,
+      "border_width": 2,
+      "border_height": 2,
+      "primary_tileset": "gTileset_Building",
+      "secondary_tileset": "gTileset_GenericBuilding1",
+      "border_filepath": "data/layouts/NewBarkTown_PlayersHouse_2F/border.bin",
+      "blockdata_filepath": "data/layouts/NewBarkTown_PlayersHouse_2F/map.bin"
+    },
+    {
+      "id": "LAYOUT_ROUTE26",
+      "name": "Route26_Layout",
+      "width": 26,
+      "height": 93,
+      "border_width": 2,
+      "border_height": 2,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_ViridianCity",
+      "border_filepath": "data/layouts/Route26/border.bin",
+      "blockdata_filepath": "data/layouts/Route26/map.bin"
+    },
+    {
+      "id": "LAYOUT_ROUTE27",
+      "name": "Route27_Layout",
+      "width": 85,
+      "height": 26,
+      "border_width": 2,
+      "border_height": 2,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_SeaCottage",
+      "border_filepath": "data/layouts/Route27/border.bin",
+      "blockdata_filepath": "data/layouts/Route27/map.bin"
+    },
+    {
+      "id": "LAYOUT_ROUTE26_SOUTH",
+      "name": "Route26_South_Layout",
+      "width": 26,
+      "height": 26,
+      "border_width": 2,
+      "border_height": 2,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_ViridianCity",
+      "border_filepath": "data/layouts/Route26_South/border.bin",
+      "blockdata_filepath": "data/layouts/Route26_South/map.bin"
+    },
+    {
+      "id": "LAYOUT_ROUTE28",
+      "name": "Route28_Layout",
+      "width": 80,
+      "height": 25,
+      "border_width": 2,
+      "border_height": 2,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_ViridianCity",
+      "border_filepath": "data/layouts/Route28/border.bin",
+      "blockdata_filepath": "data/layouts/Route28/map.bin"
+    },
+    {
+      "id": "LAYOUT_MT_SILVER_1F",
+      "name": "MtSilver_1F_Layout",
+      "width": 18,
+      "height": 35,
+      "border_width": 2,
+      "border_height": 2,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_Cave",
+      "border_filepath": "data/layouts/MtSilver_1F/border.bin",
+      "blockdata_filepath": "data/layouts/MtSilver_1F/map.bin"
+    },
+    {
+      "id": "LAYOUT_MT_SILVER_2F",
+      "name": "MtSilver_2F_Layout",
+      "width": 30,
+      "height": 36,
+      "border_width": 2,
+      "border_height": 2,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_Cave",
+      "border_filepath": "data/layouts/MtSilver_2F/border.bin",
+      "blockdata_filepath": "data/layouts/MtSilver_2F/map.bin"
+    },
+    {
+      "id": "LAYOUT_MT_SILVER_ITEM_ROOMS",
+      "name": "MtSilver_ItemRooms_Layout",
+      "width": 30,
+      "height": 36,
+      "border_width": 2,
+      "border_height": 2,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_Cave",
+      "border_filepath": "data/layouts/MtSilver_ItemRooms/border.bin",
+      "blockdata_filepath": "data/layouts/MtSilver_ItemRooms/map.bin"
+    },
+    {
+      "id": "LAYOUT_MT_SILVER_SUMMIT",
+      "name": "MtSilver_Summit_Layout",
+      "width": 20,
+      "height": 36,
+      "border_width": 2,
+      "border_height": 2,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_Cave",
+      "border_filepath": "data/layouts/MtSilver_Summit/border.bin",
+      "blockdata_filepath": "data/layouts/MtSilver_Summit/map.bin"
     }
   ]
 }

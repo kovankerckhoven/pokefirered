@@ -201,7 +201,11 @@
     "Route23",
     "IndigoPlateau_Exterior",
     "Route24",
-    "Route25"
+    "Route25",
+    "Route26",
+    "Route26_South",
+    "Route27",
+    "Route28"
   ],
   "gMapGroup_Kanto_Dungeon": [
     "ViridianForest",
@@ -293,7 +297,11 @@
     "PokemonMansion_B1F",
     "VictoryRoad_1F",
     "VictoryRoad_2F",
-    "VictoryRoad_3F"
+    "VictoryRoad_3F",
+    "MtSilver_1F",
+    "MtSilver_2F",
+    "MtSilver_ItemRooms",
+    "MtSilver_Summit"
   ],
   "gMapGroup_Sevii_Indoor": [
     "OneIsland_PokemonCenter_1F",
@@ -455,7 +463,8 @@
     "NavelRock_Fork"
   ],
   "gMapGroup_Johto_Indoor": [
-
+    "NewBarkTown_PlayersHouse_1F",
+    "NewBarkTown_PlayersHouse_2F"
   ],
   "gMapGroup_Johto_Outdoor": [
     "NewBarkTown",

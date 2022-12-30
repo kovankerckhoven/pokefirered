@@ -51,8 +51,8 @@ typedef enum
 typedef struct VsSeekerData
 {
     u16 trainerIdxs[6];
-    u16 mapGroup; // unused
-    u16 mapNum; // unused
+    u16 mapGroup; // TODO: unused, remove?
+    u16 mapNum; // TODO: unused, remove?
 } VsSeekerData;
 
 struct VsSeekerTrainerInfo
@@ -685,7 +685,7 @@ bool8 UpdateVsSeekerStepCounter(void)
     return FALSE;
 }
 
-void MapResetTrainerRematches(u16 mapGroup, u16 mapNum)
+void MapResetTrainerRematches(u8 mapGroup, u8 mapNum)
 {
     FlagClear(FLAG_SYS_VS_SEEKER_CHARGING);
     VsSeekerResetChargingStepCounter();

@@ -770,6 +770,7 @@ gStdScriptsEnd::
 	.include "data/maps/Route16_NorthEntrance_2F/text.inc"
 	.include "data/maps/Route18_EastEntrance_1F/text.inc"
 	.include "data/maps/Route18_EastEntrance_2F/text.inc"
+	.include "data/maps/Route22_NorthEntrance/text.inc"
 	.include "data/maps/Route25_SeaCottage/text.inc"
 	.include "data/maps/SevenIsland_House_Room1/text.inc"
 	.include "data/maps/SevenIsland_Mart/text.inc"
@@ -1377,3 +1378,33 @@ Text_TestMsg::
 
 	.include "data/maps/VioletCity/scripts.inc"
 	.include "data/maps/VioletCity/text.inc"
+
+	.include "data/maps/NewBarkTown_PlayersHouse_1F/scripts.inc"
+	.include "data/maps/NewBarkTown_PlayersHouse_1F/text.inc"
+
+	.include "data/maps/NewBarkTown_PlayersHouse_2F/scripts.inc"
+	.include "data/maps/NewBarkTown_PlayersHouse_2F/text.inc"
+
+	.include "data/maps/Route26/scripts.inc"
+	.include "data/maps/Route26/text.inc"
+
+	.include "data/maps/Route27/scripts.inc"
+	.include "data/maps/Route27/text.inc"
+
+	.include "data/maps/Route26_South/scripts.inc"
+	.include "data/maps/Route26_South/text.inc"
+
+	.include "data/maps/Route28/scripts.inc"
+	.include "data/maps/Route28/text.inc"
+
+	.include "data/maps/MtSilver_1F/scripts.inc"
+	.include "data/maps/MtSilver_1F/text.inc"
+
+	.include "data/maps/MtSilver_2F/scripts.inc"
+	.include "data/maps/MtSilver_2F/text.inc"
+
+	.include "data/maps/MtSilver_ItemRooms/scripts.inc"
+	.include "data/maps/MtSilver_ItemRooms/text.inc"
+
+	.include "data/maps/MtSilver_Summit/scripts.inc"
+	.include "data/maps/MtSilver_Summit/text.inc"

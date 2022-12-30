@@ -2140,11 +2140,7 @@ static void LoadObjectEventPalette(u16 paletteTag)
 {
     u16 i = FindObjectEventPaletteIndexByTag(paletteTag);
 
-#ifdef BUGFIX
     if (sObjectEventSpritePalettes[i].tag != OBJ_EVENT_PAL_TAG_NONE)
-#else
-    if (i != OBJ_EVENT_PAL_TAG_NONE) // always true
-#endif
     {
         TryLoadObjectPalette(&sObjectEventSpritePalettes[i]);
     }
@@ -2517,11 +2513,8 @@ const u8 *GetObjectEventScriptPointerByObjectEventId(u8 objectEventId)
 static u16 GetObjectEventFlagIdByLocalIdAndMap(u8 localId, u8 mapNum, u8 mapGroup)
 {
     struct ObjectEventTemplate *obj = GetObjectEventTemplateByLocalIdAndMap(localId, mapNum, mapGroup);
-#ifdef UBFIX
-    // BUG: The function may return NULL, and attempting to read from NULL may freeze the game using modern compilers.
-    if (obj == NULL)
+    if (obj == NULL) // The function may return NULL, and attempting to read from NULL may freeze the game using modern compilers.
         return 0;
-#endif // UBFIX
     return obj->flagId;
 }
 

@@ -194,6 +194,10 @@
 #define MAP_INDIGO_PLATEAU_EXTERIOR (35 | (3 << 8))
 #define MAP_ROUTE24                 (36 | (3 << 8))
 #define MAP_ROUTE25                 (37 | (3 << 8))
+#define MAP_ROUTE26                 (38 | (3 << 8))
+#define MAP_ROUTE26_SOUTH           (39 | (3 << 8))
+#define MAP_ROUTE27                 (40 | (3 << 8))
+#define MAP_ROUTE28                 (41 | (3 << 8))
 
 // gMapGroup_Kanto_Dungeon
 #define MAP_VIRIDIAN_FOREST                     (0 | (4 << 8))
@@ -286,6 +290,10 @@
 #define MAP_VICTORY_ROAD_1F                     (87 | (4 << 8))
 #define MAP_VICTORY_ROAD_2F                     (88 | (4 << 8))
 #define MAP_VICTORY_ROAD_3F                     (89 | (4 << 8))
+#define MAP_MT_SILVER_1F                        (90 | (4 << 8))
+#define MAP_MT_SILVER_2F                        (91 | (4 << 8))
+#define MAP_MT_SILVER_ITEM_ROOMS                (92 | (4 << 8))
+#define MAP_MT_SILVER_SUMMIT                    (93 | (4 << 8))
 
 // gMapGroup_Sevii_Indoor
 #define MAP_ONE_ISLAND_POKEMON_CENTER_1F           (0 | (5 << 8))
@@ -447,6 +455,8 @@
 #define MAP_NAVEL_ROCK_FORK                           (68 | (7 << 8))
 
 // gMapGroup_Johto_Indoor
+#define MAP_NEW_BARK_TOWN_PLAYERS_HOUSE_1F (0 | (8 << 8))
+#define MAP_NEW_BARK_TOWN_PLAYERS_HOUSE_2F (1 | (8 << 8))
 
 // gMapGroup_Johto_Outdoor
 #define MAP_NEW_BARK_TOWN    (0 | (9 << 8))
