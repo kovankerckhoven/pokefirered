@@ -100,8 +100,10 @@ struct ObjectEventTemplate
         struct {
             u8 targetLocalId;
             u8 padding[3];
-            u16 targetMapNum;
-            u16 targetMapGroup;
+            u8 targetMapNum;
+            u8 padMapNum;
+            u8 targetMapGroup;
+            u8 padMapGroup;
         } clone;
     } objUnion;
     const u8 *script;

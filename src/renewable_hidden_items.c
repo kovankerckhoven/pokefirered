@@ -7,9 +7,8 @@
 
 struct RenewableHiddenItemData
 {
-    s8 mapGroup;
-    s8 mapNum;
-    u8 filler[2];
+    u8 mapGroup;
+    u8 mapNum;
     u8 rare[MAX_HIDDEN_ITEMS_PER_GROUP];     // 10%
     u8 uncommon[MAX_HIDDEN_ITEMS_PER_GROUP]; // 30%
     u8 common[MAX_HIDDEN_ITEMS_PER_GROUP];   // 60%

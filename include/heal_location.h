@@ -5,13 +5,15 @@
 
 struct HealLocation
 {
-    s8 group;
-    s8 map;
+    u8 group;
+    u8 padding_group;
+    u8 map;
+    u8 padding_map;
     s16 x;
     s16 y;
 };
 
-const struct HealLocation *GetHealLocation(u32 loc);
+const struct HealLocation *GetHealLocation(u32 loc); // TODO: Can this become u8 loc?
 void SetWhiteoutRespawnWarpAndHealerNpc(struct WarpData * warp);
 
 #endif // GUARD_HEAL_LOCATION_H

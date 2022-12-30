@@ -4201,9 +4201,9 @@ void SetUsedFlyQuestLogEvent(const u8 *healLocCtrlData)
     struct FieldMoveWarpParams *ptr2;
     struct
     {
-        s8 mapGroup;
-        s8 mapNum;
-        u32 unk_4;
+        u8 mapGroup;
+        u8 mapNum;
+        u32 unk_4; // TODO: Not needed?
     } *ptr = Alloc(sizeof(*ptr));
 
     ptr->mapGroup = healLocCtrlData[0];

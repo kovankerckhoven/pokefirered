@@ -96,8 +96,6 @@ enum {
     REGION_DECOLORE, // Decolore Islands (https://pokemon.fandom.com/wiki/Decolore_Islands)
     // Other regions still possible
 };
-// u8 sLastRegionId;
-// u16 sLastMapSectionId;
 
 extern const struct Coords32 gDirectionToVectors[];
 
@@ -115,13 +113,13 @@ void IncrementGameStat(u8 index);
 void SetObjEventTemplateCoords(u8, s16, s16);
 void SetObjEventTemplateMovementType(u8, u8);
 
-void SetWarpDestination(s8 mapGroup, s8 mapNum, s8 warpId, s8 x, s8 y);
+void SetWarpDestination(u8 mapGroup, u8 mapNum, s8 warpId, s16 x, s16 y);
 
-void SetDynamicWarp(s32 unused, s8 mapGroup, s8 mapNum, s8 warpId);
-void SetDynamicWarpWithCoords(s32 unused, s8 mapGroup, s8 mapNum, s8 warpId, s8 x, s8 y);
-void SetFixedDiveWarp(s8 mapGroup, s8 mapNum, s8 warpId, s8 x, s8 y);
-void SetFixedHoleWarp(s8 mapGroup, s8 mapNum, s8 warpId, s8 x, s8 y);
-void SetEscapeWarp(s8 mapGroup, s8 mapNum, s8 warpId, s8 x, s8 y);
+void SetDynamicWarp(s32 unused, u8 mapGroup, u8 mapNum, s8 warpId);
+void SetDynamicWarpWithCoords(s32 unused, u8 mapGroup, u8 mapNum, s8 warpId, s16 x, s16 y);
+void SetFixedDiveWarp(u8 mapGroup, u8 mapNum, s8 warpId, s16 x, s16 y);
+void SetFixedHoleWarp(u8 mapGroup, u8 mapNum, s8 warpId, s16 x, s16 y);
+void SetEscapeWarp(u8 mapGroup, u8 mapNum, s8 warpId, s16 x, s16 y);
 void Overworld_SetHealLocationWarp(u8);
 void SetWarpDestinationToEscapeWarp(void);
 void SetWarpDestinationToLastHealLocation(void);
@@ -139,15 +137,15 @@ void Overworld_ChangeMusicTo(u16);
 bool32 IsUpdateLinkStateCBActive(void);
 
 void ClearLinkPlayerObjectEvents(void);
-const struct MapHeader *const Overworld_GetMapHeaderByGroupAndId(u16, u16);
+const struct MapHeader *const Overworld_GetMapHeaderByGroupAndId(u8, u8);
 const struct MapHeader *const GetDestinationWarpMapHeader(void);
-const u8 Overworld_GetRegionByGroup(u16 mapGroup);
+const u8 Overworld_GetRegionByGroup(u8 mapGroup);
 void ObjectEventMoveDestCoords(struct ObjectEvent *, u32, s16 *, s16 *);
 void CB2_ReturnToField(void);
 void CB2_ReturnToFieldContinueScriptPlayMapMusic(void);
 void WarpIntoMap(void);
-u8 GetMapTypeByGroupAndId(s8 mapGroup, s8 mapNum);
-void SetWarpDestinationToMapWarp(s8 mapGroup, s8 mapNum, s8 warpNum);
+u8 GetMapTypeByGroupAndId(u8 mapGroup, u8 mapNum);
+void SetWarpDestinationToMapWarp(u8 mapGroup, u8 mapNum, s8 warpNum);
 void SetWarpDestinationToDynamicWarp(u8 unused);
 
 u32 GetGameStat(u8 statId);
@@ -230,8 +228,8 @@ void CB2_ReturnToFieldContinueScript(void);
 u16 GetLastUsedWarpMapSectionId(void);
 void StoreInitialPlayerAvatarState(void);
 void UpdateEscapeWarp(s16 x, s16 y);
-bool8 SetDiveWarpEmerge(u16 x, u16 y);
-bool8 SetDiveWarpDive(u16 x, u16 y);
+bool8 SetDiveWarpEmerge(s16 x, s16 y);
+bool8 SetDiveWarpDive(s16 x, s16 y);
 
 extern u16 *gBGTilemapBuffers1;
 extern u16 *gBGTilemapBuffers2;

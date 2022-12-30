@@ -5213,7 +5213,7 @@ static bool32 CurrentMonIsFromGBA(void)
 
 static bool32 MapSecIsInKantoOrSevii(u16 mapSec)
 {
-    if (mapSec > MAPSECS_SEVII_123)
+    if (mapSec > MAPSECS_SEVII)
         return TRUE;
     return FALSE;
 }

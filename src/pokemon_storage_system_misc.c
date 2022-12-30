@@ -460,13 +460,9 @@ static void MultiMove_GetMonsFromSelection(void)
         for (j = sMultiMove->minColumn; j < columnCount; j++)
         {
             struct BoxPokemon *boxMon = GetBoxedMonPtr(boxId, boxPosition);
-            // UB: possible null dereference
-#ifdef UBFIX
-            if (boxMon != NULL)
+
+            if (boxMon != NULL) // possible null dereference
                 sMultiMove->boxMons[monArrayId] = *boxMon;
-#else
-            sMultiMove->boxMons[monArrayId] = *boxMon;
-#endif
             monArrayId++;
             boxPosition++;
         }

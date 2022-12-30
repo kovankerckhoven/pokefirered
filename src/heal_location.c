@@ -26,7 +26,7 @@ static void SetWhiteoutRespawnHealerNpcAsLastTalked(u32 healLocationIdx);
 
 #include "data/heal_locations.h"
 
-static u32 GetHealLocationIndexFromMapGroupAndNum(u16 mapGroup, u16 mapNum)
+static u32 GetHealLocationIndexFromMapGroupAndNum(u8 mapGroup, u8 mapNum)
 {
     u32 i;
 
@@ -40,7 +40,7 @@ static u32 GetHealLocationIndexFromMapGroupAndNum(u16 mapGroup, u16 mapNum)
     return 0;
 }
 
-static const struct HealLocation * GetHealLocationPointerFromMapGroupAndNum(u16 mapGroup, u16 mapNum)
+static const struct HealLocation * GetHealLocationPointerFromMapGroupAndNum(u8 mapGroup, u8 mapNum)
 {
     u32 i = GetHealLocationIndexFromMapGroupAndNum(mapGroup, mapNum);
     if (i == 0)

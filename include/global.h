@@ -80,11 +80,7 @@
 
 // Used in cases where division by 0 can occur in the retail version.
 // Avoids invalid opcodes on some emulators, and the otherwise UB.
-#ifdef UBFIX
 #define SAFE_DIV(a, b) ((b) ? (a) / (b) : 0)
-#else
-#define SAFE_DIV(a, b) ((a) / (b))
-#endif
 
 // Extracts the upper 16 bits of a 32-bit number
 #define HIHALF(n) (((n) & 0xFFFF0000) >> 16)
@@ -381,10 +377,12 @@ struct SecretBaseRecord
 
 struct WarpData
 {
-    s8 mapGroup;
-    s8 mapNum;
-    s8 warpId;
-    s16 x, y;
+    u8 mapGroup;
+    u8 filler_mapGroup;
+    u8 mapNum;
+    u8 filler_mapNum;
+    s8 warpId; // Can this become u8 as well?
+    s16 x, y; // Can these become u16 as well?
 };
 
 struct ItemSlot

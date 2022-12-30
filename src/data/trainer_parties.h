@@ -112,16 +112,8 @@ static const struct TrainerMonNoItemDefaultMoves sParty_EliteFourDrake[] = {DUMM
 
 // Start of actual trainer data
 static const struct TrainerMonNoItemDefaultMoves sParty_YoungsterBen[] = {
-    {
-        .iv = 0,
-        .lvl = 11,
-        .species = SPECIES_RATTATA,
-    },
-    {
-        .iv = 0,
-        .lvl = 11,
-        .species = SPECIES_EKANS,
-    },
+    { .iv = 0, .lvl = 11, .species = SPECIES_RATTATA, },
+    { .iv = 0, .lvl = 11, .species = SPECIES_EKANS, },
 };
 
 static const struct TrainerMonNoItemDefaultMoves sParty_YoungsterCalvin[] = {
@@ -10859,4 +10851,50 @@ static const struct TrainerMonNoItemDefaultMoves sParty_CueBallPaxton[] = {
         .lvl = 39,
         .species = SPECIES_MUK,
     },
+};
+
+// db 36, RAPIDASH,   STOMP, FIRE_SPIN, FURY_ATTACK, AGILITY
+// TODO: rematch db 39, RAPIDASH,   STOMP, FIRE_SPIN, FURY_ATTACK, AGILITY
+// TODO: rematch2 db 43, RAPIDASH,   FOCUS_BAND,   STOMP, FIRE_SPIN, FURY_ATTACK, FIRE_BLAST
+static const struct TrainerMonNoItemCustomMoves sParty_CooltrainerBeth[] = {
+    { .iv = 100, .lvl = 36, .species = SPECIES_RAPIDASH, .moves = {MOVE_STOMP, MOVE_FIRE_SPIN, MOVE_FURY_ATTACK, MOVE_AGILITY}, },
+};
+
+// db 33, PARASECT,   LEECH_LIFE, SPORE, SLASH, SWORDS_DANCE
+// db 35, GOLDUCK,    CONFUSION, SCREECH, PSYCH_UP, FURY_SWIPES
+// TODO: No rematch? Make something up?
+static const struct TrainerMonNoItemCustomMoves sParty_CooltrainerJake[] = {
+    { .iv = 100, .lvl = 33, .species = SPECIES_PARASECT, .moves = {MOVE_LEECH_LIFE, MOVE_SPORE, MOVE_SLASH, MOVE_SWORDS_DANCE}, },
+    { .iv = 100, .lvl = 35, .species = SPECIES_GOLDUCK, .moves = {MOVE_CONFUSION, MOVE_SCREECH, MOVE_PSYCH_UP, MOVE_FURY_SWIPES}, },
+};
+
+// db 32, VICTREEBEL, WRAP, TOXIC, ACID, RAZOR_LEAF
+// db 32, KINGLER,    BUBBLEBEAM, STOMP, GUILLOTINE, PROTECT
+// db 32, FLAREON,    SAND_ATTACK, QUICK_ATTACK, BITE, FIRE_SPIN
+// TODO: rematch:
+// db 35, VICTREEBEL, WRAP, TOXIC, ACID, RAZOR_LEAF
+// db 35, KINGLER,    BUBBLEBEAM, STOMP, GUILLOTINE, PROTECT
+// db 35, FLAREON,    SAND_ATTACK, QUICK_ATTACK, BITE, FIRE_SPIN
+// TODO: rematch2:
+// db 39, VICTREEBEL, NO_ITEM,      GIGA_DRAIN, TOXIC, SLUDGE_BOMB, RAZOR_LEAF
+// db 39, KINGLER,    KINGS_ROCK,   SURF, STOMP, GUILLOTINE, BLIZZARD
+// db 39, FLAREON,    NO_ITEM,      FLAMETHROWER, QUICK_ATTACK, BITE, FIRE_SPIN
+static const struct TrainerMonNoItemCustomMoves sParty_CooltrainerGaven[] = {
+    { .iv = 100, .lvl = 32, .species = SPECIES_VICTREEBEL, .moves = {MOVE_WRAP, MOVE_TOXIC, MOVE_ACID, MOVE_RAZOR_LEAF}, },
+    { .iv = 100, .lvl = 32, .species = SPECIES_KINGLER, .moves = {MOVE_BUBBLE_BEAM, MOVE_STOMP, MOVE_GUILLOTINE, MOVE_PROTECT}, },
+    { .iv = 100, .lvl = 32, .species = SPECIES_FLAREON, .moves = {MOVE_SAND_ATTACK, MOVE_QUICK_ATTACK, MOVE_BITE, MOVE_FIRE_SPIN}, },
+};
+
+// db 36, PIKACHU,    QUICK_ATTACK, DOUBLE_TEAM, THUNDERBOLT, THUNDER
+// db 32, BLASTOISE,  BITE, CURSE, SURF, RAIN_DANCE
+// TODO: No rematch? Make something up?
+static const struct TrainerMonNoItemCustomMoves sParty_CooltrainerJoyce[] = {
+    { .iv = 100, .lvl = 36, .species = SPECIES_PIKACHU, .moves = {MOVE_QUICK_ATTACK, MOVE_DOUBLE_TEAM, MOVE_THUNDERBOLT, MOVE_THUNDER}, },
+    { .iv = 100, .lvl = 32, .species = SPECIES_BLASTOISE, .moves = {MOVE_BITE, MOVE_CURSE, MOVE_SURF, MOVE_RAIN_DANCE}, },
+};
+
+// db 30, RATICATE,   TAIL_WHIP, QUICK_ATTACK, HYPER_FANG, PURSUIT
+// TODO: rematch db 37, RATICATE,   HYPER_BEAM, QUICK_ATTACK, HYPER_FANG, PURSUIT
+static const struct TrainerMonNoItemCustomMoves sParty_CooltrainerJoey[] = {
+    { .iv = 100, .lvl = 37, .species = SPECIES_RATICATE, .moves = {MOVE_TAIL_WHIP, MOVE_QUICK_ATTACK, MOVE_HYPER_FANG, MOVE_PURSUIT}, },
 };

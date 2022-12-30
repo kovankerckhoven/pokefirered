@@ -2805,3 +2805,63 @@ SevenIsland_TanobyRuins_EventScript_CliffordRematch::
 	trainerbattle_rematch TRAINER_GENTLEMAN_CLIFFORD, SevenIsland_TanobyRuins_Text_CliffordRematchIntro, SevenIsland_TanobyRuins_Text_CliffordDefeat
 	msgbox SevenIsland_TanobyRuins_Text_CliffordPostBattle, MSGBOX_AUTOCLOSE
 	end
+
+Route26_EventScript_Beth::
+	trainerbattle_single TRAINER_COOLTRAINER_BETH, Route26_Text_BethIntro, Route26_Text_BethDefeat
+	specialvar VAR_RESULT, ShouldTryRematchBattle
+	goto_if_eq VAR_RESULT, TRUE, Route26_EventScript_BethRematch
+	msgbox Route26_Text_BethPostBattle, MSGBOX_AUTOCLOSE
+	end
+
+Route26_EventScript_BethRematch::
+	trainerbattle_rematch TRAINER_COOLTRAINER_BETH, Route26_Text_BethRematchIntro, Route26_Text_BethDefeat
+	msgbox Route26_Text_BethPostBattle, MSGBOX_AUTOCLOSE
+	end
+
+Route26_EventScript_Jake::
+	trainerbattle_single TRAINER_COOLTRAINER_JAKE, Route26_Text_JakeIntro, Route26_Text_JakeDefeat
+	specialvar VAR_RESULT, ShouldTryRematchBattle
+	goto_if_eq VAR_RESULT, TRUE, Route26_EventScript_JakeRematch
+	msgbox Route26_Text_JakePostBattle, MSGBOX_AUTOCLOSE
+	end
+
+Route26_EventScript_JakeRematch::
+	trainerbattle_rematch TRAINER_COOLTRAINER_JAKE, Route26_Text_JakeRematchIntro, Route26_Text_JakeDefeat
+	msgbox Route26_Text_JakePostBattle, MSGBOX_AUTOCLOSE
+	end
+
+Route26_EventScript_Gaven::
+	trainerbattle_single TRAINER_COOLTRAINER_GAVEN, Route26_Text_GavenIntro, Route26_Text_GavenDefeat
+	specialvar VAR_RESULT, ShouldTryRematchBattle
+	goto_if_eq VAR_RESULT, TRUE, Route26_EventScript_GavenRematch
+	msgbox Route26_Text_GavenPostBattle, MSGBOX_AUTOCLOSE
+	end
+
+Route26_EventScript_GavenRematch::
+	trainerbattle_rematch TRAINER_COOLTRAINER_GAVEN, Route26_Text_GavenRematchIntro, Route26_Text_GavenDefeat
+	msgbox Route26_Text_GavenPostBattle, MSGBOX_AUTOCLOSE
+	end
+
+Route26_EventScript_Joyce::
+	trainerbattle_single TRAINER_COOLTRAINER_JOYCE, Route26_Text_JoyceIntro, Route26_Text_JoyceDefeat
+	specialvar VAR_RESULT, ShouldTryRematchBattle
+	goto_if_eq VAR_RESULT, TRUE, Route26_EventScript_JoyceRematch
+	msgbox Route26_Text_JoycePostBattle, MSGBOX_AUTOCLOSE
+	end
+
+Route26_EventScript_JoyceRematch::
+	trainerbattle_rematch TRAINER_COOLTRAINER_JOYCE, Route26_Text_JoyceRematchIntro, Route26_Text_JoyceDefeat
+	msgbox Route26_Text_JoycePostBattle, MSGBOX_AUTOCLOSE
+	end
+
+Route26_EventScript_Joey::
+	trainerbattle_single TRAINER_COOLTRAINER_JOEY, Route26_Text_JoeyIntro, Route26_Text_JoeyDefeat
+	specialvar VAR_RESULT, ShouldTryRematchBattle
+	goto_if_eq VAR_RESULT, TRUE, Route26_EventScript_JoeyRematch
+	msgbox Route26_Text_JoeyPostBattle, MSGBOX_AUTOCLOSE
+	end
+
+Route26_EventScript_JoeyRematch::
+	trainerbattle_rematch TRAINER_COOLTRAINER_JOEY, Route26_Text_JoeyRematchIntro, Route26_Text_JoeyDefeat
+	msgbox Route26_Text_JoeyPostBattle, MSGBOX_AUTOCLOSE
+	end
