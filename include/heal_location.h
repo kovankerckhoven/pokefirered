@@ -6,9 +6,7 @@
 struct HealLocation
 {
     u8 group;
-    u8 padding_group;
     u8 map;
-    u8 padding_map;
     s16 x;
     s16 y;
 };
