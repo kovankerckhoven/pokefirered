@@ -351,11 +351,11 @@ static u16 GetMapCursorX(void);
 static u16 GetMapCursorY(void);
 static u16 GetMapsecUnderCursor(void);
 static u16 GetDungeonMapsecUnderCursor(void);
-static u8 GetMapsecType(u8);
-static u8 GetDungeonMapsecType(u8);
+static u8 GetMapsecType(u16);
+static u8 GetDungeonMapsecType(u16);
 static u8 GetSelectedMapsecType(u8);
 static void GetPlayerPositionOnRegionMap_HandleOverrides(void);
-static u8 GetSelectedMapSection(u8, u8, s16, s16);
+static u16 GetSelectedMapSection(u8, u8, s16, s16);
 static void CreatePlayerIcon(u16, u16);
 static void CreatePlayerIconSprite(void);
 static void SetPlayerIconInvisibility(bool8);
@@ -2928,7 +2928,7 @@ static u16 GetMapCursorY(void)
 
 static u16 GetMapsecUnderCursor(void)
 {
-    u8 mapsec;
+    u16 mapsec;
     if (sMapCursor->y < 0
      || sMapCursor->y >= MAP_HEIGHT
      || sMapCursor->x < 0
@@ -2956,7 +2956,7 @@ static u16 GetDungeonMapsecUnderCursor(void)
     return mapsec;
 }
 
-static u8 GetMapsecType(u8 mapsec)
+static u8 GetMapsecType(u16 mapsec)
 {
     switch (mapsec)
     {
@@ -3013,7 +3013,7 @@ static u8 GetMapsecType(u8 mapsec)
     }
 }
 
-static u8 GetDungeonMapsecType(u8 mapsec)
+static u8 GetDungeonMapsecType(u16 mapsec)
 {
     switch (mapsec)
     {
@@ -3362,7 +3362,7 @@ static void GetPlayerPositionOnRegionMap_HandleOverrides(void)
     sMapCursor->selectedMapsec = GetSelectedMapSection(GetSelectedRegionMap(), LAYER_MAP, sMapCursor->y, sMapCursor->x);
 }
 
-static u8 GetSelectedMapSection(u8 whichMap, u8 layer, s16 y, s16 x)
+static u16 GetSelectedMapSection(u8 whichMap, u8 layer, s16 y, s16 x)
 {
     switch (whichMap)
     {
@@ -3531,7 +3531,7 @@ static void CreateFlyIconSprite(u8 whichMap, u8 numIcons, u16 x, u16 y, u8 tileT
 static void CreateDungeonIconSprite(u8 whichMap, u8 numIcons, u16 x, u16 y, u8 tileTag, u8 palTag)
 {
     u8 spriteId;
-    u8 mapsec;
+    u16 mapsec;
     s16 offset = 0;
     struct SpriteSheet spriteSheet = {
         .data = sMapIcons->dungeonIconTiles,
@@ -3593,7 +3593,7 @@ static void CreateDungeonIcons(void)
 {
     u16 i, y, x;
     u8 numIcons = 0;
-    u8 mapsec;
+    u16 mapsec;
     for (i = 0; i < REGIONMAP_COUNT; i++)
     {
         for (y = 0; y < MAP_HEIGHT; y++)
