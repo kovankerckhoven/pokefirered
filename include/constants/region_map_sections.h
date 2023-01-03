@@ -4,6 +4,8 @@
 // SPECIAL MAP SECTIONS/LOCATIONS
 #define MAPSEC_NONE                         0x0000
 
+#define MAPSECS_START                       0x0001
+
 // KANTO
 #define MAPSECS_KANTO                       0x0001
 
