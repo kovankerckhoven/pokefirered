@@ -115,7 +115,7 @@ static void PokeSum_PrintExpPoints_NextLv(void);
 static void PokeSum_PrintSelectedMoveStats(void);
 static void PokeSum_PrintTrainerMemo_Mon(void);
 static void PokeSum_PrintTrainerMemo_Egg(void);
-static bool32 MapSecIsInKantoOrSevii(u16 mapSec);
+static bool32 MapSecIsKnownLocation(u16 mapSec);
 static bool32 IsMultiBattlePartner(void);
 static bool32 PokeSum_IsMonBoldOrGentle(u8 nature);
 static void PokeSum_PrintTrainerMemo_Mon_NotHeldByOT(void);
@@ -2630,7 +2630,7 @@ static void PokeSum_PrintTrainerMemo_Mon_HeldByOT(void)
 
     metLocation = GetMonData(&sMonSummaryScreen->currentMon, MON_DATA_MET_LOCATION);
 
-    if (MapSecIsInKantoOrSevii(metLocation) == TRUE)
+    if (MapSecIsKnownLocation(metLocation) == TRUE)
         GetMapNameGeneric_(mapNameStr, metLocation);
     else
     {
@@ -2705,7 +2705,7 @@ static void PokeSum_PrintTrainerMemo_Mon_NotHeldByOT(void)
 
     metLocation = GetMonData(&sMonSummaryScreen->currentMon, MON_DATA_MET_LOCATION);
 
-    if (!MapSecIsInKantoOrSevii(metLocation) || !CurrentMonIsFromGBA())
+    if (!MapSecIsKnownLocation(metLocation) || !CurrentMonIsFromGBA())
     {
         if (IsMultiBattlePartner() == TRUE)
         {
@@ -2732,7 +2732,7 @@ static void PokeSum_PrintTrainerMemo_Mon_NotHeldByOT(void)
         return;
     }
 
-    if (MapSecIsInKantoOrSevii(metLocation) == TRUE)
+    if (MapSecIsKnownLocation(metLocation) == TRUE)
         GetMapNameGeneric_(mapNameStr, metLocation);
     else
         StringCopy(mapNameStr, gText_PokeSum_ATrade);
@@ -5211,9 +5211,9 @@ static bool32 CurrentMonIsFromGBA(void)
     return FALSE;
 }
 
-static bool32 MapSecIsInKantoOrSevii(u16 mapSec)
+static bool32 MapSecIsKnownLocation(u16 mapSec)
 {
-    if (mapSec > MAPSECS_SEVII)
+    if (mapSec > MAPSECS_START && mapSec < MAPSEC_COUNT)
         return TRUE;
     return FALSE;
 }
