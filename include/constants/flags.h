@@ -1389,10 +1389,10 @@
 #define FLAG_SHOWN_BOX_WAS_FULL_MESSAGE                             (SYS_FLAGS + 0x37)
 #define FLAG_0x838                                                  (SYS_FLAGS + 0x38) // Set, never read (search for "EnableNationalPokedex_RSE")
 #define FLAG_SYS_CAN_LINK_WITH_RS                                   (SYS_FLAGS + 0x39)
-#define FLAG_SYS_SEVII_UNLOCKED                                     (SYS_FLAGS + 0x3A) // Has the SEVII region been unlocked?
-#define FLAG_SYS_JOHTO_UNLOCKED                                     (SYS_FLAGS + 0x3B) // Has the JOHTO region been unlocked?
-#define FLAG_SYS_HOENN_UNLOCKED                                     (SYS_FLAGS + 0x3C) // Has the HOENN region been unlocked?
-#define FLAG_0x83D                                                  (SYS_FLAGS + 0x3D)
+#define FLAG_SYS_TRIPASSS_GET                                       (SYS_FLAGS + 0x3A)
+#define FLAG_SYS_SEVII_UNLOCKED                                     (SYS_FLAGS + 0x3B) // Has the SEVII region been (fully) unlocked? => Rainbow pass given
+#define FLAG_SYS_JOHTO_UNLOCKED                                     (SYS_FLAGS + 0x3C) // Has the JOHTO region been unlocked?
+#define FLAG_SYS_HOENN_UNLOCKED                                     (SYS_FLAGS + 0x3D) // Has the HOENN region been unlocked?
 #define FLAG_0x83E                                                  (SYS_FLAGS + 0x3E)
 #define FLAG_0x83F                                                  (SYS_FLAGS + 0x3F)
 #define FLAG_0x840                                                  (SYS_FLAGS + 0x40)
@@ -1400,8 +1400,8 @@
 #define FLAG_0x842                                                  (SYS_FLAGS + 0x42)
 #define FLAG_0x843                                                  (SYS_FLAGS + 0x43)
 #define FLAG_0x844                                                  (SYS_FLAGS + 0x44)
-#define FLAG_SYS_SEVII_MAP_123                                      (SYS_FLAGS + 0x45)
-#define FLAG_SYS_SEVII_MAP_4567                                     (SYS_FLAGS + 0x46)
+#define FLAG_0x845                                                  (SYS_FLAGS + 0x45)
+#define FLAG_0x846                                                  (SYS_FLAGS + 0x46)
 #define FLAG_SYS_GOT_BERRY_POUCH                                    (SYS_FLAGS + 0x47)
 #define FLAG_SYS_DEOXYS_AWAKENED                                    (SYS_FLAGS + 0x48)
 #define FLAG_SYS_UNLOCKED_TANOBY_RUINS                              (SYS_FLAGS + 0x49)

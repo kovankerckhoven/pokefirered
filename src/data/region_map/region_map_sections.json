@@ -387,10 +387,10 @@
     {
       "map_section": "MAPSEC_POKEMON_LEAGUE",
       "name": "POKéMON LEAGUE",
-      "x": 0,
-      "y": 0,
+      "x": 5,
+      "y": 12,
       "width": 1,
-      "height": 1
+      "height": 2
     },
     {
       "map_section": "MAPSEC_ROCK_TUNNEL",
@@ -860,25 +860,25 @@
       "map_section": "MAPSEC_ROUTE_26",
       "name": "ROUTE 26",
       "x": 0,
-      "y": 0,
-      "width": 0,
-      "height": 0
+      "y": 14,
+      "width": 6,
+      "height": 1
     },
     {
       "map_section": "MAPSEC_ROUTE_27",
       "name": "ROUTE 27",
-      "x": 0,
-      "y": 0,
-      "width": 0,
-      "height": 0
+      "x": 24,
+      "y": 13,
+      "width": 6,
+      "height": 1
     },
     {
       "map_section": "MAPSEC_ROUTE_28",
       "name": "ROUTE 28",
-      "x": 0,
-      "y": 0,
-      "width": 0,
-      "height": 0
+      "x": 2,
+      "y": 12,
+      "width": 3,
+      "height": 1
     },
     {
       "map_section": "MAPSEC_TOHJO_FALLS",
@@ -893,96 +893,96 @@
       "name": "MT. SILVER",
       "x": 0,
       "y": 0,
-      "width": 0,
-      "height": 0
+      "width": 1,
+      "height": 1
     },
     {
       "map_section": "MAPSEC_NEW_BARK_TOWN",
       "name": "NEW BARK TOWN",
-      "x": 0,
-      "y": 0,
-      "width": 0,
-      "height": 0
+      "x": 23,
+      "y": 13,
+      "width": 1,
+      "height": 1
     },
     {
       "map_section": "MAPSEC_CHERRYGROVE_CITY",
       "name": "CHERRYGROVE CITY",
-      "x": 0,
-      "y": 0,
-      "width": 0,
-      "height": 0
+      "x": 17,
+      "y": 13,
+      "width": 1,
+      "height": 1
     },
     {
       "map_section": "MAPSEC_VIOLET_CITY",
       "name": "VIOLET CITY",
-      "x": 0,
-      "y": 0,
-      "width": 0,
-      "height": 0
+      "x": 15,
+      "y": 6,
+      "width": 1,
+      "height": 1
     },
     {
       "map_section": "MAPSEC_AZALEA_TOWN",
       "name": "AZALEA TOWN",
-      "x": 0,
-      "y": 0,
-      "width": 0,
-      "height": 0
+      "x": 12,
+      "y": 17,
+      "width": 1,
+      "height": 1
     },
     {
       "map_section": "MAPSEC_GOLDENROD_CITY",
       "name": "GOLDENROD CITY",
-      "x": 0,
-      "y": 0,
-      "width": 0,
-      "height": 0
+      "x": 9,
+      "y": 12,
+      "width": 1,
+      "height": 1
     },
     {
       "map_section": "MAPSEC_ECRUTEAK_CITY",
       "name": "ECRUTEAK CITY",
-      "x": 0,
-      "y": 0,
-      "width": 0,
-      "height": 0
+      "x": 12,
+      "y": 4,
+      "width": 1,
+      "height": 1
     },
     {
       "map_section": "MAPSEC_OLIVINE_CITY",
       "name": "OLIVINE CITY",
-      "x": 0,
-      "y": 0,
-      "width": 0,
-      "height": 0
+      "x": 6,
+      "y": 7,
+      "width": 1,
+      "height": 1
     },
     {
       "map_section": "MAPSEC_CIANWOOD_CITY",
       "name": "CIANWOOD CITY",
-      "x": 0,
-      "y": 0,
-      "width": 0,
-      "height": 0
+      "x": 3,
+      "y": 13,
+      "width": 1,
+      "height": 1
     },
     {
       "map_section": "MAPSEC_MAHOGANY_TOWN",
       "name": "MAHOGANY TOWN",
-      "x": 0,
-      "y": 0,
-      "width": 0,
-      "height": 0
+      "x": 18,
+      "y": 4,
+      "width": 1,
+      "height": 1
     },
     {
       "map_section": "MAPSEC_BLACKTHORN_CITY",
       "name": "BLACKTHORN CITY",
-      "x": 0,
-      "y": 0,
-      "width": 0,
-      "height": 0
+      "x": 22,
+      "y": 4,
+      "width": 1,
+      "height": 1
     },
     {
       "map_section": "MAPSEC_SAFARI_ZONE_GATE",
       "name": "SAFARI ZONE GATE",
-      "x": 0,
-      "y": 0,
-      "width": 0,
-      "height": 0
+      "x": 1,
+      "y": 11,
+      "width": 1,
+      "height": 1
     },
     {
       "map_section": "MAPSEC_JOHTO_BATTLE_TOWER",
@@ -995,162 +995,162 @@
     {
       "map_section": "MAPSEC_ROUTE_29",
       "name": "ROUTE 29",
-      "x": 0,
-      "y": 0,
-      "width": 0,
-      "height": 0
+      "x": 18,
+      "y": 13,
+      "width": 5,
+      "height": 1
     },
     {
       "map_section": "MAPSEC_ROUTE_30",
       "name": "ROUTE 30",
-      "x": 0,
-      "y": 0,
-      "width": 0,
-      "height": 0
+      "x": 17,
+      "y": 7,
+      "width": 1,
+      "height": 6
     },
     {
       "map_section": "MAPSEC_ROUTE_31",
       "name": "ROUTE 31",
-      "x": 0,
-      "y": 0,
-      "width": 0,
-      "height": 0
+      "x": 16,
+      "y": 6,
+      "width": 2,
+      "height": 1
     },
     {
       "map_section": "MAPSEC_ROUTE_32",
       "name": "ROUTE 32",
-      "x": 0,
-      "y": 0,
-      "width": 0,
-      "height": 0
+      "x": 15,
+      "y": 7,
+      "width": 1,
+      "height": 10
     },
     {
       "map_section": "MAPSEC_ROUTE_33",
       "name": "ROUTE 33",
-      "x": 0,
-      "y": 0,
-      "width": 0,
-      "height": 0
+      "x": 13,
+      "y": 17,
+      "width": 3,
+      "height": 1
     },
     {
       "map_section": "MAPSEC_ROUTE_34",
       "name": "ROUTE 34",
-      "x": 0,
-      "y": 0,
-      "width": 0,
-      "height": 0
+      "x": 9,
+      "y": 13,
+      "width": 1,
+      "height": 4
     },
     {
       "map_section": "MAPSEC_ROUTE_35",
       "name": "ROUTE 35",
-      "x": 0,
-      "y": 0,
-      "width": 0,
-      "height": 0
+      "x": 9,
+      "y": 7,
+      "width": 1,
+      "height": 5
     },
     {
       "map_section": "MAPSEC_ROUTE_36",
       "name": "ROUTE 36",
-      "x": 0,
-      "y": 0,
-      "width": 0,
-      "height": 0
+      "x": 10,
+      "y": 6,
+      "width": 5,
+      "height": 1
     },
     {
       "map_section": "MAPSEC_ROUTE_37",
       "name": "ROUTE 37",
-      "x": 0,
-      "y": 0,
-      "width": 0,
-      "height": 0
+      "x": 12,
+      "y": 5,
+      "width": 1,
+      "height": 1
     },
     {
       "map_section": "MAPSEC_ROUTE_38",
       "name": "ROUTE 38",
-      "x": 0,
-      "y": 0,
-      "width": 0,
-      "height": 0
+      "x": 7,
+      "y": 4,
+      "width": 5,
+      "height": 1
     },
     {
       "map_section": "MAPSEC_ROUTE_39",
       "name": "ROUTE 39",
-      "x": 0,
-      "y": 0,
-      "width": 0,
-      "height": 0
+      "x": 6,
+      "y": 4,
+      "width": 1,
+      "height": 3
     },
     {
       "map_section": "MAPSEC_ROUTE_40",
       "name": "ROUTE 40",
-      "x": 0,
-      "y": 0,
-      "width": 0,
-      "height": 0
+      "x": 4,
+      "y": 7,
+      "width": 2,
+      "height": 1
     },
     {
       "map_section": "MAPSEC_ROUTE_41",
       "name": "ROUTE 41",
-      "x": 0,
-      "y": 0,
-      "width": 0,
-      "height": 0
+      "x": 4,
+      "y": 8,
+      "width": 1,
+      "height": 6
     },
     {
       "map_section": "MAPSEC_ROUTE_42",
       "name": "ROUTE 42",
-      "x": 0,
-      "y": 0,
-      "width": 0,
-      "height": 0
+      "x": 13,
+      "y": 4,
+      "width": 5,
+      "height": 1
     },
     {
       "map_section": "MAPSEC_ROUTE_43",
       "name": "ROUTE 43",
-      "x": 0,
-      "y": 0,
-      "width": 0,
-      "height": 0
+      "x": 18,
+      "y": 3,
+      "width": 1,
+      "height": 1
     },
     {
       "map_section": "MAPSEC_ROUTE_44",
       "name": "ROUTE 44",
-      "x": 0,
-      "y": 0,
-      "width": 0,
-      "height": 0
+      "x": 19,
+      "y": 4,
+      "width": 3,
+      "height": 1
     },
     {
       "map_section": "MAPSEC_ROUTE_45",
       "name": "ROUTE 45",
-      "x": 0,
-      "y": 0,
-      "width": 0,
-      "height": 0
+      "x": 22,
+      "y": 5,
+      "width": 1,
+      "height": 5
     },
     {
       "map_section": "MAPSEC_ROUTE_46",
       "name": "ROUTE 46",
-      "x": 0,
-      "y": 0,
-      "width": 0,
-      "height": 0
+      "x": 21,
+      "y": 9,
+      "width": 1,
+      "height": 4
     },
     {
       "map_section": "MAPSEC_ROUTE_47",
       "name": "ROUTE 47",
-      "x": 0,
-      "y": 0,
-      "width": 0,
-      "height": 0
+      "x": 1,
+      "y": 13,
+      "width": 2,
+      "height": 1
     },
     {
       "map_section": "MAPSEC_ROUTE_48",
       "name": "ROUTE 48",
-      "x": 0,
-      "y": 0,
-      "width": 0,
-      "height": 0
+      "x": 1,
+      "y": 12,
+      "width": 1,
+      "height": 1
     },
     {
       "map_section": "MAPSEC_DARK_CAVE",
@@ -1171,10 +1171,10 @@
     {
       "map_section": "MAPSEC_RUINS_OF_ALPH",
       "name": "RUINS OF ALPH",
-      "x": 0,
-      "y": 0,
-      "width": 0,
-      "height": 0
+      "x": 14,
+      "y": 9,
+      "width": 1,
+      "height": 1
     },
     {
       "map_section": "MAPSEC_UNION_CAVE",
@@ -1195,10 +1195,10 @@
     {
       "map_section": "MAPSEC_ILEX_FOREST",
       "name": "ILEX FOREST",
-      "x": 0,
-      "y": 0,
-      "width": 0,
-      "height": 0
+      "x": 9,
+      "y": 17,
+      "width": 3,
+      "height": 1
     },
     {
       "map_section": "MAPSEC_RADIO_TOWER",
@@ -1227,10 +1227,10 @@
     {
       "map_section": "MAPSEC_NATIONAL_PARK",
       "name": "NATIONAL PARK",
-      "x": 0,
-      "y": 0,
-      "width": 0,
-      "height": 0
+      "x": 9,
+      "y": 6,
+      "width": 1,
+      "height": 1
     },
     {
       "map_section": "MAPSEC_POKEATHLON_DOME",
@@ -1283,10 +1283,10 @@
     {
       "map_section": "MAPSEC_CLIFF_EDGE_GATE",
       "name": "CLIFF EDGE GATE",
-      "x": 0,
-      "y": 0,
-      "width": 0,
-      "height": 0
+      "x": 2,
+      "y": 13,
+      "width": 1,
+      "height": 1
     },
     {
       "map_section": "MAPSEC_CLIFF_CAVE",
@@ -1331,10 +1331,10 @@
     {
       "map_section": "MAPSEC_LAKE_OF_RAGE",
       "name": "LAKE OF RAGE",
-      "x": 0,
-      "y": 0,
-      "width": 0,
-      "height": 0
+      "x": 18,
+      "y": 2,
+      "width": 1,
+      "height": 1
     },
     {
       "map_section": "MAPSEC_TEAM_ROCKET_HQ",
@@ -1347,10 +1347,10 @@
     {
       "map_section": "MAPSEC_ICE_PATH",
       "name": "ICE PATH",
-      "x": 0,
-      "y": 0,
-      "width": 0,
-      "height": 0
+      "x": 22,
+      "y": 3,
+      "width": 1,
+      "height": 1
     },
     {
       "map_section": "MAPSEC_DRAGONS_DEN",
