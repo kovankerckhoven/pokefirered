@@ -281,6 +281,7 @@ gSpecials::
 	def_special LookThroughPorthole
 	def_special DoSoftReset
 	def_special EnterHallOfFame
+	def_special TeleportToNewBarkTown
 	def_special AnimateElevator
 	def_special NullFieldSpecial  @ ShowGlassWorkshopMenu
 	def_special SpawnCameraObject
@@ -393,7 +394,6 @@ gSpecials::
 	def_special BackupHelpContext
 	def_special RestoreHelpContext
 	def_special ValidateSavedWonderCard
-	def_special SetUnlockedPokedexFlags
 	def_special InitUnionRoom
 	def_special BufferUnionRoomPlayerName
 	def_special QuestLog_StartRecordingInputsAfterDeferredEvent

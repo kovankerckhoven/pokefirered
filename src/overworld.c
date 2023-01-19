@@ -490,14 +490,6 @@ static const struct MapLayout *GetMapLayout(void)
     return NULL;
 }
 
-// static const u8 GetRegionId(void)
-// {
-//     // u8 regionId = gSaveBlock1Ptr->regionId;
-//     // if (regionId)
-//     //     return regionId;
-//     return REGION_KANTO; // TODO: Default of KANTO better than hard lockout?
-// }
-
 // Routines related to warps
 
 static const struct WarpData sDummyWarpData = {
@@ -605,17 +597,15 @@ static void LoadCurrentMapData(void)
 {
     gMapHeader = *Overworld_GetMapHeaderByGroupAndId(gSaveBlock1Ptr->location.mapGroup, gSaveBlock1Ptr->location.mapNum);
     gSaveBlock1Ptr->mapLayoutId = gMapHeader.mapLayoutId;
-    gSaveBlock1Ptr->regionId = Overworld_GetRegionByGroup(gSaveBlock1Ptr->location.mapGroup);
     gMapHeader.mapLayout = GetMapLayout();
-    DebugPrintf("LOADCMAP: GROUP=%d, NUM=%d, MAP_SEC=%d, REGION=%d, SIZE=%d", gSaveBlock1Ptr->location.mapGroup, gSaveBlock1Ptr->location.mapNum, gMapHeader.regionMapSectionId, gSaveBlock1Ptr->regionId, NUM_SUBSTRUCT_BYTES);
+    DebugPrintf("LOADCMAP: GROUP=%d, NUM=%d, MAP_SEC=%d, SIZE=%d", gSaveBlock1Ptr->location.mapGroup, gSaveBlock1Ptr->location.mapNum, gMapHeader.regionMapSectionId, NUM_SUBSTRUCT_BYTES);
 }
 
 static void LoadSaveblockMapHeader(void)
 {
     gMapHeader = *Overworld_GetMapHeaderByGroupAndId(gSaveBlock1Ptr->location.mapGroup, gSaveBlock1Ptr->location.mapNum);
-    gSaveBlock1Ptr->regionId = Overworld_GetRegionByGroup(gSaveBlock1Ptr->location.mapGroup);
     gMapHeader.mapLayout = GetMapLayout();
-    DebugPrintf("LOADSMAP: GROUP=%d, NUM=%d, MAP_SEC=%d, REGION=%d, SIZE=%d", gSaveBlock1Ptr->location.mapGroup, gSaveBlock1Ptr->location.mapNum, gMapHeader.regionMapSectionId, gSaveBlock1Ptr->regionId, NUM_SUBSTRUCT_BYTES);
+    DebugPrintf("LOADSMAP: GROUP=%d, NUM=%d, MAP_SEC=%d, SIZE=%d", gSaveBlock1Ptr->location.mapGroup, gSaveBlock1Ptr->location.mapNum, gMapHeader.regionMapSectionId, NUM_SUBSTRUCT_BYTES);
 }
 
 static void SetPlayerCoordsFromWarp(void)

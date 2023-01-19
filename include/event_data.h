@@ -52,7 +52,6 @@ void ResetSpecialVars(void);
 void ClearMysteryGiftFlags(void);
 void ClearMysteryGiftVars(void);
 bool32 IsNationalPokedexEnabled(void);
-void EnableNationalPokedex_RSE(void);
 void ClearTempFieldEventData(void);
 
 #endif // GUARD_EVENT_DATA_H

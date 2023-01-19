@@ -57,60 +57,20 @@ void ClearTempFieldEventData(void)
     FlagClear(FLAG_SYS_INFORMED_OF_LOCAL_WIRELESS_PLAYER);
 }
 
-// Unused
-static void DisableNationalPokedex_RSE(void)
-{
-    u16 *ptr = GetVarPointer(VAR_0x403C);
-    gSaveBlock2Ptr->pokedex.unused = 0;
-    *ptr = 0;
-    FlagClear(FLAG_0x838);
-}
-
-// The magic numbers used here (0xDA and 0x0302) correspond to those
-// used in RSE for enabling the national Pokedex
-void EnableNationalPokedex_RSE(void)
-{
-    // Note: the var, struct member, and flag are never used
-    u16 *ptr = GetVarPointer(VAR_0x403C);
-    gSaveBlock2Ptr->pokedex.unused = 0xDA;
-    *ptr = 0x0302;
-    FlagSet(FLAG_0x838);
-}
-
-// Unused
-static bool32 IsNationalPokedexEnabled_RSE(void)
-{
-    if (gSaveBlock2Ptr->pokedex.unused == 0xDA
-            && VarGet(VAR_0x403C) == 0x0302
-            && FlagGet(FLAG_0x838))
-        return TRUE;
-
-    return FALSE;
-}
-
 void DisableNationalPokedex(void)
 {
-    u16 *nationalDexVar = GetVarPointer(VAR_NATIONAL_DEX);
-    gSaveBlock2Ptr->pokedex.nationalMagic = 0;
-    *nationalDexVar = 0;
     FlagClear(FLAG_SYS_NATIONAL_DEX);
 }
 
 void EnableNationalPokedex(void)
 {
-    u16 *nationalDexVar = GetVarPointer(VAR_NATIONAL_DEX);
-    gSaveBlock2Ptr->pokedex.nationalMagic = 0xB9;
-    *nationalDexVar = 0x6258;
     FlagSet(FLAG_SYS_NATIONAL_DEX);
 }
 
 bool32 IsNationalPokedexEnabled(void)
 {
-    if (gSaveBlock2Ptr->pokedex.nationalMagic == 0xB9
-            && VarGet(VAR_NATIONAL_DEX) == 0x6258
-            && FlagGet(FLAG_SYS_NATIONAL_DEX))
+    if (FlagGet(FLAG_SYS_NATIONAL_DEX))
         return TRUE;
-
     return FALSE;
 }
 

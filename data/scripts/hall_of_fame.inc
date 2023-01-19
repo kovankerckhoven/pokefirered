@@ -1,14 +1,32 @@
+@ After each successfull Elite Four cycle:
+@ 	* Reset flags for the postgame gossipers, Elite Four, and Champion
+@	* Call Script_UpdateTrainerFanClubGameClear
+@	* If the National Dex hasn't been enabled yet, try to enable it (in the Pallet Town scene) 
+@	* If the National Dex has been enabled already, but Johto hasn't been unlocked yet, try to unlock it (in the Pallet Town scene)
+@	* Reset Legendaries
+@	* TODO: Also reset Roamers etc.?
 EventScript_SetDefeatedEliteFourFlagsVars::
 	clearflag FLAG_HIDE_POSTGAME_GOSSIPERS
 	call EventScript_ResetEliteFour
 	special Script_UpdateTrainerFanClubGameClear
-	specialvar VAR_RESULT, IsNationalPokedexEnabled
-	call_if_eq VAR_RESULT, FALSE, EventScript_SetReadyTryGiveNationalDexScene
+	call_if_unset FLAG_SYS_NATIONAL_DEX, EventScript_SetReadyTryGiveNationalDexScene
+	call_if_set FLAG_SYS_NATIONAL_DEX, EventScript_FlagCheck_SetReadyTryUnlockJohto
 	call EventScript_ResetLegendaries
 	return
 
+@ Attempt to enable the National Dex in the Pallet Town scene
 EventScript_SetReadyTryGiveNationalDexScene::
 	setvar VAR_MAP_SCENE_PALLET_TOWN_OAK, 2
+	return
+
+@ If the National Dex has been enabled, check if Johto has been unlocked already or not
+EventScript_FlagCheck_SetReadyTryUnlockJohto::
+	call_if_unset FLAG_SYS_JOHTO_UNLOCKED, EventScript_SetReadyTryUnlockJohto
+	return
+
+@ Johto not unlocked yet, attempt to unlock it in the Pallet Town scene
+EventScript_SetReadyTryUnlockJohto::
+	setvar VAR_MAP_SCENE_PALLET_TOWN_OAK, 4
 	return
 
 EventScript_ResetLegendaries::
@@ -17,6 +35,7 @@ EventScript_ResetLegendaries::
 	clearflag FLAG_DEOXYS_FLEW_AWAY
 	return
 
+@ TODO: Is this actually referenced anywhere instead of "EventScript_ResetEliteFour"?
 EventScript_ResetEliteFourEnd::
 	call EventScript_ResetEliteFour
 	end

@@ -39,6 +39,7 @@ PalletTown_EventScript_MoveSignLadyToRouteEntrance::
 
 PalletTown_OnFrame::
 	map_script_2 VAR_MAP_SCENE_PALLET_TOWN_OAK, 2, PalletTown_EventScript_OakRatingScene
+	map_script_2 VAR_MAP_SCENE_PALLET_TOWN_OAK, 4, PalletTown_EventScript_OakScene_OpenJohto
 	.2byte 0
 
 @ Oak approaches player after exiting their house post Elite Four to check if they should receieve the National Dex
@@ -74,6 +75,44 @@ PalletTown_EventScript_OakRatingScene::
 	waitdooranim
 	setvar VAR_MAP_SCENE_PALLET_TOWN_PROFESSOR_OAKS_LAB, 7
 	setvar VAR_MAP_SCENE_PALLET_TOWN_OAK, 3
+	setflag FLAG_HIDE_OAK_IN_PALLET_TOWN
+	warp MAP_PALLET_TOWN_PROFESSOR_OAKS_LAB, 6, 12
+	waitstate
+	releaseall
+	end
+
+@ Oak approaches player after exiting their house post Elite Four to check if the Johto region should be unlocked
+PalletTown_EventScript_OakScene_OpenJohto::
+	lockall
+	textcolor NPC_TEXT_COLOR_MALE
+	setobjectxyperm LOCALID_PROF_OAK, 14, 14
+	setobjectmovementtype LOCALID_PROF_OAK, MOVEMENT_TYPE_FACE_LEFT
+	addobject LOCALID_PROF_OAK
+	applymovement LOCALID_PROF_OAK, PalletTown_Movement_OakWalkToPlayersDoor
+	waitmovement 0
+	goto_if_unset FLAG_WORLD_MAP_ONE_ISLAND, PalletTown_EventScript_NotBeenToOneIslandYet
+	msgbox PalletTown_Text_OakLetMeSeePokedex
+	setvar VAR_0x8004, 0
+	specialvar VAR_RESULT, GetPokedexCount
+	copyvar VAR_0x8008, VAR_0x8005
+	copyvar VAR_0x8009, VAR_0x8006
+	buffernumberstring STR_VAR_1, VAR_0x8008
+	buffernumberstring STR_VAR_2, VAR_0x8009
+	msgbox PalletTown_Text_CaughtXImpressiveFollowMe
+	closemessage
+	playbgm MUS_FOLLOW_ME, 0
+	applymovement OBJ_EVENT_ID_PLAYER, PalletTown_Movement_PlayerWalkToLabFromHouse
+	applymovement LOCALID_PROF_OAK, PalletTown_Movement_OakWalkToLabFromHouse
+	waitmovement 0
+	opendoor 16, 13
+	waitdooranim
+	applymovement LOCALID_PROF_OAK, PalletTown_Movement_OakEnterLab
+	applymovement OBJ_EVENT_ID_PLAYER, PalletTown_Movement_PlayerEnterLab
+	waitmovement 0
+	closedoor 16, 13
+	waitdooranim
+	setvar VAR_MAP_SCENE_PALLET_TOWN_PROFESSOR_OAKS_LAB, 10
+	setvar VAR_MAP_SCENE_PALLET_TOWN_OAK, 5
 	setflag FLAG_HIDE_OAK_IN_PALLET_TOWN
 	warp MAP_PALLET_TOWN_PROFESSOR_OAKS_LAB, 6, 12
 	waitstate

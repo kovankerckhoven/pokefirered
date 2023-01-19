@@ -465,6 +465,8 @@
 #define MAP_ROUTE29          (3 | (9 << 8))
 #define MAP_ROUTE30          (4 | (9 << 8))
 #define MAP_ROUTE31          (5 | (9 << 8))
+#define MAP_ROUTE32          (6 | (9 << 8))
+#define MAP_RUINS_OF_ALPH    (7 | (9 << 8))
 
 // gMapGroup_Johto_Dungeon
 

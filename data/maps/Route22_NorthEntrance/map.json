@@ -21,12 +21,12 @@
       "x": 31,
       "y": 8,
       "elevation": 3,
-      "movement_type": "MOVEMENT_TYPE_FACE_DOWN_AND_LEFT",
+      "movement_type": "MOVEMENT_TYPE_FACE_LEFT",
       "movement_range_x": 1,
       "movement_range_y": 1,
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "Route22_NorthEntrance_EventScript_BoulderBadgeGuard",
+      "script": "Route23_EventScript_CheckAllBadges",
       "flag": "0"
     },
     {
@@ -91,12 +91,12 @@
   "coord_events": [
     {
       "type": "trigger",
-      "x": 31,
-      "y": 9,
+      "x": 30,
+      "y": 8,
       "elevation": 3,
       "var": "VAR_MAP_SCENE_ROUTE23",
       "var_value": "0",
-      "script": "Route22_NorthEntrance_EventScript_BoulderBadgeGuardTrigger"
+      "script": "Route23_EventScript_CheckAllBadges"
     }
   ],
   "bg_events": [

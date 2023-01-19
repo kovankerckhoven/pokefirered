@@ -240,4 +240,41 @@ ViridianCity_EventScript_DoTutorialBattle::
 	giveitem ITEM_TEACHY_TV
 	msgbox ViridianCity_Text_WatchThatToLearnBasics
 	return
+
+@ TODO: Remove this and all references to it when done debugging
+ViridianCity_EventScript_GiveMons::
+	lock
+	faceplayer
+	goto_if_set FLAG_0x077, ViridianCity_EventScript_MonsAlreadyGiven
+	msgbox ViridianCity_Text_TakeTheseMons
+	setvar VAR_TEMP_1, SPECIES_STARMIE
+	givemon SPECIES_STARMIE, 40
+	bufferspeciesname STR_VAR_1, SPECIES_STARMIE
+	call EventScript_GetGiftMonPartySlot
+	setvar VAR_TEMP_1, SPECIES_MEWTWO
+	givemon SPECIES_MEWTWO, 40
+	bufferspeciesname STR_VAR_1, SPECIES_MEWTWO
+	call EventScript_GetGiftMonPartySlot
+	setvar VAR_TEMP_1, SPECIES_GENGAR
+	givemon SPECIES_GENGAR, 40
+	bufferspeciesname STR_VAR_1, SPECIES_GENGAR
+	call EventScript_GetGiftMonPartySlot
+	setvar VAR_TEMP_1, SPECIES_EXEGGUTOR
+	givemon SPECIES_EXEGGUTOR, 40
+	bufferspeciesname STR_VAR_1, SPECIES_EXEGGUTOR
+	call EventScript_GetGiftMonPartySlot
+	setvar VAR_TEMP_1, SPECIES_DRAGONITE
+	givemon SPECIES_DRAGONITE, 40
+	bufferspeciesname STR_VAR_1, SPECIES_DRAGONITE
+	call EventScript_GetGiftMonPartySlot
+	setflag FLAG_0x077
+	release
+	end
+
+@ TODO: Remove this and all references to it when done debugging
+ViridianCity_EventScript_MonsAlreadyGiven::
+	msgbox ViridianCity_Text_DontGetGreedy
+	release
+	end
+
 `

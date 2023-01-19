@@ -109,7 +109,7 @@ OneIsland_PokemonCenter_1F_EventScript_MeetCelioScene::
 	msgbox OneIsland_PokemonCenter_1F_Text_PassLetsYouTravelBetweenIslands
 	call_if_ge VAR_MAP_SCENE_PALLET_TOWN_RIVALS_HOUSE, 2, OneIsland_PokemonCenter_1F_EventScript_ReceiveTownMapPage
 	call_if_lt VAR_MAP_SCENE_PALLET_TOWN_RIVALS_HOUSE, 2, OneIsland_PokemonCenter_1F_EventScript_ReceiveTownMap
-	setflag FLAG_SYS_SEVII_MAP_123
+	setflag FLAG_SYS_TRIPASSS_GET
 	msgbox OneIsland_PokemonCenter_1F_Text_BillCatchYouLater
 	closemessage
 	applymovement LOCALID_BILL, Common_Movement_WalkInPlaceFasterUp
@@ -323,7 +323,7 @@ OneIsland_PokemonCenter_1F_EventScript_GiveRainbowPass::
 	removeitem ITEM_TRI_PASS
 	setvar VAR_MAP_SCENE_ONE_ISLAND_POKEMON_CENTER_1F, 5
 	additem ITEM_RAINBOW_PASS
-	setflag FLAG_SYS_SEVII_MAP_4567
+	setflag FLAG_SYS_SEVII_UNLOCKED
 	textcolor NPC_TEXT_COLOR_NEUTRAL
 	playfanfare MUS_OBTAIN_KEY_ITEM
 	message OneIsland_PokemonCenter_1F_Text_ReturnedTriPassForRainbowPass

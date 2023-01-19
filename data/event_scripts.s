@@ -1408,3 +1408,9 @@ Text_TestMsg::
 
 	.include "data/maps/MtSilver_Summit/scripts.inc"
 	.include "data/maps/MtSilver_Summit/text.inc"
+
+	.include "data/maps/Route32/scripts.inc"
+	.include "data/maps/Route32/text.inc"
+
+	.include "data/maps/RuinsOfAlph/scripts.inc"
+	.include "data/maps/RuinsOfAlph/text.inc"

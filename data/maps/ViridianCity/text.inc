@@ -123,3 +123,9 @@ ViridianCity_Text_GymSign::
 ViridianCity_Text_GymDoorsAreLocked::
     .string "VIRIDIAN GYM's doors are locked…$"
 
+ViridianCity_Text_TakeTheseMons::
+    .string "Here, take these POKéMON!$"
+
+ViridianCity_Text_DontGetGreedy::
+    .string "Now now, don't get greedy!$"
+

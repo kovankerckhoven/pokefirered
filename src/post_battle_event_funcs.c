@@ -6,6 +6,7 @@
 #include "hall_of_fame.h"
 #include "load_save.h"
 #include "constants/heal_locations.h"
+#include "field_fadetransition.h"
 
 bool8 EnterHallOfFame(void)
 {
@@ -54,5 +55,17 @@ bool8 EnterHallOfFame(void)
 bool8 SetCB2WhiteOut(void)
 {
     SetMainCallback2(CB2_WhiteOut);
+    return FALSE;
+}
+
+bool8 TeleportToNewBarkTown(void)
+{
+    HealPlayerParty();
+    // TODO: Force player party into PC storage (or temporary storage??)
+    SetContinueGameWarpStatus();
+    SetContinueGameWarpToHealLocation(SPAWN_NEW_BARK_TOWN);
+    SetWarpDestination(9, 0, -1, 7, 6);
+    DoWarp();
+    ResetInitialPlayerAvatarState();
     return FALSE;
 }

@@ -412,15 +412,10 @@ static const u32 sKanto_Tilemap[] = INCBIN_U32("graphics/region_map/kanto.bin.lz
 static const u32 sSevii_Tilemap[] = INCBIN_U32("graphics/region_map/sevii.bin.lz");
 static const u32 sJohto_Tilemap[] = INCBIN_U32("graphics/region_map/johto.bin.lz");
 static const u32 sHoenn_Tilemap[] = INCBIN_U32("graphics/region_map/hoenn.bin.lz");
-static const u32 sSevii123_Tilemap[] = INCBIN_U32("graphics/region_map/sevii_123.bin.lz"); // TODO: Remove these three
-static const u32 sSevii45_Tilemap[] = INCBIN_U32("graphics/region_map/sevii_45.bin.lz");
-static const u32 sSevii67_Tilemap[] = INCBIN_U32("graphics/region_map/sevii_67.bin.lz");
 static const u32 sMapEdge_Tilemap[] = INCBIN_U32("graphics/region_map/map_edge.bin.lz"); // TODO: Are these the map handles?
 static const u32 sSwitchMap_KantoSevii_Tilemap[] = INCBIN_U32("graphics/region_map/switch_map_kanto_sevii.bin.lz"); // Only SEVII unlocked - see FLAG_SYS_SEVII_UNLOCKED
 static const u32 sSwitchMap_KantoSeviiJohto_Tilemap[] = INCBIN_U32("graphics/region_map/switch_map_kanto_sevii_johto.bin.lz"); // SEVII + JOHTO unlocked - see FLAG_SYS_JOHTO_UNLOCKED
 static const u32 sSwitchMap_KantoSeviiJohtoHoenn_Tilemap[] = INCBIN_U32("graphics/region_map/switch_map_kanto_sevii_johto_hoenn.bin.lz"); // SEVII, JOHTO, HOENN unlocked - see FLAG_SYS_HOENN_UNLOCKED
-static const u32 sSwitchMap_KantoSevii123_Tilemap[] = INCBIN_U32("graphics/region_map/switch_map_kanto_sevii_123.bin.lz");
-static const u32 sSwitchMap_KantoSeviiAll2_Tilemap[] = INCBIN_U32("graphics/region_map/switch_map_kanto_sevii_all2.bin.lz");
 static const u32 sMapEdge_TopLeft[] = INCBIN_U32("graphics/region_map/map_edge_top_left.4bpp.lz"); // TODO: Are these the map handles?
 static const u32 sMapEdge_TopRight[] = INCBIN_U32("graphics/region_map/map_edge_top_right.4bpp.lz"); // TODO: Are these the map handles?
 static const u32 sMapEdge_MidLeft[] = INCBIN_U32("graphics/region_map/map_edge_mid_left.4bpp.lz"); // TODO: Are these the map handles?
@@ -987,7 +982,6 @@ void InitRegionMapWithExitCB(u8 type, MainCallback cb)
     }
 }
 
-// TODO: Multi-region Change this to use the same logic as in src\overworld.c `Overworld_GetRegionByGroup` function
 static void InitRegionMapType(void)
 {
     u8 i;

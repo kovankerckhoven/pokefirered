@@ -25,6 +25,7 @@ PalletTown_ProfessorOaksLab_OnTransition::
 	call_if_eq VAR_MAP_SCENE_PALLET_TOWN_PROFESSOR_OAKS_LAB, 1, PalletTown_ProfessorOaksLab_EventScript_ReadyOakForStarterScene
 	call_if_eq VAR_MAP_SCENE_PALLET_TOWN_PROFESSOR_OAKS_LAB, 7, PalletTown_ProfessorOaksLab_EventScript_ReadyOakForNationalDexScene
 	call_if_eq VAR_MAP_SCENE_PALLET_TOWN_PROFESSOR_OAKS_LAB, 8, PalletTown_ProfessorOaksLab_EventScript_SetNationalDexSceneFinished
+	call_if_eq VAR_MAP_SCENE_PALLET_TOWN_PROFESSOR_OAKS_LAB, 10, PalletTown_ProfessorOaksLab_EventScript_ReadyOakForUnlockJohtoScene
 	call_if_set FLAG_GOT_POKEBALLS_FROM_OAK_AFTER_22_RIVAL, PalletTown_ProfessorOaksLab_EventScript_SetSkipPokeBallCheck
 	end
 
@@ -47,6 +48,11 @@ PalletTown_ProfessorOaksLab_EventScript_ReadyOakForNationalDexScene::
 	setobjectmovementtype LOCALID_PROF_OAK, MOVEMENT_TYPE_FACE_UP
 	return
 
+PalletTown_ProfessorOaksLab_EventScript_ReadyOakForUnlockJohtoScene::
+	setobjectxyperm LOCALID_PROF_OAK, 6, 11
+	setobjectmovementtype LOCALID_PROF_OAK, MOVEMENT_TYPE_FACE_UP
+	return
+
 PalletTown_ProfessorOaksLab_OnWarp::
 	map_script_2 VAR_MAP_SCENE_PALLET_TOWN_PROFESSOR_OAKS_LAB, 1, PalletTown_ProfessorOaksLab_EventScript_ReadyPlayerForStarterScene
 	.2byte 0
@@ -58,7 +64,40 @@ PalletTown_ProfessorOaksLab_EventScript_ReadyPlayerForStarterScene::
 PalletTown_ProfessorOaksLab_OnFrame::
 	map_script_2 VAR_MAP_SCENE_PALLET_TOWN_PROFESSOR_OAKS_LAB, 1, PalletTown_ProfessorOaksLab_ChooseStarterScene
 	map_script_2 VAR_MAP_SCENE_PALLET_TOWN_PROFESSOR_OAKS_LAB, 7, PalletTown_ProfessorOaksLab_EventScript_EnterForNationalDexScene
+	map_script_2 VAR_MAP_SCENE_PALLET_TOWN_PROFESSOR_OAKS_LAB, 10, PalletTown_ProfessorOaksLab_EventScript_EnterForUnlockJohtoScene
 	.2byte 0
+
+PalletTown_ProfessorOaksLab_EventScript_EnterForUnlockJohtoScene::
+	lockall
+	setvar VAR_FACING, DIR_NORTH
+	textcolor NPC_TEXT_COLOR_MALE
+	applymovement LOCALID_PROF_OAK, PalletTown_ProfessorOaksLab_Movement_OakEnter
+	waitmovement 0
+	removeobject LOCALID_PROF_OAK
+	setobjectxyperm LOCALID_PROF_OAK, 6, 3
+	setobjectmovementtype LOCALID_PROF_OAK, MOVEMENT_TYPE_FACE_DOWN
+	clearflag FLAG_HIDE_OAK_IN_HIS_LAB
+	applymovement OBJ_EVENT_ID_PLAYER, PalletTown_ProfessorOaksLab_Movement_PlayerEnter
+	waitmovement 0
+	goto PalletTown_ProfessorOaksLab_EventScript_UnlockJohtoScene
+	end
+
+PalletTown_ProfessorOaksLab_EventScript_UnlockJohtoScene::
+	msgbox PalletTown_ProfessorOaksLab_Text_NeighbouringJohtoRegionNeedsHelp
+	closemessage
+	msgbox PalletTown_ProfessorOaksLab_Text_PokemonWillBeStoredSafely
+	setvar VAR_MAP_SCENE_PALLET_TOWN_PROFESSOR_OAKS_LAB, 11
+	@ TODO: Fade out and teleport in front of Professor ELM's lab in New Bark Town with Professor OAK, continue the conversation and then OAK walks off to Mr Pokemon on Route 30
+	goto PalletTown_ProfessorOaksLab_EventScript_UnlockJohtoScene_FadeOut
+	end
+
+PalletTown_ProfessorOaksLab_EventScript_UnlockJohtoScene_FadeOut::
+	setvar VAR_TEMP_1, 1
+	setrespawn SPAWN_NEW_BARK_TOWN
+	fadescreenspeed FADE_TO_BLACK, 24
+	special TeleportToNewBarkTown
+	releaseall
+	end
 
 PalletTown_ProfessorOaksLab_EventScript_EnterForNationalDexScene:: @ 8169002 
 	lockall
@@ -573,6 +612,7 @@ PalletTown_ProfessorOaksLab_EventScript_RivalChoseStarter::
 	release
 	end
 
+@ TODO: Add VAR_MAP_SCENE_PALLET_TOWN_PROFESSOR_OAKS_LAB value 10 here? Or value 11?
 PalletTown_ProfessorOaksLab_EventScript_ProfOak::
 	lock
 	faceplayer
@@ -663,7 +703,6 @@ PalletTown_ProfessorOaksLab_EventScript_ReceiveDexScene::
 	waitfanfare
 	call EventScript_RestorePrevTextColor
 	setflag FLAG_SYS_POKEDEX_GET
-	special SetUnlockedPokedexFlags
 	setvar VAR_MAP_SCENE_POKEMON_CENTER_TEALA, 1
 	msgbox PalletTown_ProfessorOaksLab_Text_OakCatchMonsForDataTakeThese
 	giveitem_msg PalletTown_ProfessorOaksLab_Text_ReceivedFivePokeBalls, ITEM_POKE_BALL, 5

@@ -6,6 +6,45 @@
 #include "constants/pokemon.h"
 #include "pokemon_storage_system.h"
 
+// TODO: NewPokemonSubstruct
+struct NewPokemonSubstruct
+{
+    /* 0x00 */  u32 species:11; // Max 2048
+                u32 heldItem:11; // Max 2048
+                u32 ppBonuses:8; // Instead of the original u8
+                u32 otGender:1; // 0 = Male, 1 = Female
+                u32 isEgg:1;
+    /* 0x04 */  u16 experience; // TODO: Not total experience, only "current" experience to next level
+    /* 0x06 */  u8 friendship; // Max 255
+    /* 0x07 */  u8 pokerus; // First 4 bits are the "strain", last 4 bits are #days until cured
+    /* 0x08 */  u16 moves[MAX_MON_MOVES]; // TODO: First 10 bits of each move are the move ID, last 6 bits are the PP
+    /* 0x10 */  u8 hpEV;
+    /* 0x11 */  u8 attackEV;
+    /* 0x12 */  u8 defenseEV;
+    /* 0x13 */  u8 speedEV;
+    /* 0x14 */  u8 spAttackEV;
+    /* 0x15 */  u8 spDefenseEV;
+    /* 0x16 */  u8 cool;
+    /* 0x17 */  u8 beauty;
+    /* 0x18 */  u8 cute;
+    /* 0x19 */  u8 smart;
+    /* 0x1A */  u8 tough;
+    /* 0x1B */  u8 sheen;
+    /* 0x1C */  u16 metLocation; // MAPSEC ID
+    /* 0x1E */  u16 metLevel:7; // Max value 100
+                u16 metGame:4;
+                u16 pokeball:5; // ~30 possible balls
+    /* 0x20 */  u32 hpIV:5;
+                u32 attackIV:5;
+                u32 defenseIV:5;
+                u32 speedIV:5;
+                u32 spAttackIV:5;
+                u32 spDefenseIV:5;
+                u32 abilityNum:1; // see src\data\pokemon\base_stats.h
+                u32 eventLegal:1; // controls Mew & Deoxys obedience; if set, Pokémon is a fateful encounter in FRLG & Gen 4+ summary screens; set for in-game event island legendaries, some distributed events, and Pokémon from XD: Gale of Darkness.
+}; // Size 0x24 (36 bytes)
+// TODO: Remove metGame & all the ribbons
+
 struct PokemonSubstruct0
 {
  /* 0x00 */ u16 species;

@@ -590,7 +590,15 @@ const u8 *const gStdStringPtrs[] = {
     [STDSTRING_KEY_ITEMS_POCKET] = gText_KeyItemsPocket,
     [STDSTRING_POKEBALLS_POCKET] = gText_PokeBallsPocket,
     [STDSTRING_TM_CASE]          = gText_TmCase,
-    [STDSTRING_BERRY_POUCH]      = gText_BerryPouch_2
+    [STDSTRING_BERRY_POUCH]      = gText_BerryPouch_2,
+    [STDSTRING_ZEPHYR_BADGE]     = gText_ZephyrBadge,
+    [STDSTRING_HIVE_BADGE]       = gText_HiveBadge,
+    [STDSTRING_PLAIN_BADGE]      = gText_PlainBadge,
+    [STDSTRING_FOG_BADGE]        = gText_FogBadge,
+    [STDSTRING_STORM_BADGE]      = gText_StormBadge,
+    [STDSTRING_MINERAL_BADGE]    = gText_MineralBadge,
+    [STDSTRING_GLACIER_BADGE]    = gText_GlacierBadge,
+    [STDSTRING_RISING_BADGE]     = gText_RisingBadge
 };
 
 static const u8 *const sDescriptionPtrs_CableClub_TradeBattleCancel[] = {
