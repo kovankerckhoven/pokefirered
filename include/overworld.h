@@ -70,7 +70,6 @@ struct CreditsOverworldCmd
 #define MAPGROUPS_AEOS_START        59 // Aeos Island (https://pokemon.fandom.com/wiki/Aeos_Island)
 #define MAPGROUPS_DECOLORE_START    62 // Decolore Islands (https://pokemon.fandom.com/wiki/Decolore_Islands)
 
-// TODO: Adding Multi-Region support: https://github.com/pret/pokeemerald/wiki/Adding-Multi-region-Support
 enum {
     REGION_NONE, // Link & SpecialArea + fallthrough
     REGION_KANTO, // https://pokemon.fandom.com/wiki/Kanto
@@ -94,7 +93,7 @@ enum {
     REGION_LENTAL, // https://pokemon.fandom.com/wiki/Lental
     REGION_AEOS, // Aeos Island (https://pokemon.fandom.com/wiki/Aeos_Island)
     REGION_DECOLORE, // Decolore Islands (https://pokemon.fandom.com/wiki/Decolore_Islands)
-    // Other regions still possible
+    // TODO: Other regions still possible?
 };
 
 extern const struct Coords32 gDirectionToVectors[];

@@ -12,7 +12,9 @@ Route23_EventScript_MissingBadge::
 	waitbuttonpress
 	closemessage
 	waitse
-	release
+	applymovement OBJ_EVENT_ID_PLAYER, Route23_Movement_WalkDown
+	waitmovement 0
+	releaseall
 	end
 
 Route23_EventScript_AlreadyRecognizedBoulderBadge::
@@ -42,6 +44,58 @@ Route22_NorthEntrance_EventScript_BadgeGuard::
 	case 7, Route23_EventScript_CheckVolcanoBadge
 	case 8, Route23_EventScript_CheckEarthBadge
 	end
+
+@ goto_if_set FLAG_SYS_HOENN_UNLOCKED, Route23_EventScript_CheckAllBadges_Hoenn
+@ goto_if_set FLAG_SYS_JOHTO_UNLOCKED, Route23_EventScript_CheckAllBadges_Johto
+Route23_EventScript_CheckAllBadges::
+	lock
+	faceplayer
+	goto_if_set FLAG_BADGE08_GET, Route23_EventScript_AlreadyCheckedBadges_Kanto
+	goto_if_unset FLAG_BADGE01_GET, Route23_EventScript_YoureMissingBoulderBadge
+	goto_if_unset FLAG_BADGE02_GET, Route23_EventScript_YoureMissingCascadeBadge
+	goto_if_unset FLAG_BADGE03_GET, Route23_EventScript_YoureMissingThunderBadge
+	goto_if_unset FLAG_BADGE04_GET, Route23_EventScript_YoureMissingRainbowBadge
+	goto_if_unset FLAG_BADGE05_GET, Route23_EventScript_YoureMissingSoulBadge
+	goto_if_unset FLAG_BADGE06_GET, Route23_EventScript_YoureMissingMarshBadge
+	goto_if_unset FLAG_BADGE07_GET, Route23_EventScript_YoureMissingVolcanoBadge
+	goto_if_unset FLAG_BADGE08_GET, Route23_EventScript_YoureMissingEarthBadge
+	copyvar VAR_MAP_SCENE_ROUTE23, VAR_TEMP_1
+
+Route23_EventScript_YoureMissingBoulderBadge::
+	bufferstdstring STR_VAR_1, STDSTRING_BOULDER_BADGE
+	goto Route23_EventScript_MissingBadge
+
+Route23_EventScript_YoureMissingCascadeBadge::
+	bufferstdstring STR_VAR_1, STDSTRING_CASCADE_BADGE
+	goto Route23_EventScript_MissingBadge
+
+Route23_EventScript_YoureMissingThunderBadge::
+	bufferstdstring STR_VAR_1, STDSTRING_THUNDER_BADGE
+	goto Route23_EventScript_MissingBadge
+
+Route23_EventScript_YoureMissingRainbowBadge::
+	bufferstdstring STR_VAR_1, STDSTRING_RAINBOW_BADGE
+	goto Route23_EventScript_MissingBadge
+
+Route23_EventScript_YoureMissingSoulBadge::
+	bufferstdstring STR_VAR_1, STDSTRING_SOUL_BADGE
+	goto Route23_EventScript_MissingBadge
+
+Route23_EventScript_YoureMissingMarshBadge::
+	bufferstdstring STR_VAR_1, STDSTRING_MARSH_BADGE
+	goto Route23_EventScript_MissingBadge
+
+Route23_EventScript_YoureMissingVolcanoBadge::
+	bufferstdstring STR_VAR_1, STDSTRING_VOLCANO_BADGE
+	goto Route23_EventScript_MissingBadge
+
+Route23_EventScript_YoureMissingEarthBadge::
+	bufferstdstring STR_VAR_1, STDSTRING_EARTH_BADGE
+	goto Route23_EventScript_MissingBadge
+
+Route23_EventScript_AlreadyCheckedBadges_Kanto::
+	bufferstdstring STR_VAR_1, STDSTRING_EARTH_BADGE
+	goto Route23_EventScript_AlreadyRecognizedBadge
 
 Route23_EventScript_BadgeGuard::
 	goto_if_ge VAR_MAP_SCENE_ROUTE23, VAR_TEMP_1, Route23_EventScript_AlreadyRecognizedBadge

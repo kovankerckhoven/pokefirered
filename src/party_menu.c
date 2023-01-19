@@ -3318,9 +3318,9 @@ static void Task_SlideSelectedSlotsOnscreen(u8 taskId)
         PutWindowTilemap(sPartyMenuBoxes[gPartyMenu.slotId].windowId);
         PutWindowTilemap(sPartyMenuBoxes[gPartyMenu.slotId2].windowId);
         ScheduleBgCopyTilemapToVram(0);
-        // BUG: memory leak
-        // Free(sSlot1TilemapBuffer);
-        // Free(sSlot2TilemapBuffer);
+        // Fix memory leak
+        Free(sSlot1TilemapBuffer);
+        Free(sSlot2TilemapBuffer);
         FinishTwoMonAction(taskId);
     }
     // Continue sliding
@@ -4203,7 +4203,6 @@ void SetUsedFlyQuestLogEvent(const u8 *healLocCtrlData)
     {
         u8 mapGroup;
         u8 mapNum;
-        u32 unk_4; // TODO: Not needed?
     } *ptr = Alloc(sizeof(*ptr));
 
     ptr->mapGroup = healLocCtrlData[0];

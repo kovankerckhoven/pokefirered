@@ -56,8 +56,6 @@ struct GFRomHeader
     u32 trainerIdOffset;
     u32 playerNameOffset;
     u32 playerGenderOffset;
-    u32 unkFlagOffset;
-    u32 unkFlagOffset2;
     u32 externalEventFlagsOffset;
     u32 externalEventDataOffset;
     u32 unk18;
@@ -68,7 +66,6 @@ struct GFRomHeader
     const struct BattleMove * moves;
     const struct CompressedSpriteSheet * ballGfx;
     const struct CompressedSpritePalette * ballPalettes;
-    u32 gcnLinkFlagsOffset;
     u32 gameClearFlag;
     u32 ribbonFlag;
     u8 bagCountItems;
@@ -109,8 +106,6 @@ static const struct GFRomHeader sGFRomHeader = {
     .flagsOffset = offsetof(struct SaveBlock1, flags),
     .varsOffset = offsetof(struct SaveBlock1, vars),
     .pokedexOffset = offsetof(struct SaveBlock2, pokedex),
-    .seen1Offset = offsetof(struct SaveBlock1, seen1),
-    .seen2Offset = offsetof(struct SaveBlock1, seen2),
     .pokedexVar = VAR_0x403C - VARS_START,
     .pokedexFlag = FLAG_0x838,
     .mysteryGiftFlag = FLAG_SYS_MYSTERY_GIFT_ENABLED,
@@ -141,8 +136,6 @@ static const struct GFRomHeader sGFRomHeader = {
     .trainerIdOffset = offsetof(struct SaveBlock2, playerTrainerId),
     .playerNameOffset = offsetof(struct SaveBlock2, playerName),
     .playerGenderOffset = offsetof(struct SaveBlock2, playerGender),
-    .unkFlagOffset = offsetof(struct SaveBlock2, unkFlag2),
-    .unkFlagOffset2 = offsetof(struct SaveBlock2, unkFlag2),
     .externalEventFlagsOffset = offsetof(struct SaveBlock1, externalEventFlags),
     .externalEventDataOffset = offsetof(struct SaveBlock1, externalEventData),
     .unk18 = 0x00000000,
@@ -153,7 +146,6 @@ static const struct GFRomHeader sGFRomHeader = {
     .moves = gBattleMoves,
     .ballGfx = gBallSpriteSheets,
     .ballPalettes = gBallSpritePalettes,
-    .gcnLinkFlagsOffset = offsetof(struct SaveBlock2, gcnLinkFlags),
     .gameClearFlag = FLAG_SYS_GAME_CLEAR,
     .ribbonFlag = FLAG_SYS_RIBBON_GET,
     .bagCountItems = BAG_ITEMS_COUNT,

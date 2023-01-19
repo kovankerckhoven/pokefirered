@@ -14,7 +14,6 @@ struct Fanfare
     u16 duration;
 };
 
-// TODO: what are these
 extern u8 gDisableMapMusicChangeOnMapLoad;
 extern u8 gDisableHelpSystemVolumeReduce;
 

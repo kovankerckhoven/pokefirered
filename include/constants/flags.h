@@ -1387,7 +1387,7 @@
 #define FLAG_SYS_PC_STORAGE_DISABLED                                (SYS_FLAGS + 0x35)
 #define FLAG_SYS_INFORMED_OF_LOCAL_WIRELESS_PLAYER                  (SYS_FLAGS + 0x36)
 #define FLAG_SHOWN_BOX_WAS_FULL_MESSAGE                             (SYS_FLAGS + 0x37)
-#define FLAG_0x838                                                  (SYS_FLAGS + 0x38) // Set, never read (search for "EnableNationalPokedex_RSE")
+#define FLAG_0x838                                                  (SYS_FLAGS + 0x38)
 #define FLAG_SYS_CAN_LINK_WITH_RS                                   (SYS_FLAGS + 0x39)
 #define FLAG_SYS_TRIPASSS_GET                                       (SYS_FLAGS + 0x3A)
 #define FLAG_SYS_SEVII_UNLOCKED                                     (SYS_FLAGS + 0x3B) // Has the SEVII region been (fully) unlocked? => Rainbow pass given
