@@ -464,7 +464,8 @@
   ],
   "gMapGroup_Johto_Indoor": [
     "NewBarkTown_PlayersHouse_1F",
-    "NewBarkTown_PlayersHouse_2F"
+    "NewBarkTown_PlayersHouse_2F",
+    "NewBarkTown_ProfessorElmsLab"
   ],
   "gMapGroup_Johto_Outdoor": [
     "NewBarkTown",

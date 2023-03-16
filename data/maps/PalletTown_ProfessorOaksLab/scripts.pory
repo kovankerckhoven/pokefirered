@@ -94,6 +94,7 @@ PalletTown_ProfessorOaksLab_EventScript_UnlockJohtoScene::
 PalletTown_ProfessorOaksLab_EventScript_UnlockJohtoScene_FadeOut::
 	setvar VAR_TEMP_1, 1
 	setrespawn SPAWN_NEW_BARK_TOWN
+	setvar VAR_MAP_SCENE_NEW_BARK_TOWN_PROFESSOR_ELMS_LAB, 1
 	fadescreenspeed FADE_TO_BLACK, 24
 	special TeleportToNewBarkTown
 	releaseall

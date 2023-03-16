@@ -327,6 +327,26 @@
       "flag": "FLAG_TEMP_1C",
       "quantity": 99,
       "underfoot": false
+    },
+    {
+      "type": "hidden_item",
+      "x": 17,
+      "y": 25,
+      "elevation": 0,
+      "item": "ITEM_RARE_CANDY",
+      "flag": "FLAG_TEMP_1B",
+      "quantity": 99,
+      "underfoot": false
+    },
+    {
+      "type": "hidden_item",
+      "x": 17,
+      "y": 24,
+      "elevation": 0,
+      "item": "ITEM_RARE_CANDY",
+      "flag": "FLAG_TEMP_1A",
+      "quantity": 99,
+      "underfoot": false
     }
   ]
 }

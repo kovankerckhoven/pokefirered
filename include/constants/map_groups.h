@@ -455,8 +455,9 @@
 #define MAP_NAVEL_ROCK_FORK                           (68 | (7 << 8))
 
 // gMapGroup_Johto_Indoor
-#define MAP_NEW_BARK_TOWN_PLAYERS_HOUSE_1F (0 | (8 << 8))
-#define MAP_NEW_BARK_TOWN_PLAYERS_HOUSE_2F (1 | (8 << 8))
+#define MAP_NEW_BARK_TOWN_PLAYERS_HOUSE_1F   (0 | (8 << 8))
+#define MAP_NEW_BARK_TOWN_PLAYERS_HOUSE_2F   (1 | (8 << 8))
+#define MAP_NEW_BARK_TOWN_PROFESSOR_ELMS_LAB (2 | (8 << 8))
 
 // gMapGroup_Johto_Outdoor
 #define MAP_NEW_BARK_TOWN    (0 | (9 << 8))

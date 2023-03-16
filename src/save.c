@@ -83,14 +83,12 @@ u32 gDamagedSaveSectors;
 u32 gSaveCounter;
 struct SaveSector *gSaveDataBufferPtr; // the pointer is in fast IWRAM but points to the slower EWRAM.
 u16 gIncrementalSectorId;
-u16 gSaveUnusedVar;
 u16 gSaveFileStatus;
 void (*gGameContinueCallback)(void);
 struct SaveSectorLocation gRamSaveSectorLocations[NUM_SECTORS_PER_SLOT];
 u16 gSaveAttemptStatus;
 
 EWRAM_DATA struct SaveSector gSaveDataBuffer = {0};
-EWRAM_DATA u32 gSaveUnusedVar2 = 0;
 
 void ClearSaveData(void)
 {

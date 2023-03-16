@@ -64,7 +64,7 @@ bool8 TeleportToNewBarkTown(void)
     // TODO: Force player party into PC storage (or temporary storage??)
     SetContinueGameWarpStatus();
     SetContinueGameWarpToHealLocation(SPAWN_NEW_BARK_TOWN);
-    SetWarpDestination(9, 0, -1, 7, 6);
+    SetWarpDestination(8, 2, -1, 6, 4);
     DoWarp();
     ResetInitialPlayerAvatarState();
     return FALSE;

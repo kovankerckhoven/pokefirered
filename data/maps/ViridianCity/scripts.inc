@@ -247,25 +247,51 @@ ViridianCity_EventScript_GiveMons::
 	goto_if_set FLAG_0x077, ViridianCity_EventScript_MonsAlreadyGiven
 	msgbox ViridianCity_Text_TakeTheseMons
 	setvar VAR_TEMP_1, SPECIES_STARMIE
-	givemon SPECIES_STARMIE, 40
+	givemon SPECIES_STARMIE, 75
 	bufferspeciesname STR_VAR_1, SPECIES_STARMIE
 	call EventScript_GetGiftMonPartySlot
 	setvar VAR_TEMP_1, SPECIES_MEWTWO
-	givemon SPECIES_MEWTWO, 40
+	givemon SPECIES_MEWTWO, 75
 	bufferspeciesname STR_VAR_1, SPECIES_MEWTWO
 	call EventScript_GetGiftMonPartySlot
 	setvar VAR_TEMP_1, SPECIES_GENGAR
-	givemon SPECIES_GENGAR, 40
+	givemon SPECIES_GENGAR, 75
 	bufferspeciesname STR_VAR_1, SPECIES_GENGAR
 	call EventScript_GetGiftMonPartySlot
 	setvar VAR_TEMP_1, SPECIES_EXEGGUTOR
-	givemon SPECIES_EXEGGUTOR, 40
+	givemon SPECIES_EXEGGUTOR, 75
 	bufferspeciesname STR_VAR_1, SPECIES_EXEGGUTOR
 	call EventScript_GetGiftMonPartySlot
 	setvar VAR_TEMP_1, SPECIES_DRAGONITE
-	givemon SPECIES_DRAGONITE, 40
+	givemon SPECIES_DRAGONITE, 75
 	bufferspeciesname STR_VAR_1, SPECIES_DRAGONITE
 	call EventScript_GetGiftMonPartySlot
+	giveitem ITEM_HM01
+	giveitem ITEM_HM02
+	giveitem ITEM_HM03
+	giveitem ITEM_HM04
+	giveitem ITEM_HM05
+	giveitem ITEM_TM02
+	giveitem ITEM_TM03
+	giveitem ITEM_TM13
+	giveitem ITEM_TM13
+	giveitem ITEM_TM14
+	giveitem ITEM_TM15
+	giveitem ITEM_TM15
+	giveitem ITEM_TM19
+	giveitem ITEM_TM22
+	giveitem ITEM_TM24
+	giveitem ITEM_TM24
+	giveitem ITEM_TM26
+	giveitem ITEM_TM26
+	giveitem ITEM_TM29
+	giveitem ITEM_TM29
+	giveitem ITEM_TM30
+	giveitem ITEM_TM35
+	giveitem ITEM_TM36
+	giveitem ITEM_TM36
+	giveitem ITEM_TM38
+	giveitem ITEM_TM50
 	setflag FLAG_0x077
 	release
 	end

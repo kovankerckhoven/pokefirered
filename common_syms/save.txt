@@ -5,7 +5,6 @@ gDamagedSaveSectors
 gSaveCounter
 gSaveDataBufferPtr
 gIncrementalSectorId
-gSaveUnusedVar
 gSaveFileStatus
 gGameContinueCallback
 gRamSaveSectorLocations

@@ -1414,3 +1414,6 @@ Text_TestMsg::
 
 	.include "data/maps/RuinsOfAlph/scripts.inc"
 	.include "data/maps/RuinsOfAlph/text.inc"
+
+	.include "data/maps/NewBarkTown_ProfessorElmsLab/scripts.inc"
+	.include "data/maps/NewBarkTown_ProfessorElmsLab/text.inc"
