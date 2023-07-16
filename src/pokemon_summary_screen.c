@@ -2006,22 +2006,22 @@ static u8 PokeSum_HandleLoadBgGfx(void)
     switch (sMonSummaryScreen->loadBgGfxStep)
     {
     case 0:
-        LoadPalette(gSummaryScreen_Bg_Pal, 0, 0x20 * 5);
+        LoadPalette(gSummaryScreen_Bg_Pal, BG_PLTT_ID(0), 5 * PLTT_SIZE_4BPP);
         if (IsMonShiny(&sMonSummaryScreen->currentMon) == TRUE && !sMonSummaryScreen->isEgg)
         {
-            LoadPalette(&gSummaryScreen_Bg_Pal[16 * 6], 0, 0x20);
-            LoadPalette(&gSummaryScreen_Bg_Pal[16 * 5], 0x10, 0x20);
+            LoadPalette(&gSummaryScreen_Bg_Pal[16 * 6], BG_PLTT_ID(0), PLTT_SIZE_4BPP);
+            LoadPalette(&gSummaryScreen_Bg_Pal[16 * 5], BG_PLTT_ID(1), PLTT_SIZE_4BPP);
         }
         else
         {
-            LoadPalette(&gSummaryScreen_Bg_Pal[16 * 0], 0, 0x20);
-            LoadPalette(&gSummaryScreen_Bg_Pal[16 * 1], 0x10, 0x20);
+            LoadPalette(&gSummaryScreen_Bg_Pal[16 * 0], BG_PLTT_ID(0), PLTT_SIZE_4BPP);
+            LoadPalette(&gSummaryScreen_Bg_Pal[16 * 1], BG_PLTT_ID(1), PLTT_SIZE_4BPP);
         }
 
         break;
     case 1:
-        ListMenuLoadStdPalAt(0x60, 1);
-        LoadPalette(sTextHeaderPalette, 0x70, 0x20);
+        ListMenuLoadStdPalAt(BG_PLTT_ID(6), 1);
+        LoadPalette(sTextHeaderPalette, BG_PLTT_ID(7), PLTT_SIZE_4BPP);
         break;
     case 2:
         ResetTempTileDataBuffers();
@@ -2039,7 +2039,7 @@ static u8 PokeSum_HandleLoadBgGfx(void)
         break;
 
     default:
-        LoadPalette(sTextMovesPalette, 0x80, 0x20);
+        LoadPalette(sTextMovesPalette, BG_PLTT_ID(8), PLTT_SIZE_4BPP);
         return TRUE;
     }
 
@@ -2104,15 +2104,15 @@ static void BufferMonInfo(void)
         return;
     }
 
-    sMonSummaryScreen->monTypes[0] = gBaseStats[dexNum].type1;
-    sMonSummaryScreen->monTypes[1] = gBaseStats[dexNum].type2;
+    sMonSummaryScreen->monTypes[0] = gSpeciesInfo[dexNum].types[0];
+    sMonSummaryScreen->monTypes[1] = gSpeciesInfo[dexNum].types[1];
 
     GetMonData(&sMonSummaryScreen->currentMon, MON_DATA_NICKNAME, tempStr);
     StringCopyN_Multibyte(sMonSummaryScreen->summary.nicknameStrBuf, tempStr, POKEMON_NAME_LENGTH);
     StringGet_Nickname(sMonSummaryScreen->summary.nicknameStrBuf);
 
     gender = GetMonGender(&sMonSummaryScreen->currentMon);
-    dexNum = GetMonData(&sMonSummaryScreen->currentMon, MON_DATA_SPECIES2);
+    dexNum = GetMonData(&sMonSummaryScreen->currentMon, MON_DATA_SPECIES_OR_EGG);
 
     if (gender == MON_FEMALE)
         StringCopy(sMonSummaryScreen->summary.genderSymbolStrBuf, gText_FemaleSymbol);
@@ -2223,7 +2223,7 @@ static void BufferMonSkills(void)
     if (level < 100)
     {
         species = GetMonData(&sMonSummaryScreen->currentMon, MON_DATA_SPECIES);
-        expToNextLevel = gExperienceTables[gBaseStats[species].growthRate][level + 1] - exp;
+        expToNextLevel = gExperienceTables[gSpeciesInfo[species].growthRate][level + 1] - exp;
     }
 
     ConvertIntToDecimalStringN(sMonSummaryScreen->summary.expToNextLevelStrBuf, expToNextLevel, STR_CONV_MODE_LEFT_ALIGN, 7);
@@ -2645,7 +2645,7 @@ static void PokeSum_PrintTrainerMemo_Mon_HeldByOT(void)
     // but Japanese uses different grammar for Bold and Gentle natures.
     if (GetMonData(&sMonSummaryScreen->currentMon, MON_DATA_MET_LEVEL) == 0) // Hatched
     {
-        if (GetMonData(&sMonSummaryScreen->currentMon, MON_DATA_EVENT_LEGAL) == 1) // Fateful encounter
+        if (GetMonData(&sMonSummaryScreen->currentMon, MON_DATA_MODERN_FATEFUL_ENCOUNTER) == TRUE)
         {
             if (PokeSum_IsMonBoldOrGentle(nature))
                 DynamicPlaceholderTextUtil_ExpandPlaceholders(natureMetOrHatchedAtLevelStr, gText_PokeSum_FatefulEncounterHatched_BoldGentleGrammar);
@@ -2742,7 +2742,7 @@ static void PokeSum_PrintTrainerMemo_Mon_NotHeldByOT(void)
     // but Japanese uses different grammar for Bold and Gentle natures.
     if (GetMonData(&sMonSummaryScreen->currentMon, MON_DATA_MET_LEVEL) == 0) // hatched from an EGG
     {
-        if (GetMonData(&sMonSummaryScreen->currentMon, MON_DATA_EVENT_LEGAL) == 1) // Fateful encounter
+        if (GetMonData(&sMonSummaryScreen->currentMon, MON_DATA_MODERN_FATEFUL_ENCOUNTER) == TRUE)
         {
             if (PokeSum_IsMonBoldOrGentle(nature))
                 DynamicPlaceholderTextUtil_ExpandPlaceholders(natureMetOrHatchedAtLevelStr, gText_PokeSum_ApparentlyFatefulEncounterHatched_BoldGentleGrammar);
@@ -2796,7 +2796,7 @@ static void PokeSum_PrintTrainerMemo_Egg(void)
 
     if (sMonSummaryScreen->monList.mons != gEnemyParty)
     {
-        if (metLocation == METLOC_FATEFUL_ENCOUNTER || GetMonData(&sMonSummaryScreen->currentMon, MON_DATA_EVENT_LEGAL) == 1)
+        if (metLocation == METLOC_FATEFUL_ENCOUNTER || GetMonData(&sMonSummaryScreen->currentMon, MON_DATA_MODERN_FATEFUL_ENCOUNTER) == TRUE)
             chosenStrIndex = 4;
         else
         {
@@ -2814,7 +2814,7 @@ static void PokeSum_PrintTrainerMemo_Egg(void)
     }
     else
     {
-        if (metLocation == METLOC_FATEFUL_ENCOUNTER || GetMonData(&sMonSummaryScreen->currentMon, MON_DATA_EVENT_LEGAL) == 1)
+        if (metLocation == METLOC_FATEFUL_ENCOUNTER || GetMonData(&sMonSummaryScreen->currentMon, MON_DATA_MODERN_FATEFUL_ENCOUNTER) == TRUE)
             chosenStrIndex = 4;
         else
         {
@@ -4013,7 +4013,7 @@ static void PokeSum_CreateMonPicSprite(void)
 
     sMonPicBounceState = AllocZeroed(sizeof(struct MonPicBounceState));
 
-    species = GetMonData(&sMonSummaryScreen->currentMon, MON_DATA_SPECIES2);
+    species = GetMonData(&sMonSummaryScreen->currentMon, MON_DATA_SPECIES_OR_EGG);
     personality = GetMonData(&sMonSummaryScreen->currentMon, MON_DATA_PERSONALITY);
     trainerId = GetMonData(&sMonSummaryScreen->currentMon, MON_DATA_OT_ID);
 
@@ -4141,7 +4141,7 @@ static void PokeSum_CreateMonIconSprite(void)
     u16 species;
     u32 personality;
 
-    species = GetMonData(&sMonSummaryScreen->currentMon, MON_DATA_SPECIES2);
+    species = GetMonData(&sMonSummaryScreen->currentMon, MON_DATA_SPECIES_OR_EGG);
     personality = GetMonData(&sMonSummaryScreen->currentMon, MON_DATA_PERSONALITY);
 
     SafeLoadMonIconPalette(species);
@@ -4177,7 +4177,7 @@ static void PokeSum_ShowOrHideMonIconSprite(bool8 invisible)
 static void PokeSum_DestroyMonIconSprite(void)
 {
     u16 species;
-    species = GetMonData(&sMonSummaryScreen->currentMon, MON_DATA_SPECIES2);
+    species = GetMonData(&sMonSummaryScreen->currentMon, MON_DATA_SPECIES_OR_EGG);
     SafeFreeMonIconPalette(species);
     DestroyMonIcon(&gSprites[sMonSummaryScreen->monIconSpriteId]);
 }
@@ -4621,8 +4621,8 @@ static void UpdateExpBarObjs(void)
 
     if (level < 100)
     {
-        totalExpToNextLevel = gExperienceTables[gBaseStats[species].growthRate][level + 1] - gExperienceTables[gBaseStats[species].growthRate][level];
-        curExpToNextLevel = exp - gExperienceTables[gBaseStats[species].growthRate][level];
+        totalExpToNextLevel = gExperienceTables[gSpeciesInfo[species].growthRate][level + 1] - gExperienceTables[gSpeciesInfo[species].growthRate][level];
+        curExpToNextLevel = exp - gExperienceTables[gSpeciesInfo[species].growthRate][level];
         pointsPerTile = ((totalExpToNextLevel << 2) / 8);
         totalPoints = (curExpToNextLevel << 2);
 
@@ -5078,13 +5078,13 @@ static void Task_PokeSum_SwitchDisplayedPokemon(u8 taskId)
 
         if (IsMonShiny(&sMonSummaryScreen->currentMon) == TRUE && !sMonSummaryScreen->isEgg)
         {
-            LoadPalette(&gSummaryScreen_Bg_Pal[16 * 6], 0, 0x20);
-            LoadPalette(&gSummaryScreen_Bg_Pal[16 * 5], 0x10, 0x20);
+            LoadPalette(&gSummaryScreen_Bg_Pal[16 * 6], BG_PLTT_ID(0), PLTT_SIZE_4BPP);
+            LoadPalette(&gSummaryScreen_Bg_Pal[16 * 5], BG_PLTT_ID(1), PLTT_SIZE_4BPP);
         }
         else
         {
-            LoadPalette(&gSummaryScreen_Bg_Pal[16 * 0], 0, 0x20);
-            LoadPalette(&gSummaryScreen_Bg_Pal[16 * 1], 0x10, 0x20);
+            LoadPalette(&gSummaryScreen_Bg_Pal[16 * 0], BG_PLTT_ID(0), PLTT_SIZE_4BPP);
+            LoadPalette(&gSummaryScreen_Bg_Pal[16 * 1], BG_PLTT_ID(1), PLTT_SIZE_4BPP);
         }
 
         sMonSummaryScreen->switchMonTaskState++;
@@ -5182,9 +5182,9 @@ static void PokeSum_TryPlayMonCry(void)
     if (!GetMonData(&sMonSummaryScreen->currentMon, MON_DATA_IS_EGG))
     {
         if (ShouldPlayNormalMonCry(&sMonSummaryScreen->currentMon) == TRUE)
-            PlayCry_ByMode(GetMonData(&sMonSummaryScreen->currentMon, MON_DATA_SPECIES2), 0, CRY_MODE_NORMAL);
+            PlayCry_ByMode(GetMonData(&sMonSummaryScreen->currentMon, MON_DATA_SPECIES_OR_EGG), 0, CRY_MODE_NORMAL);
         else
-            PlayCry_ByMode(GetMonData(&sMonSummaryScreen->currentMon, MON_DATA_SPECIES2), 0, CRY_MODE_WEAK);
+            PlayCry_ByMode(GetMonData(&sMonSummaryScreen->currentMon, MON_DATA_SPECIES_OR_EGG), 0, CRY_MODE_WEAK);
     }
 }
 
