@@ -1,5 +1,0 @@
-Route26_South_MapScripts::
-	.byte 0
-
-Route26_South_EventScript_Scott::
-	end
