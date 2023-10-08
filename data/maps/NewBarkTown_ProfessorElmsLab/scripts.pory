@@ -1,1346 +1,1393 @@
+const LOCALID_PROF_ELM = 1
+const LOCALID_PROF_OAK = 2
+const LOCALID_CHIKORITA_BALL = 3
+const LOCALID_TOTODILE_BALL = 4
+const LOCALID_CYNDAQUIL_BALL = 5
+
+const PLAYER_JOHTO_STARTER_NUM = VAR_TEMP_1
+const PLAYER_JOHTO_STARTER_SPECIES = VAR_TEMP_2
+
+mapscripts NewBarkTown_ProfessorElmsLab_MapScripts {
+	MAP_SCRIPT_ON_TRANSITION: NewBarkTown_ProfessorElmsLab_OnTransition
+	MAP_SCRIPT_ON_WARP_INTO_MAP_TABLE: NewBarkTown_ProfessorElmsLab_OnWarp
+	MAP_SCRIPT_ON_FRAME_TABLE [
+		VAR_MAP_SCENE_NEW_BARK_TOWN_PROFESSOR_ELMS_LAB, 1: NewBarkTown_ProfessorElmsLab_UnlockJohtoScene
+		// VAR_MAP_SCENE_NEW_BARK_TOWN_PROFESSOR_ELMS_LAB, 7: NewBarkTown_ProfessorElmsLab_EventScript_EnterForNationalDexScene
+		// VAR_MAP_SCENE_NEW_BARK_TOWN_PROFESSOR_ELMS_LAB, 10: NewBarkTown_ProfessorElmsLab_EventScript_EnterForUnlockJohtoScene
+	]
+}
+
+script NewBarkTown_ProfessorElmsLab_OnTransition {
+	setflag(FLAG_VISITED_ELMS_LAB)
+	if (var(VAR_MAP_SCENE_NEW_BARK_TOWN_PROFESSOR_ELMS_LAB) == 1) {
+		setobjectxyperm(LOCALID_PROF_ELM, 6, 5)
+		setobjectxyperm(LOCALID_PROF_OAK, 6, 11)
+		setobjectmovementtype(LOCALID_PROF_ELM, MOVEMENT_TYPE_FACE_DOWN)
+		setobjectmovementtype(LOCALID_PROF_OAK, MOVEMENT_TYPE_FACE_UP)
+		savebgm(MUS_OAK)
+		return
+	}
+	end
+}
+
+script NewBarkTown_ProfessorElmsLab_OnWarp {
+    if (var(VAR_MAP_SCENE_NEW_BARK_TOWN_PROFESSOR_ELMS_LAB) == 1) {
+		turnobject(OBJ_EVENT_ID_PLAYER, DIR_NORTH)
+		end
+	}
+}
+
+script NewBarkTown_ProfessorElmsLab_UnlockJohtoScene {
+	lockall
+	textcolor(NPC_TEXT_COLOR_MALE)
+	// TODO: Continue here (see https://github.com/huderlem/poryscript)
+	// applymovement(LOCALID_PROF_OAK, PalletTown_ProfessorOaksLab_Movement_OakEnter)
+	// waitmovement 0
+	// removeobject LOCALID_PROF_OAK
+	// setobjectxyperm LOCALID_PROF_OAK, 6, 3
+	// setobjectmovementtype LOCALID_PROF_OAK, MOVEMENT_TYPE_FACE_DOWN
+	// clearflag FLAG_HIDE_OAK_IN_HIS_LAB
+	// applymovement OBJ_EVENT_ID_PLAYER, PalletTown_ProfessorOaksLab_Movement_PlayerEnter
+	// waitmovement 0
+	// applymovement LOCALID_RIVAL, Common_Movement_WalkInPlaceFasterUp
+	// waitmovement 0
+	// clearflag FLAG_DONT_TRANSITION_MUSIC
+	// savebgm MUS_DUMMY
+	// fadedefaultbgm
+	// msgbox PalletTown_ProfessorOaksLab_Text_RivalFedUpWithWaiting
+	// closemessage
+	// delay 60
+	// msgbox PalletTown_ProfessorOaksLab_Text_OakThreeMonsChooseOne
+	// closemessage
+	// delay 30
+	// applymovement LOCALID_RIVAL, PalletTown_ProfessorOaksLab_Movement_RivalReact
+	// waitmovement 0
+	// msgbox PalletTown_ProfessorOaksLab_Text_RivalNoFairWhatAboutMe
+	// msgbox PalletTown_ProfessorOaksLab_Text_OakBePatientRival
+	// setvar VAR_MAP_SCENE_PALLET_TOWN_PROFESSOR_OAKS_LAB, 2
+	// releaseall
+	// end
+}
+
+script NewBarkTown_ProfessorElmsLab_EventScript_ProfElm {
+
+}
+
+script NewBarkTown_ProfessorElmsLab_EventScript_ChikoritaBall {
+	lock
+	faceplayer
+	// setvar PLAYER_STARTER_NUM, 0
+	// setvar PLAYER_STARTER_SPECIES, SPECIES_CHIKORITA
+	// setvar RIVAL_STARTER_SPECIES, SPECIES_CYNDAQUIL
+	// setvar RIVAL_STARTER_ID, LOCALID_CYNDAQUIL_BALL
+	// goto_if_ge VAR_MAP_SCENE_NEW_BARK_TOWN_PROFESSOR_ELMS_LAB, 3, NewBarkTown_ProfessorElmsLab_EventScript_LastPokeBall
+	// goto_if_eq VAR_MAP_SCENE_NEW_BARK_TOWN_PROFESSOR_ELMS_LAB, 2, NewBarkTown_ProfessorElmsLab_EventScript_ConfirmStarterChoice
+	// msgbox NewBarkTown_ProfessorElmsLab_Text_ThoseArePokeBalls
+	// release
+	end
+}
+
+script NewBarkTown_ProfessorElmsLab_EventScript_TotodileBall {
+	lock
+	faceplayer
+	// setvar PLAYER_STARTER_NUM, 1
+	// setvar PLAYER_STARTER_SPECIES, SPECIES_TOTODILE
+	// setvar RIVAL_STARTER_SPECIES, SPECIES_CHIKORITA
+	// setvar RIVAL_STARTER_ID, LOCALID_CHIKORITA_BALL
+	// goto_if_ge VAR_MAP_SCENE_NEW_BARK_TOWN_PROFESSOR_ELMS_LAB, 3, NewBarkTown_ProfessorElmsLab_EventScript_LastPokeBall
+	// goto_if_eq VAR_MAP_SCENE_NEW_BARK_TOWN_PROFESSOR_ELMS_LAB, 2, NewBarkTown_ProfessorElmsLab_EventScript_ConfirmStarterChoice
+	// msgbox NewBarkTown_ProfessorElmsLab_Text_ThoseArePokeBalls
+	// release
+	end
+}
+
+script NewBarkTown_ProfessorElmsLab_EventScript_CyndaquilBall {
+	lock
+	faceplayer
+	// setvar PLAYER_STARTER_NUM, 2
+	// setvar PLAYER_STARTER_SPECIES, SPECIES_CYNDAQUIL
+	// setvar RIVAL_STARTER_SPECIES, SPECIES_TOTODILE
+	// setvar RIVAL_STARTER_ID, LOCALID_TOTODILE_BALL
+	// goto_if_ge VAR_MAP_SCENE_NEW_BARK_TOWN_PROFESSOR_ELMS_LAB, 3, NewBarkTown_ProfessorElmsLab_EventScript_LastPokeBall
+	// goto_if_eq VAR_MAP_SCENE_NEW_BARK_TOWN_PROFESSOR_ELMS_LAB, 2, NewBarkTown_ProfessorElmsLab_EventScript_ConfirmStarterChoice
+	// msgbox NewBarkTown_ProfessorElmsLab_Text_ThoseArePokeBalls
+	release
+	end
+}
+
 raw `
-.equ LOCALID_PROF_ELM,        1
-.equ LOCALID_PROF_OAK,        2
-.equ LOCALID_CHIKORITA_BALL,  3
-.equ LOCALID_TOTODILE_BALL,   4
-.equ LOCALID_CYNDAQUIL_BALL,  5
-
-.equ PLAYER_STARTER_NUM,      VAR_TEMP_1
-.equ PLAYER_STARTER_SPECIES,  VAR_TEMP_2
-.equ RIVAL_STARTER_SPECIES,   VAR_TEMP_3
-.equ RIVAL_STARTER_ID,        VAR_TEMP_4
-
-.equ SHOWED_OAK_COMPLETE_DEX, FLAG_TEMP_2
-
-NewBarkTown_ProfessorElmsLab_MapScripts::
-	map_script MAP_SCRIPT_ON_TRANSITION, NewBarkTown_ProfessorElmsLab_OnTransition
-	map_script MAP_SCRIPT_ON_WARP_INTO_MAP_TABLE, NewBarkTown_ProfessorElmsLab_OnWarp
-	map_script MAP_SCRIPT_ON_FRAME_TABLE, NewBarkTown_ProfessorElmsLab_OnFrame
-	.byte 0
-
-NewBarkTown_ProfessorElmsLab_OnTransition::
-	call_if_eq VAR_MAP_SCENE_NEW_BARK_TOWN_PROFESSOR_ELMS_LAB, 1, NewBarkTown_ProfessorElmsLab_EventScript_ReadyElmForStarterScene
-	call_if_eq VAR_MAP_SCENE_NEW_BARK_TOWN_PROFESSOR_ELMS_LAB, 7, NewBarkTown_ProfessorElmsLab_EventScript_ReadyOakForNationalDexScene
-	call_if_set FLAG_GOT_POKEBALLS_FROM_OAK_AFTER_22_RIVAL, NewBarkTown_ProfessorElmsLab_EventScript_SetSkipPokeBallCheck
-	end
-
-NewBarkTown_ProfessorElmsLab_EventScript_SetSkipPokeBallCheck::
-	setflag FLAG_OAK_SKIP_22_RIVAL_CHECK
-	return
-
-NewBarkTown_ProfessorElmsLab_EventScript_SetNationalDexSceneFinished::
-	setvar VAR_MAP_SCENE_NEW_BARK_TOWN_PROFESSOR_ELMS_LAB, 9
-	return
-
-NewBarkTown_ProfessorElmsLab_EventScript_ReadyElmForStarterScene::
-	setobjectxyperm LOCALID_PROF_ELM, 6, 11
-	setobjectmovementtype LOCALID_PROF_OAK, MOVEMENT_TYPE_FACE_UP
-	savebgm MUS_OAK
-	return
-
-NewBarkTown_ProfessorElmsLab_EventScript_ReadyOakForNationalDexScene::
-	setobjectxyperm LOCALID_PROF_OAK, 6, 11
-	setobjectmovementtype LOCALID_PROF_OAK, MOVEMENT_TYPE_FACE_UP
-	return
-
-NewBarkTown_ProfessorElmsLab_EventScript_ReadyOakForUnlockJohtoScene::
-	setobjectxyperm LOCALID_PROF_OAK, 6, 11
-	setobjectmovementtype LOCALID_PROF_OAK, MOVEMENT_TYPE_FACE_UP
-	return
-
-NewBarkTown_ProfessorElmsLab_OnWarp::
-	map_script_2 VAR_MAP_SCENE_NEW_BARK_TOWN_PROFESSOR_ELMS_LAB, 1, NewBarkTown_ProfessorElmsLab_EventScript_ReadyPlayerForStarterScene
-	.2byte 0
-
-NewBarkTown_ProfessorElmsLab_EventScript_ReadyPlayerForStarterScene::
-	turnobject OBJ_EVENT_ID_PLAYER, DIR_NORTH
-	end
-
-NewBarkTown_ProfessorElmsLab_OnFrame::
-	map_script_2 VAR_MAP_SCENE_NEW_BARK_TOWN_PROFESSOR_ELMS_LAB, 1, NewBarkTown_ProfessorElmsLab_ChooseStarterScene
-	map_script_2 VAR_MAP_SCENE_NEW_BARK_TOWN_PROFESSOR_ELMS_LAB, 7, NewBarkTown_ProfessorElmsLab_EventScript_EnterForNationalDexScene
-	map_script_2 VAR_MAP_SCENE_NEW_BARK_TOWN_PROFESSOR_ELMS_LAB, 10, NewBarkTown_ProfessorElmsLab_EventScript_EnterForUnlockJohtoScene
-	.2byte 0
-
-NewBarkTown_ProfessorElmsLab_EventScript_EnterForUnlockJohtoScene::
-	lockall
-	setvar VAR_FACING, DIR_NORTH
-	textcolor NPC_TEXT_COLOR_MALE
-	applymovement LOCALID_PROF_OAK, NewBarkTown_ProfessorElmsLab_Movement_OakEnter
-	waitmovement 0
-	removeobject LOCALID_PROF_OAK
-	setobjectxyperm LOCALID_PROF_OAK, 6, 3
-	setobjectmovementtype LOCALID_PROF_OAK, MOVEMENT_TYPE_FACE_DOWN
-	clearflag FLAG_HIDE_OAK_IN_HIS_LAB
-	applymovement OBJ_EVENT_ID_PLAYER, NewBarkTown_ProfessorElmsLab_Movement_PlayerEnter
-	waitmovement 0
-	goto NewBarkTown_ProfessorElmsLab_EventScript_UnlockJohtoScene
-	end
-
-NewBarkTown_ProfessorElmsLab_EventScript_UnlockJohtoScene::
-	msgbox NewBarkTown_ProfessorElmsLab_Text_NeighbouringJohtoRegionNeedsHelp
-	closemessage
-	msgbox NewBarkTown_ProfessorElmsLab_Text_PokemonWillBeStoredSafely
-	setvar VAR_MAP_SCENE_NEW_BARK_TOWN_PROFESSOR_ELMS_LAB, 11
-	@ TODO: Fade out and teleport in front of Professor ELM's lab in New Bark Town with Professor OAK, continue the conversation and then OAK walks off to Mr Pokemon on Route 30
-	goto NewBarkTown_ProfessorElmsLab_EventScript_UnlockJohtoScene_FadeOut
-	end
-
-NewBarkTown_ProfessorElmsLab_EventScript_UnlockJohtoScene_FadeOut::
-	setvar VAR_TEMP_1, 1
-	setrespawn SPAWN_NEW_BARK_TOWN
-	fadescreenspeed FADE_TO_BLACK, 24
-	special TeleportToNewBarkTown
-	releaseall
-	end
-
-NewBarkTown_ProfessorElmsLab_EventScript_EnterForNationalDexScene:: @ 8169002 
-	lockall
-	setvar VAR_FACING, DIR_NORTH
-	textcolor NPC_TEXT_COLOR_MALE
-	applymovement LOCALID_PROF_OAK, NewBarkTown_ProfessorElmsLab_Movement_OakEnter
-	waitmovement 0
-	removeobject LOCALID_PROF_OAK
-	setobjectxyperm LOCALID_PROF_OAK, 6, 3
-	setobjectmovementtype LOCALID_PROF_OAK, MOVEMENT_TYPE_FACE_DOWN
-	clearflag FLAG_HIDE_OAK_IN_HIS_LAB
-	applymovement OBJ_EVENT_ID_PLAYER, NewBarkTown_ProfessorElmsLab_Movement_PlayerEnter
-	waitmovement 0
-	goto NewBarkTown_ProfessorElmsLab_EventScript_NationalDexScene
-	end
-
-NewBarkTown_ProfessorElmsLab_EventScript_NationalDexScene::
-	msgbox NewBarkTown_ProfessorElmsLab_Text_OakSightingsOfRareMons
-	closemessage
-	call_if_eq VAR_FACING, DIR_NORTH, NewBarkTown_ProfessorElmsLab_EventScript_NationalDexSceneRivalEnterNorth
-	call_if_eq VAR_FACING, DIR_SOUTH, NewBarkTown_ProfessorElmsLab_EventScript_NationalDexSceneRivalEnterSouth
-	call_if_eq VAR_FACING, DIR_EAST, NewBarkTown_ProfessorElmsLab_EventScript_NationalDexSceneRivalEnterEastWest
-	call_if_eq VAR_FACING, DIR_WEST, NewBarkTown_ProfessorElmsLab_EventScript_NationalDexSceneRivalEnterEastWest
-	msgbox NewBarkTown_ProfessorElmsLab_Text_RivalJustLetMeHandleEverything
-	fadedefaultbgm
-	msgbox NewBarkTown_ProfessorElmsLab_Text_OakNeedYourHelpTooNeedToSeePokedexes
-	call_if_eq VAR_FACING, DIR_NORTH, NewBarkTown_ProfessorElmsLab_EventScript_PlayerFaceOakNorth
-	call_if_eq VAR_FACING, DIR_WEST, NewBarkTown_ProfessorElmsLab_EventScript_PlayerFaceOakWest
-	textcolor NPC_TEXT_COLOR_NEUTRAL
-	msgbox NewBarkTown_ProfessorElmsLab_Text_OakTookBothPokedexUnits
-	closemessage
-	call EventScript_RestorePrevTextColor
-	call_if_eq VAR_FACING, DIR_NORTH, NewBarkTown_ProfessorElmsLab_EventScript_OakBringDexesToDeskNorth
-	call_if_eq VAR_FACING, DIR_SOUTH, NewBarkTown_ProfessorElmsLab_EventScript_OakBringDexesToDeskSouth
-	call_if_eq VAR_FACING, DIR_EAST, NewBarkTown_ProfessorElmsLab_EventScript_OakBringDexesToDeskEast
-	call_if_eq VAR_FACING, DIR_WEST, NewBarkTown_ProfessorElmsLab_EventScript_OakBringDexesToDeskWest
-	addobject LOCALID_POKEDEX_1
-	addobject LOCALID_POKEDEX_2
-	delay 30
-	msgbox NewBarkTown_ProfessorElmsLab_Text_OakNowTheseUnitsCanRecordMoreData
-	closemessage
-	removeobject LOCALID_POKEDEX_1
-	removeobject LOCALID_POKEDEX_2
-	delay 30
-	call_if_eq VAR_FACING, DIR_NORTH, NewBarkTown_ProfessorElmsLab_EventScript_OakBringDexesOverNorth
-	call_if_eq VAR_FACING, DIR_SOUTH, NewBarkTown_ProfessorElmsLab_EventScript_OakBringDexesOverSouth
-	call_if_eq VAR_FACING, DIR_EAST, NewBarkTown_ProfessorElmsLab_EventScript_OakBringDexesOverEast
-	call_if_eq VAR_FACING, DIR_WEST, NewBarkTown_ProfessorElmsLab_EventScript_OakBringDexesOverWest
-	textcolor NPC_TEXT_COLOR_NEUTRAL
-	playfanfare MUS_OBTAIN_KEY_ITEM
-	message NewBarkTown_ProfessorElmsLab_Text_PlayersPokedexWasUpgraded
-	waitmessage
-	waitfanfare
-	call EventScript_RestorePrevTextColor
-	special EnableNationalPokedex
-	msgbox NewBarkTown_ProfessorElmsLab_Text_OakMustReallyWorkToFillPokedex
-	msgbox NewBarkTown_ProfessorElmsLab_Text_RivalIllCompleteThePokedex
-	closemessage
-	playbgm MUS_RIVAL_EXIT, 0
-	call_if_eq VAR_FACING, DIR_NORTH, NewBarkTown_ProfessorElmsLab_EventScript_RivalExitNorth
-	call_if_eq VAR_FACING, DIR_SOUTH, NewBarkTown_ProfessorElmsLab_EventScript_RivalExit
-	call_if_eq VAR_FACING, DIR_EAST, NewBarkTown_ProfessorElmsLab_EventScript_RivalExit
-	call_if_eq VAR_FACING, DIR_WEST, NewBarkTown_ProfessorElmsLab_EventScript_RivalExit
-	removeobject LOCALID_RIVAL
-	fadedefaultbgm
-	setvar VAR_MAP_SCENE_NEW_BARK_TOWN_PROFESSOR_ELMS_LAB, 8
-	releaseall
-	end
-
-NewBarkTown_ProfessorElmsLab_EventScript_NationalDexSceneRivalEnterNorth::
-	setobjectxyperm LOCALID_RIVAL, 5, 10
-	addobject LOCALID_RIVAL
-	playbgm MUS_ENCOUNTER_RIVAL, 0
-	applymovement OBJ_EVENT_ID_PLAYER, NewBarkTown_ProfessorElmsLab_Movement_WatchRivalEnterNorth
-	applymovement LOCALID_RIVAL, NewBarkTown_ProfessorElmsLab_Movement_RivalEnter
-	waitmovement 0
-	return
-
-NewBarkTown_ProfessorElmsLab_EventScript_NationalDexSceneRivalEnterEastWest::
-	setobjectxyperm LOCALID_RIVAL, 6, 10
-	addobject LOCALID_RIVAL
-	playbgm MUS_ENCOUNTER_RIVAL, 0
-	applymovement LOCALID_PROF_OAK, Common_Movement_WalkInPlaceFasterDown
-	applymovement OBJ_EVENT_ID_PLAYER, NewBarkTown_ProfessorElmsLab_Movement_WatchRivalEnterEastWest
-	applymovement LOCALID_RIVAL, NewBarkTown_ProfessorElmsLab_Movement_RivalEnter
-	waitmovement 0
-	return
-
-NewBarkTown_ProfessorElmsLab_EventScript_NationalDexSceneRivalEnterSouth::
-	setobjectxyperm LOCALID_RIVAL, 6, 10
-	addobject LOCALID_RIVAL
-	playbgm MUS_ENCOUNTER_RIVAL, 0
-	applymovement LOCALID_PROF_OAK, Common_Movement_WalkInPlaceFasterDown
-	applymovement LOCALID_RIVAL, NewBarkTown_ProfessorElmsLab_Movement_RivalEnter
-	waitmovement 0
-	return
-
-NewBarkTown_ProfessorElmsLab_EventScript_PlayerFaceOakNorth::
-	applymovement OBJ_EVENT_ID_PLAYER, Common_Movement_WalkInPlaceFasterUp
-	waitmovement 0
-	return
-
-NewBarkTown_ProfessorElmsLab_EventScript_PlayerFaceOakWest::
-	applymovement OBJ_EVENT_ID_PLAYER, Common_Movement_WalkInPlaceFasterLeft
-	waitmovement 0
-	return
-
-NewBarkTown_ProfessorElmsLab_EventScript_OakBringDexesToDeskNorth::
-	applymovement LOCALID_PROF_OAK, NewBarkTown_ProfessorElmsLab_Movement_OakBringDexesToDesk
-	waitmovement 0
-	return
-
-NewBarkTown_ProfessorElmsLab_EventScript_OakBringDexesToDeskSouth::
-	applymovement LOCALID_PROF_OAK, NewBarkTown_ProfessorElmsLab_Movement_OakBringDexesToDeskSouth
-	applymovement OBJ_EVENT_ID_PLAYER, NewBarkTown_ProfessorElmsLab_Movement_WatchOakWalkToDesk
-	applymovement LOCALID_RIVAL, NewBarkTown_ProfessorElmsLab_Movement_WatchOakWalkToDesk
-	waitmovement LOCALID_PROF_OAK
-	return
-
-NewBarkTown_ProfessorElmsLab_EventScript_OakBringDexesToDeskEast::
-	applymovement LOCALID_PROF_OAK, NewBarkTown_ProfessorElmsLab_Movement_OakBringDexesToDesk
-	applymovement OBJ_EVENT_ID_PLAYER, NewBarkTown_ProfessorElmsLab_Movement_WatchOakWalkToDeskEast
-	waitmovement LOCALID_PROF_OAK
-	return
-
-NewBarkTown_ProfessorElmsLab_EventScript_OakBringDexesToDeskWest::
-	applymovement LOCALID_PROF_OAK, NewBarkTown_ProfessorElmsLab_Movement_OakBringDexesToDesk
-	waitmovement 0
-	return
-
-NewBarkTown_ProfessorElmsLab_Movement_OakBringDexesToDesk::
-	walk_up
-	walk_left
-	walk_in_place_faster_up
-	delay_16
-	delay_4
-	step_end
-
-NewBarkTown_ProfessorElmsLab_Movement_OakBringDexesToDeskSouth::
-	walk_left
-	walk_left
-	walk_up
-	delay_16
-	delay_4
-	step_end
-
-NewBarkTown_ProfessorElmsLab_ChooseStarterScene::
-	lockall
-	textcolor NPC_TEXT_COLOR_MALE
-	applymovement LOCALID_PROF_OAK, NewBarkTown_ProfessorElmsLab_Movement_OakEnter
-	waitmovement 0
-	removeobject LOCALID_PROF_OAK
-	setobjectxyperm LOCALID_PROF_OAK, 6, 3
-	setobjectmovementtype LOCALID_PROF_OAK, MOVEMENT_TYPE_FACE_DOWN
-	clearflag FLAG_HIDE_OAK_IN_HIS_LAB
-	applymovement OBJ_EVENT_ID_PLAYER, NewBarkTown_ProfessorElmsLab_Movement_PlayerEnter
-	waitmovement 0
-	applymovement LOCALID_RIVAL, Common_Movement_WalkInPlaceFasterUp
-	waitmovement 0
-	clearflag FLAG_DONT_TRANSITION_MUSIC
-	savebgm MUS_DUMMY
-	fadedefaultbgm
-	msgbox NewBarkTown_ProfessorElmsLab_Text_RivalFedUpWithWaiting
-	closemessage
-	delay 60
-	msgbox NewBarkTown_ProfessorElmsLab_Text_OakThreeMonsChooseOne
-	closemessage
-	delay 30
-	applymovement LOCALID_RIVAL, NewBarkTown_ProfessorElmsLab_Movement_RivalReact
-	waitmovement 0
-	msgbox NewBarkTown_ProfessorElmsLab_Text_RivalNoFairWhatAboutMe
-	msgbox NewBarkTown_ProfessorElmsLab_Text_OakBePatientRival
-	setvar VAR_MAP_SCENE_NEW_BARK_TOWN_PROFESSOR_ELMS_LAB, 2
-	releaseall
-	end
-
-NewBarkTown_ProfessorElmsLab_Movement_OakEnter::
-	walk_up
-	walk_up
-	walk_up
-	walk_up
-	walk_up
-	walk_up
-	step_end
-
-NewBarkTown_ProfessorElmsLab_Movement_PlayerEnter::
-	walk_up
-	walk_up
-	walk_up
-	walk_up
-	walk_up
-	walk_up
-	walk_up
-	walk_up
-	step_end
-
-NewBarkTown_ProfessorElmsLab_Movement_RivalReact::
-	walk_in_place_up
-	walk_in_place_up
-	step_end
-
-NewBarkTown_ProfessorElmsLab_EventScript_LeaveStarterSceneTrigger::
-	lockall
-	textcolor NPC_TEXT_COLOR_MALE
-	applymovement LOCALID_PROF_OAK, Common_Movement_FaceDown
-	waitmovement 0
-	msgbox NewBarkTown_ProfessorElmsLab_Text_OakHeyDontGoAwayYet
-	closemessage
-	applymovement OBJ_EVENT_ID_PLAYER, NewBarkTown_ProfessorElmsLab_Movement_PlayerWalkUp
-	waitmovement 0
-	releaseall
-	end
-
-NewBarkTown_ProfessorElmsLab_Movement_PlayerWalkUp::
-	walk_up
-	step_end
-
-NewBarkTown_ProfessorElmsLab_EventScript_RivalBattleTriggerLeft::
-	lockall
-	setvar VAR_TEMP_2, 1
-	goto NewBarkTown_ProfessorElmsLab_EventScript_RivalBattle
-	end
-
-NewBarkTown_ProfessorElmsLab_EventScript_RivalBattleTriggerMid::
-	lockall
-	setvar VAR_TEMP_2, 2
-	goto NewBarkTown_ProfessorElmsLab_EventScript_RivalBattle
-	end
-
-NewBarkTown_ProfessorElmsLab_EventScript_RivalBattleTriggerRight::
-	lockall
-	setvar VAR_TEMP_2, 3
-	goto NewBarkTown_ProfessorElmsLab_EventScript_RivalBattle
-	end
-
-NewBarkTown_ProfessorElmsLab_EventScript_RivalBattle::
-	textcolor NPC_TEXT_COLOR_MALE
-	playbgm MUS_ENCOUNTER_RIVAL, 0
-	applymovement LOCALID_RIVAL, Common_Movement_WalkInPlaceFasterDown
-	waitmovement 0
-	applymovement OBJ_EVENT_ID_PLAYER, Common_Movement_WalkInPlaceFasterUp
-	waitmovement 0
-	msgbox NewBarkTown_ProfessorElmsLab_Text_RivalLetsCheckOutMons
-	closemessage
-	applymovement LOCALID_PROF_OAK, Common_Movement_FaceDown
-	waitmovement 0
-	goto_if_eq VAR_STARTER_MON, 0, NewBarkTown_ProfessorElmsLab_EventScript_RivalApproachForBattleCyndaquil
-	goto_if_eq VAR_STARTER_MON, 1, NewBarkTown_ProfessorElmsLab_EventScript_RivalApproachForBattleChikorita
-	goto_if_eq VAR_STARTER_MON, 2, NewBarkTown_ProfessorElmsLab_EventScript_RivalApproachForBattleTotodile
-	end
-
-@ The scripts for the rival approaching the player for battle are a bit bloated because
-@ both the player and rival can be in 3 different positions, so theres 9 different approaches
-@ NOTE: Names below refer to the Rival's mon (e.g. for RivalBattleTotodile, player has Cyndaquil)
-
-NewBarkTown_ProfessorElmsLab_EventScript_RivalApproachForBattleTotodile::
-	goto_if_eq VAR_TEMP_2, 1, NewBarkTown_ProfessorElmsLab_EventScript_RivalApproachForBattleTotodileLeft
-	goto_if_eq VAR_TEMP_2, 2, NewBarkTown_ProfessorElmsLab_EventScript_RivalApproachForBattleTotodileMid
-	goto_if_eq VAR_TEMP_2, 3, NewBarkTown_ProfessorElmsLab_EventScript_RivalApproachForBattleTotodileRight
-	end
-
-NewBarkTown_ProfessorElmsLab_EventScript_RivalApproachForBattleTotodileLeft::
-	applymovement LOCALID_RIVAL, NewBarkTown_ProfessorElmsLab_Movement_RivalApproachForBattleTotodileLeft
-	waitmovement 0
-	goto NewBarkTown_ProfessorElmsLab_EventScript_RivalBattleTotodile
-	end
-
-NewBarkTown_ProfessorElmsLab_EventScript_RivalApproachForBattleTotodileMid::
-	applymovement LOCALID_RIVAL, NewBarkTown_ProfessorElmsLab_Movement_RivalApproachForBattleTotodileMid
-	waitmovement 0
-	goto NewBarkTown_ProfessorElmsLab_EventScript_RivalBattleTotodile
-	end
-
-NewBarkTown_ProfessorElmsLab_EventScript_RivalApproachForBattleTotodileRight::
-	applymovement LOCALID_RIVAL, NewBarkTown_ProfessorElmsLab_Movement_RivalApproachForBattleTotodileRight
-	waitmovement 0
-	goto NewBarkTown_ProfessorElmsLab_EventScript_RivalBattleTotodile
-	end
-
-NewBarkTown_ProfessorElmsLab_EventScript_RivalBattleTotodile::
-	trainerbattle_earlyrival TRAINER_RIVAL_OAKS_LAB_TOTODILE, RIVAL_BATTLE_TUTORIAL, NewBarkTown_ProfessorElmsLab_Text_RivalDefeat, Text_RivalVictory
-	goto NewBarkTown_ProfessorElmsLab_EventScript_EndRivalBattle
-	end
-
-NewBarkTown_ProfessorElmsLab_Movement_RivalApproachForBattleTotodileLeft::
-	walk_left
-	walk_left
-	walk_left
-	walk_left
-	walk_down
-	walk_down
-	step_end
-
-NewBarkTown_ProfessorElmsLab_Movement_RivalApproachForBattleTotodileMid::
-	walk_left
-	walk_left
-	walk_left
-	walk_down
-	walk_down
-	step_end
-
-NewBarkTown_ProfessorElmsLab_Movement_RivalApproachForBattleTotodileRight::
-	walk_left
-	walk_left
-	walk_down
-	walk_down
-	step_end
-
-NewBarkTown_ProfessorElmsLab_EventScript_RivalApproachForBattleCyndaquil::
-	goto_if_eq VAR_TEMP_2, 1, NewBarkTown_ProfessorElmsLab_EventScript_RivalApproachForBattleCyndaquilLeft
-	goto_if_eq VAR_TEMP_2, 2, NewBarkTown_ProfessorElmsLab_EventScript_RivalApproachForBattleCyndaquilMid
-	goto_if_eq VAR_TEMP_2, 3, NewBarkTown_ProfessorElmsLab_EventScript_RivalApproachForBattleCyndaquilRight
-	end
-
-NewBarkTown_ProfessorElmsLab_EventScript_RivalApproachForBattleCyndaquilLeft::
-	applymovement LOCALID_RIVAL, NewBarkTown_ProfessorElmsLab_Movement_ApproachForBattleCyndaquilLeft
-	waitmovement 0
-	goto NewBarkTown_ProfessorElmsLab_EventScript_RivalBattleCyndaquil
-	end
-
-NewBarkTown_ProfessorElmsLab_EventScript_RivalApproachForBattleCyndaquilMid::
-	applymovement LOCALID_RIVAL, NewBarkTown_ProfessorElmsLab_Movement_ApproachForBattleCyndaquilMid
-	waitmovement 0
-	goto NewBarkTown_ProfessorElmsLab_EventScript_RivalBattleCyndaquil
-	end
-
-NewBarkTown_ProfessorElmsLab_EventScript_RivalApproachForBattleCyndaquilRight::
-	applymovement LOCALID_RIVAL, NewBarkTown_ProfessorElmsLab_Movement_ApproachForBattleCyndaquilRight
-	waitmovement 0
-	goto NewBarkTown_ProfessorElmsLab_EventScript_RivalBattleCyndaquil
-	end
-
-NewBarkTown_ProfessorElmsLab_EventScript_RivalBattleCyndaquil::
-	trainerbattle_earlyrival TRAINER_RIVAL_OAKS_LAB_CYNDAQUIL, RIVAL_BATTLE_TUTORIAL, NewBarkTown_ProfessorElmsLab_Text_RivalDefeat, Text_RivalVictory
-	goto NewBarkTown_ProfessorElmsLab_EventScript_EndRivalBattle
-	end
-
-NewBarkTown_ProfessorElmsLab_Movement_ApproachForBattleCyndaquilLeft::
-	walk_left
-	walk_left
-	walk_left
-	walk_left
-	walk_left
-	walk_down
-	walk_down
-	step_end
-
-NewBarkTown_ProfessorElmsLab_Movement_ApproachForBattleCyndaquilMid::
-	walk_left
-	walk_left
-	walk_left
-	walk_left
-	walk_down
-	walk_down
-	step_end
-
-NewBarkTown_ProfessorElmsLab_Movement_ApproachForBattleCyndaquilRight::
-	walk_left
-	walk_left
-	walk_left
-	walk_down
-	walk_down
-	step_end
-
-NewBarkTown_ProfessorElmsLab_EventScript_RivalApproachForBattleChikorita::
-	goto_if_eq VAR_TEMP_2, 1, NewBarkTown_ProfessorElmsLab_EventScript_RivalApproachForBattleChikoritaLeft
-	goto_if_eq VAR_TEMP_2, 2, NewBarkTown_ProfessorElmsLab_EventScript_RivalApproachForBattleChikoritaMid
-	goto_if_eq VAR_TEMP_2, 3, NewBarkTown_ProfessorElmsLab_EventScript_RivalApproachForBattleChikoritaRight
-	end
-
-NewBarkTown_ProfessorElmsLab_EventScript_RivalApproachForBattleChikoritaLeft::
-	applymovement LOCALID_RIVAL, NewBarkTown_ProfessorElmsLab_Movement_RivalApproachForBattleChikoritaLeft
-	waitmovement 0
-	goto NewBarkTown_ProfessorElmsLab_EventScript_RivalBattleChikorita
-	end
-
-NewBarkTown_ProfessorElmsLab_EventScript_RivalApproachForBattleChikoritaMid::
-	applymovement LOCALID_RIVAL, NewBarkTown_ProfessorElmsLab_Movement_RivalApproachForBattleChikoritaMid
-	waitmovement 0
-	goto NewBarkTown_ProfessorElmsLab_EventScript_RivalBattleChikorita
-	end
-
-NewBarkTown_ProfessorElmsLab_EventScript_RivalApproachForBattleChikoritaRight::
-	applymovement LOCALID_RIVAL, NewBarkTown_ProfessorElmsLab_Movement_RivalApproachForBattleChikoritaRight
-	waitmovement 0
-	goto NewBarkTown_ProfessorElmsLab_EventScript_RivalBattleChikorita
-	end
-
-NewBarkTown_ProfessorElmsLab_EventScript_RivalBattleChikorita::
-	trainerbattle_earlyrival TRAINER_RIVAL_OAKS_LAB_CHIKORITA, RIVAL_BATTLE_TUTORIAL, NewBarkTown_ProfessorElmsLab_Text_RivalDefeat, Text_RivalVictory
-	goto NewBarkTown_ProfessorElmsLab_EventScript_EndRivalBattle
-	end
-
-NewBarkTown_ProfessorElmsLab_Movement_RivalApproachForBattleChikoritaLeft::
-	walk_left
-	walk_left
-	walk_left
-	walk_down
-	walk_down
-	step_end
-
-NewBarkTown_ProfessorElmsLab_Movement_RivalApproachForBattleChikoritaMid::
-	walk_left
-	walk_left
-	walk_down
-	walk_down
-	step_end
-
-NewBarkTown_ProfessorElmsLab_Movement_RivalApproachForBattleChikoritaRight::
-	walk_left
-	walk_down
-	walk_down
-	step_end
-
-NewBarkTown_ProfessorElmsLab_EventScript_EndRivalBattle::
-	special HealPlayerParty
-	msgbox NewBarkTown_ProfessorElmsLab_Text_RivalGoToughenMyMon
-	closemessage
-	playbgm MUS_RIVAL_EXIT, 0
-	call_if_eq VAR_TEMP_2, 1, NewBarkTown_ProfessorElmsLab_EventScript_RivalExitAfterBattleLeft
-	call_if_eq VAR_TEMP_2, 2, NewBarkTown_ProfessorElmsLab_EventScript_RivalExitAfterBattleMid
-	call_if_eq VAR_TEMP_2, 3, NewBarkTown_ProfessorElmsLab_EventScript_RivalExitAfterBattleRight
-	removeobject LOCALID_RIVAL
-	playse SE_EXIT
-	fadedefaultbgm
-	setvar VAR_MAP_SCENE_NEW_BARK_TOWN_PROFESSOR_ELMS_LAB, 4
-	setflag FLAG_BEAT_RIVAL_IN_OAKS_LAB
-	releaseall
-	end
-
-NewBarkTown_ProfessorElmsLab_EventScript_RivalExitAfterBattleLeft::
-	applymovement LOCALID_RIVAL, NewBarkTown_ProfessorElmsLab_Movement_RivalExitAfterBattleLeft
-	applymovement OBJ_EVENT_ID_PLAYER, NewBarkTown_ProfessorElmsLab_Movement_PlayerWatchRivalExitAfterBattle
-	waitmovement LOCALID_RIVAL
-	return
-
-NewBarkTown_ProfessorElmsLab_EventScript_RivalExitAfterBattleMid::
-	applymovement LOCALID_RIVAL, NewBarkTown_ProfessorElmsLab_Movement_RivalExitAfterBattleMid
-	applymovement OBJ_EVENT_ID_PLAYER, NewBarkTown_ProfessorElmsLab_Movement_PlayerWatchRivalExitAfterBattle
-	waitmovement LOCALID_RIVAL
-	return
-
-NewBarkTown_ProfessorElmsLab_EventScript_RivalExitAfterBattleRight::
-	applymovement LOCALID_RIVAL, NewBarkTown_ProfessorElmsLab_Movement_RivalExitAfterBattleRight
-	applymovement OBJ_EVENT_ID_PLAYER, NewBarkTown_ProfessorElmsLab_Movement_PlayerWatchRivalExitAfterBattleRight
-	waitmovement LOCALID_RIVAL
-	return
-
-NewBarkTown_ProfessorElmsLab_Movement_RivalExitAfterBattleLeft::
-	walk_right
-	walk_down
-	walk_down
-	walk_down
-	walk_down
-	walk_down
-	delay_8
-	step_end
-
-NewBarkTown_ProfessorElmsLab_Movement_RivalExitAfterBattleRight::
-	walk_left
-	walk_down
-	walk_down
-	walk_down
-	walk_down
-	walk_down
-	delay_8
-	step_end
-
-NewBarkTown_ProfessorElmsLab_Movement_RivalExitAfterBattleMid::
-	walk_right
-	walk_down
-	walk_down
-	walk_down
-	walk_left
-	walk_down
-	walk_down
-	delay_8
-	step_end
-
-NewBarkTown_ProfessorElmsLab_Movement_PlayerWatchRivalExitAfterBattle::
-	delay_16
-	delay_8
-	walk_in_place_faster_right
-	delay_16
-	walk_in_place_faster_down
-	step_end
-
-NewBarkTown_ProfessorElmsLab_Movement_PlayerWatchRivalExitAfterBattleRight::
-	delay_16
-	delay_8
-	walk_in_place_faster_left
-	delay_16
-	walk_in_place_faster_down
-	step_end
-
-NewBarkTown_ProfessorElmsLab_EventScript_Rival::
-	lock
-	faceplayer
-	goto_if_eq VAR_MAP_SCENE_NEW_BARK_TOWN_PROFESSOR_ELMS_LAB, 3, NewBarkTown_ProfessorElmsLab_EventScript_RivalChoseStarter
-	goto_if_eq VAR_MAP_SCENE_NEW_BARK_TOWN_PROFESSOR_ELMS_LAB, 2, NewBarkTown_ProfessorElmsLab_EventScript_RivalWaitingForStarter
-	msgbox NewBarkTown_ProfessorElmsLab_Text_RivalGrampsIsntAround
-	release
-	end
-
-NewBarkTown_ProfessorElmsLab_EventScript_RivalWaitingForStarter::
-	msgbox NewBarkTown_ProfessorElmsLab_Text_RivalGoChoosePlayer
-	release
-	end
-
-NewBarkTown_ProfessorElmsLab_EventScript_RivalChoseStarter::
-	msgbox NewBarkTown_ProfessorElmsLab_Text_RivalMyMonLooksTougher
-	release
-	end
-
-@ TODO: Add VAR_MAP_SCENE_NEW_BARK_TOWN_PROFESSOR_ELMS_LAB value 10 here? Or value 11?
-NewBarkTown_ProfessorElmsLab_EventScript_ProfOak::
-	lock
-	faceplayer
-	goto_if_set SHOWED_OAK_COMPLETE_DEX, NewBarkTown_ProfessorElmsLab_EventScript_OakJustShownCompleteDex
-	goto_if_eq VAR_MAP_SCENE_NEW_BARK_TOWN_PROFESSOR_ELMS_LAB, 9, NewBarkTown_ProfessorElmsLab_EventScript_RatePokedex
-	goto_if_eq VAR_MAP_SCENE_NEW_BARK_TOWN_PROFESSOR_ELMS_LAB, 8, NewBarkTown_ProfessorElmsLab_EventScript_MonsAroundWorldWait
-	goto_if_set FLAG_SYS_GAME_CLEAR, NewBarkTown_ProfessorElmsLab_EventScript_TryStartNationalDexScene
-	goto_if_eq VAR_MAP_SCENE_CERULEAN_CITY_RIVAL, 1, NewBarkTown_ProfessorElmsLab_EventScript_RatePokedex
-	goto_if_eq VAR_MAP_SCENE_NEW_BARK_TOWN_PROFESSOR_ELMS_LAB, 6, NewBarkTown_ProfessorElmsLab_EventScript_RatePokedexOrTryGiveBalls
-	goto_if_ge VAR_MAP_SCENE_VIRIDIAN_CITY_MART, 1, NewBarkTown_ProfessorElmsLab_EventScript_ReceiveDexScene
-	goto_if_eq VAR_MAP_SCENE_NEW_BARK_TOWN_PROFESSOR_ELMS_LAB, 4, NewBarkTown_ProfessorElmsLab_EventScript_OakBattleMonForItToGrow
-	goto_if_eq VAR_MAP_SCENE_NEW_BARK_TOWN_PROFESSOR_ELMS_LAB, 3, NewBarkTown_ProfessorElmsLab_EventScript_OakCanReachNextTownWithMon
-	msgbox NewBarkTown_ProfessorElmsLab_Text_OakWhichOneWillYouChoose
-	release
-	end
-
-NewBarkTown_ProfessorElmsLab_EventScript_OakJustShownCompleteDex::
-	msgbox PokedexRating_Text_ThankYouMadeDreamReality
-	release
-	end
-
-NewBarkTown_ProfessorElmsLab_EventScript_OakCanReachNextTownWithMon::
-	msgbox NewBarkTown_ProfessorElmsLab_Text_OakCanReachNextTownWithMon
-	release
-	end
-
-NewBarkTown_ProfessorElmsLab_EventScript_OakBattleMonForItToGrow::
-	msgbox NewBarkTown_ProfessorElmsLab_Text_OakBattleMonForItToGrow
-	release
-	end
-
-NewBarkTown_ProfessorElmsLab_EventScript_ReceiveDexScene::
-	msgbox NewBarkTown_ProfessorElmsLab_Text_OakHaveSomethingForMe
-	textcolor NPC_TEXT_COLOR_NEUTRAL
-	playfanfare MUS_OBTAIN_TMHM
-	message NewBarkTown_ProfessorElmsLab_Text_DeliveredOaksParcel
-	waitmessage
-	waitfanfare
-	call EventScript_RestorePrevTextColor
-	removeitem ITEM_OAKS_PARCEL
-	msgbox NewBarkTown_ProfessorElmsLab_Text_OakCustomBallIOrdered
-	playbgm MUS_ENCOUNTER_RIVAL, 0
-	msgbox NewBarkTown_ProfessorElmsLab_Text_RivalGramps
-	closemessage
-	call_if_eq VAR_FACING, DIR_NORTH, NewBarkTown_ProfessorElmsLab_EventScript_DexSceneRivalEnterNorth
-	call_if_eq VAR_FACING, DIR_SOUTH, NewBarkTown_ProfessorElmsLab_EventScript_DexSceneRivalEnterSouth
-	call_if_eq VAR_FACING, DIR_EAST, NewBarkTown_ProfessorElmsLab_EventScript_DexSceneRivalEnterEastWest
-	call_if_eq VAR_FACING, DIR_WEST, NewBarkTown_ProfessorElmsLab_EventScript_DexSceneRivalEnterEastWest
-	fadedefaultbgm
-	msgbox NewBarkTown_ProfessorElmsLab_Text_RivalWhatDidYouCallMeFor
-	closemessage
-	delay 30
-	playse SE_PIN
-	applymovement LOCALID_PROF_OAK, Common_Movement_ExclamationMark
-	waitmovement 0
-	applymovement LOCALID_PROF_OAK, Common_Movement_Delay48
-	waitmovement 0
-	call_if_eq VAR_FACING, DIR_SOUTH, NewBarkTown_ProfessorElmsLab_EventScript_DexSceneOakFacePlayerAndRivalSouth
-	call_if_eq VAR_FACING, DIR_EAST, NewBarkTown_ProfessorElmsLab_EventScript_DexSceneOakFacePlayerAndRivalEast
-	call_if_eq VAR_FACING, DIR_WEST, NewBarkTown_ProfessorElmsLab_EventScript_DexSceneOakFacePlayerAndRivalWest
-	call_if_eq VAR_FACING, DIR_NORTH, NewBarkTown_ProfessorElmsLab_EventScript_DexSceneOakFacePlayerAndRivalNorth
-	msgbox NewBarkTown_ProfessorElmsLab_Text_OakHaveRequestForYouTwo
-	closemessage
-	call_if_eq VAR_FACING, DIR_NORTH, NewBarkTown_ProfessorElmsLab_EventScript_DexSceneOakWalkToDeskNorth
-	call_if_eq VAR_FACING, DIR_SOUTH, NewBarkTown_ProfessorElmsLab_EventScript_DexSceneOakWalkToDeskSouth
-	call_if_eq VAR_FACING, DIR_EAST, NewBarkTown_ProfessorElmsLab_EventScript_DexSceneOakWalkToDeskEast
-	call_if_eq VAR_FACING, DIR_WEST, NewBarkTown_ProfessorElmsLab_EventScript_DexSceneOakWalkToDeskWest
-	msgbox NewBarkTown_ProfessorElmsLab_Text_OakPokedexOnDesk
-	closemessage
-	delay 40
-	msgbox NewBarkTown_ProfessorElmsLab_Text_OakTakeTheseWithYou
-	closemessage
-	applymovement LOCALID_PROF_OAK, Common_Movement_WalkInPlaceFasterUp
-	waitmovement 0
-	removeobject LOCALID_POKEDEX_1
-	delay 10
-	removeobject LOCALID_POKEDEX_2
-	delay 25
-	call_if_eq VAR_FACING, DIR_NORTH, NewBarkTown_ProfessorElmsLab_EventScript_OakBringDexesOverNorth
-	call_if_eq VAR_FACING, DIR_SOUTH, NewBarkTown_ProfessorElmsLab_EventScript_OakBringDexesOverSouth
-	call_if_eq VAR_FACING, DIR_EAST, NewBarkTown_ProfessorElmsLab_EventScript_OakBringDexesOverEast
-	call_if_eq VAR_FACING, DIR_WEST, NewBarkTown_ProfessorElmsLab_EventScript_OakBringDexesOverWest
-	delay 10
-	textcolor NPC_TEXT_COLOR_NEUTRAL
-	playfanfare MUS_OBTAIN_KEY_ITEM
-	message NewBarkTown_ProfessorElmsLab_Text_ReceivedPokedexFromOak
-	waitmessage
-	waitfanfare
-	call EventScript_RestorePrevTextColor
-	setflag FLAG_SYS_POKEDEX_GET
-	setvar VAR_MAP_SCENE_POKEMON_CENTER_TEALA, 1
-	msgbox NewBarkTown_ProfessorElmsLab_Text_OakCatchMonsForDataTakeThese
-	giveitem_msg NewBarkTown_ProfessorElmsLab_Text_ReceivedFivePokeBalls, ITEM_POKE_BALL, 5
-	msgbox NewBarkTown_ProfessorElmsLab_Text_OakExplainCatching
-	famechecker FAMECHECKER_OAK, 1
-	msgbox NewBarkTown_ProfessorElmsLab_Text_OakCompleteMonGuideWasMyDream
-	msgbox NewBarkTown_ProfessorElmsLab_Text_RivalLeaveItToMeGramps
-	call_if_eq VAR_FACING, DIR_NORTH, NewBarkTown_ProfessorElmsLab_EventScript_DexSceneRivalFacePlayerNorth
-	call_if_eq VAR_FACING, DIR_SOUTH, NewBarkTown_ProfessorElmsLab_EventScript_DexSceneRivalFacePlayerSouth
-	call_if_eq VAR_FACING, DIR_EAST, NewBarkTown_ProfessorElmsLab_EventScript_DexSceneRivalFacePlayerEastWest
-	call_if_eq VAR_FACING, DIR_WEST, NewBarkTown_ProfessorElmsLab_EventScript_DexSceneRivalFacePlayerEastWest
-	msgbox NewBarkTown_ProfessorElmsLab_Text_RivalTellSisNotToGiveYouMap
-	closemessage
-	playbgm MUS_RIVAL_EXIT, 0
-	call_if_eq VAR_FACING, DIR_NORTH, NewBarkTown_ProfessorElmsLab_EventScript_RivalExitNorth
-	call_if_eq VAR_FACING, DIR_SOUTH, NewBarkTown_ProfessorElmsLab_EventScript_RivalExit
-	call_if_eq VAR_FACING, DIR_EAST, NewBarkTown_ProfessorElmsLab_EventScript_RivalExit
-	call_if_eq VAR_FACING, DIR_WEST, NewBarkTown_ProfessorElmsLab_EventScript_RivalExit
-	removeobject LOCALID_RIVAL
-	fadedefaultbgm
-	setvar VAR_MAP_SCENE_NEW_BARK_TOWN_PROFESSOR_ELMS_LAB, 6
-	setvar VAR_MAP_SCENE_VIRIDIAN_CITY_MART, 2
-	setvar VAR_MAP_SCENE_VIRIDIAN_CITY_OLD_MAN, 1
-	setvar VAR_MAP_SCENE_PALLET_TOWN_RIVALS_HOUSE, 1
-	setvar VAR_MAP_SCENE_ROUTE22, 1
-	release
-	end
-
-NewBarkTown_ProfessorElmsLab_EventScript_OakBringDexesOverNorth::
-	applymovement LOCALID_PROF_OAK, NewBarkTown_ProfessorElmsLab_Movement_OakBringDexesOver
-	waitmovement 0
-	return
-
-NewBarkTown_ProfessorElmsLab_EventScript_OakBringDexesOverSouth::
-	applymovement LOCALID_PROF_OAK, NewBarkTown_ProfessorElmsLab_Movement_OakBringDexesOverSouth
-	waitmovement 0
-	return
-
-NewBarkTown_ProfessorElmsLab_EventScript_OakBringDexesOverEast::
-	applymovement LOCALID_PROF_OAK, NewBarkTown_ProfessorElmsLab_Movement_OakBringDexesOver
-	applymovement OBJ_EVENT_ID_PLAYER, NewBarkTown_ProfessorElmsLab_Movement_PlayerFaceOakForDexEast
-	waitmovement 0
-	return
-
-NewBarkTown_ProfessorElmsLab_EventScript_OakBringDexesOverWest::
-	applymovement LOCALID_PROF_OAK, NewBarkTown_ProfessorElmsLab_Movement_OakBringDexesOver
-	waitmovement 0
-	return
-
-NewBarkTown_ProfessorElmsLab_Movement_PlayerFaceOakForDexEast::
-	delay_16
-	delay_8
-	walk_in_place_faster_right
-	step_end
-
-NewBarkTown_ProfessorElmsLab_Movement_OakBringDexesOver::
-	walk_right
-	walk_down
-	step_end
-
-NewBarkTown_ProfessorElmsLab_Movement_OakBringDexesOverSouth::
-	walk_down
-	walk_right
-	step_end
-
-NewBarkTown_ProfessorElmsLab_EventScript_DexSceneOakWalkToDeskNorth::
-	applymovement LOCALID_PROF_OAK, NewBarkTown_ProfessorElmsLab_Movement_OakWalkToDesk
-	waitmovement 0
-	return
-
-NewBarkTown_ProfessorElmsLab_EventScript_DexSceneOakWalkToDeskSouth::
-	applymovement LOCALID_PROF_OAK, NewBarkTown_ProfessorElmsLab_Movement_OakWalkToDeskSouth
-	applymovement OBJ_EVENT_ID_PLAYER, NewBarkTown_ProfessorElmsLab_Movement_WatchOakWalkToDesk
-	applymovement LOCALID_RIVAL, NewBarkTown_ProfessorElmsLab_Movement_WatchOakWalkToDesk
-	waitmovement LOCALID_PROF_OAK
-	return
-
-NewBarkTown_ProfessorElmsLab_EventScript_DexSceneOakWalkToDeskEast::
-	applymovement LOCALID_PROF_OAK, NewBarkTown_ProfessorElmsLab_Movement_OakWalkToDesk
-	applymovement OBJ_EVENT_ID_PLAYER, NewBarkTown_ProfessorElmsLab_Movement_WatchOakWalkToDeskEast
-	waitmovement LOCALID_PROF_OAK
-	return
-
-NewBarkTown_ProfessorElmsLab_EventScript_DexSceneOakWalkToDeskWest::
-	applymovement LOCALID_PROF_OAK, NewBarkTown_ProfessorElmsLab_Movement_OakWalkToDesk
-	waitmovement 0
-	return
-
-NewBarkTown_ProfessorElmsLab_Movement_WatchOakWalkToDeskEast::
-	delay_16
-	delay_8
-	walk_in_place_faster_up
-	step_end
-
-NewBarkTown_ProfessorElmsLab_Movement_WatchOakWalkToDesk::
-	delay_16
-	delay_8
-	walk_in_place_faster_left
-	step_end
-
-NewBarkTown_ProfessorElmsLab_Movement_OakWalkToDesk::
-	walk_up
-	walk_left
-	delay_16
-	walk_in_place_faster_down
-	step_end
-
-NewBarkTown_ProfessorElmsLab_Movement_OakWalkToDeskSouth::
-	walk_left
-	walk_left
-	walk_up
-	delay_16
-	walk_in_place_faster_right
-	step_end
-
-NewBarkTown_ProfessorElmsLab_EventScript_RatePokedexOrTryGiveBalls::
-	setvar VAR_0x8004, 0
-	specialvar VAR_RESULT, GetPokedexCount
-	copyvar VAR_0x8008, VAR_0x8005
-	copyvar VAR_0x8009, VAR_0x8006
-	buffernumberstring STR_VAR_1, VAR_0x8008
-	buffernumberstring STR_VAR_2, VAR_0x8009
-	goto_if_eq VAR_0x8009, 1, NewBarkTown_ProfessorElmsLab_EventScript_CheckIfPlayerNeedsBalls  @ Player only has starter
-	goto NewBarkTown_ProfessorElmsLab_EventScript_RatePokedex
-	end
-
-NewBarkTown_ProfessorElmsLab_EventScript_RatePokedex::
-	call PokedexRating_EventScript_RateInPerson
-	goto_if_set FLAG_OAK_SAW_DEX_COMPLETION, NewBarkTown_ProfessorElmsLab_EventScript_DexCompleted
-	release
-	end
-
-NewBarkTown_ProfessorElmsLab_EventScript_DexCompleted::
-	closemessage
-	delay 40
-	message PokedexRating_Text_Wroooaaarrr
-	waitmessage
-	call_if_eq VAR_FACING, DIR_NORTH, NewBarkTown_ProfessorElmsLab_EventScript_OakExcitedNorth
-	call_if_eq VAR_FACING, DIR_SOUTH, NewBarkTown_ProfessorElmsLab_EventScript_OakExcitedSouth
-	call_if_eq VAR_FACING, DIR_EAST, NewBarkTown_ProfessorElmsLab_EventScript_OakExcitedEast
-	call_if_eq VAR_FACING, DIR_WEST, NewBarkTown_ProfessorElmsLab_EventScript_OakExcitedWest
-	applymovement LOCALID_PROF_OAK, Common_Movement_FacePlayer
-	waitmovement 0
-	closemessage
-	delay 70
-	msgbox PokedexRating_Text_ThankYouMadeDreamReality
-	setflag SHOWED_OAK_COMPLETE_DEX
-	release
-	end
-
-NewBarkTown_ProfessorElmsLab_EventScript_OakExcitedNorth::
-	applymovement LOCALID_PROF_OAK, NewBarkTown_ProfessorElmsLab_Movement_OakExcitedNorth
-	waitmovement 0
-	return
-
-NewBarkTown_ProfessorElmsLab_EventScript_OakExcitedSouth::
-	applymovement LOCALID_PROF_OAK, NewBarkTown_ProfessorElmsLab_Movement_OakExcitedSouth
-	waitmovement 0
-	return
-
-NewBarkTown_ProfessorElmsLab_EventScript_OakExcitedEast::
-	applymovement LOCALID_PROF_OAK, NewBarkTown_ProfessorElmsLab_Movement_OakExcitedEast
-	waitmovement 0
-	return
-
-NewBarkTown_ProfessorElmsLab_EventScript_OakExcitedWest::
-	applymovement LOCALID_PROF_OAK, NewBarkTown_ProfessorElmsLab_Movement_OakExcitedWest
-	waitmovement 0
-	return
-
-NewBarkTown_ProfessorElmsLab_Movement_OakExcitedNorth::
-	walk_in_place_down
-	walk_in_place_fast_down
-	walk_in_place_down
-	walk_in_place_down
-	walk_in_place_fast_down
-	walk_in_place_down
-	step_end
-
-NewBarkTown_ProfessorElmsLab_Movement_OakExcitedSouth::
-	walk_in_place_up
-	walk_in_place_fast_up
-	walk_in_place_up
-	walk_in_place_up
-	walk_in_place_fast_up
-	walk_in_place_up
-	step_end
-
-NewBarkTown_ProfessorElmsLab_Movement_OakExcitedEast::
-	walk_in_place_left
-	walk_in_place_fast_left
-	walk_in_place_left
-	walk_in_place_left
-	walk_in_place_fast_left
-	walk_in_place_left
-	step_end
-
-NewBarkTown_ProfessorElmsLab_Movement_OakExcitedWest::
-	walk_in_place_right
-	walk_in_place_fast_right
-	walk_in_place_right
-	walk_in_place_right
-	walk_in_place_fast_right
-	walk_in_place_right
-	step_end
-
-@ Unused
-NewBarkTown_ProfessorElmsLab_Movement_Search:
-	walk_left
-	walk_in_place_faster_down
-	delay_8
-	walk_in_place_faster_right
-	delay_8
-	walk_in_place_faster_up
-	delay_8
-	walk_in_place_faster_left
-	delay_8
-	walk_in_place_faster_down
-	delay_8
-	walk_right
-	walk_right
-	walk_in_place_faster_up
-	delay_8
-	walk_in_place_faster_left
-	delay_8
-	walk_in_place_faster_down
-	delay_8
-	walk_in_place_faster_right
-	delay_8
-	walk_in_place_faster_up
-	delay_8
-	walk_left
-	step_end
-
-@ Unused
-NewBarkTown_ProfessorElmsLab_Movement_VerticalPacing:
-	walk_up
-	walk_down
-	walk_down
-	walk_in_place_down
-	walk_up
-	delay_16
-	delay_16
-	delay_16
-	step_end
-
-NewBarkTown_ProfessorElmsLab_EventScript_TryStartNationalDexScene::
-	call PokedexRating_EventScript_RateInPerson
-	closemessage
-	goto_if_lt VAR_0x8009, 60, NewBarkTown_ProfessorElmsLab_EventScript_DontStartNationalDexScene
-	goto_if_unset FLAG_WORLD_MAP_ONE_ISLAND, NewBarkTown_ProfessorElmsLab_EventScript_DontStartNationalDexScene
-	delay 30
-	msgbox NewBarkTown_ProfessorElmsLab_Text_OakFavorToAskYouPlayer
-	goto NewBarkTown_ProfessorElmsLab_EventScript_NationalDexScene
-	end
-
-NewBarkTown_ProfessorElmsLab_EventScript_DontStartNationalDexScene::
-	release
-	end
-
-NewBarkTown_ProfessorElmsLab_EventScript_CheckIfPlayerNeedsBalls::
-	goto_if_questlog EventScript_ReleaseEnd
-	special QuestLog_CutRecording
-	goto_if_set FLAG_OAK_SKIP_22_RIVAL_CHECK, NewBarkTown_ProfessorElmsLab_EventScript_MonsAroundWorldWait
-	goto_if_set FLAG_GOT_POKEBALLS_FROM_OAK_AFTER_22_RIVAL, NewBarkTown_ProfessorElmsLab_EventScript_PlayerAlreadyGotBalls
-	checkitem ITEM_POKE_BALL
-	goto_if_eq VAR_RESULT, FALSE, NewBarkTown_ProfessorElmsLab_EventScript_PlayerOutOfBalls
-	goto NewBarkTown_ProfessorElmsLab_EventScript_MonsAroundWorldWait
-	end
-
-NewBarkTown_ProfessorElmsLab_EventScript_PlayerOutOfBalls::
-	goto_if_ge VAR_MAP_SCENE_ROUTE22, 2, NewBarkTown_ProfessorElmsLab_EventScript_GivePlayerMoreBalls
-	goto NewBarkTown_ProfessorElmsLab_EventScript_MonsAroundWorldWait
-	end
-
-NewBarkTown_ProfessorElmsLab_EventScript_GivePlayerMoreBalls::
-	msgbox NewBarkTown_ProfessorElmsLab_Text_OakAddedNothingToPokedex
-	giveitem_msg NewBarkTown_ProfessorElmsLab_Text_ReceivedFivePokeBalls, ITEM_POKE_BALL, 5
-	setflag FLAG_GOT_POKEBALLS_FROM_OAK_AFTER_22_RIVAL
-	release
-	end
-
-NewBarkTown_ProfessorElmsLab_EventScript_MonsAroundWorldWait::
-	msgbox NewBarkTown_ProfessorElmsLab_Text_OakMonsAroundWorldWait
-	release
-	end
-
-NewBarkTown_ProfessorElmsLab_EventScript_PlayerAlreadyGotBalls::
-	msgbox NewBarkTown_ProfessorElmsLab_Text_OakComeSeeMeSometime
-	release
-	end
-
-NewBarkTown_ProfessorElmsLab_EventScript_DexSceneRivalEnterNorth::
-	setobjectxyperm LOCALID_RIVAL, 5, 10
-	addobject LOCALID_RIVAL
-	applymovement OBJ_EVENT_ID_PLAYER, NewBarkTown_ProfessorElmsLab_Movement_WatchRivalEnterNorth
-	applymovement LOCALID_RIVAL, NewBarkTown_ProfessorElmsLab_Movement_RivalEnter
-	waitmovement 0
-	return
-
-NewBarkTown_ProfessorElmsLab_EventScript_DexSceneRivalEnterEastWest::
-	setobjectxyperm LOCALID_RIVAL, 6, 10
-	addobject LOCALID_RIVAL
-	applymovement LOCALID_PROF_OAK, Common_Movement_WalkInPlaceFasterDown
-	applymovement OBJ_EVENT_ID_PLAYER, NewBarkTown_ProfessorElmsLab_Movement_WatchRivalEnterEastWest
-	applymovement LOCALID_RIVAL, NewBarkTown_ProfessorElmsLab_Movement_RivalEnter
-	waitmovement 0
-	return
-
-NewBarkTown_ProfessorElmsLab_EventScript_DexSceneRivalEnterSouth::
-	setobjectxyperm LOCALID_RIVAL, 6, 10
-	addobject LOCALID_RIVAL
-	applymovement LOCALID_PROF_OAK, Common_Movement_WalkInPlaceFasterDown
-	applymovement LOCALID_RIVAL, NewBarkTown_ProfessorElmsLab_Movement_RivalEnter
-	waitmovement 0
-	return
-
-NewBarkTown_ProfessorElmsLab_EventScript_DexSceneOakFacePlayerAndRivalSouth::
-	applymovement LOCALID_PROF_OAK, Common_Movement_FacePlayer
-	waitmovement 0
-	delay 15
-	applymovement LOCALID_PROF_OAK, Common_Movement_WalkInPlaceFasterDown
-	waitmovement 0
-	return
-
-NewBarkTown_ProfessorElmsLab_EventScript_DexSceneOakFacePlayerAndRivalWest::
-	applymovement LOCALID_PROF_OAK, Common_Movement_FacePlayer
-	waitmovement 0
-	delay 15
-	applymovement OBJ_EVENT_ID_PLAYER, Common_Movement_WalkInPlaceFasterLeft
-	applymovement LOCALID_PROF_OAK, Common_Movement_WalkInPlaceFasterDown
-	waitmovement 0
-	return
-
-NewBarkTown_ProfessorElmsLab_EventScript_DexSceneOakFacePlayerAndRivalEast::
-	applymovement LOCALID_PROF_OAK, Common_Movement_FacePlayer
-	waitmovement 0
-	delay 15
-	applymovement OBJ_EVENT_ID_PLAYER, Common_Movement_WalkInPlaceFasterRight
-	applymovement LOCALID_PROF_OAK, Common_Movement_WalkInPlaceFasterDown
-	waitmovement 0
-	return
-
-NewBarkTown_ProfessorElmsLab_EventScript_DexSceneRivalFacePlayerNorth::
-	applymovement LOCALID_RIVAL, Common_Movement_FacePlayer
-	applymovement OBJ_EVENT_ID_PLAYER, Common_Movement_WalkInPlaceFasterLeft
-	waitmovement 0
-	return
-
-NewBarkTown_ProfessorElmsLab_EventScript_DexSceneRivalFacePlayerSouth::
-	applymovement LOCALID_RIVAL, Common_Movement_WalkInPlaceFasterUp
-	applymovement OBJ_EVENT_ID_PLAYER, Common_Movement_WalkInPlaceFasterDown
-	waitmovement 0
-	return
-
-NewBarkTown_ProfessorElmsLab_EventScript_DexSceneRivalFacePlayerEastWest::
-	applymovement LOCALID_RIVAL, Common_Movement_FacePlayer
-	applymovement OBJ_EVENT_ID_PLAYER, Common_Movement_WalkInPlaceFasterDown
-	waitmovement 0
-	return
-
-NewBarkTown_ProfessorElmsLab_EventScript_RivalExitNorth::
-	applymovement OBJ_EVENT_ID_PLAYER, NewBarkTown_ProfessorElmsLab_Movement_WatchRivalEnterEastWest
-	applymovement LOCALID_RIVAL, NewBarkTown_ProfessorElmsLab_Movement_RivalExit
-	waitmovement 0
-	return
-
-NewBarkTown_ProfessorElmsLab_EventScript_RivalExit::
-	applymovement LOCALID_RIVAL, NewBarkTown_ProfessorElmsLab_Movement_RivalExit
-	waitmovement 0
-	return
-
-NewBarkTown_ProfessorElmsLab_EventScript_DexSceneOakFacePlayerAndRivalNorth::
-	applymovement OBJ_EVENT_ID_PLAYER, Common_Movement_WalkInPlaceFasterUp
-	waitmovement 0
-	return
-
-NewBarkTown_ProfessorElmsLab_Movement_WatchRivalEnterEastWest::
-	delay_4
-	walk_in_place_faster_down
-	step_end
-
-NewBarkTown_ProfessorElmsLab_Movement_WatchRivalEnterNorth::
-	walk_in_place_faster_down
-	delay_16
-	delay_16
-	delay_16
-	delay_16
-	delay_16
-	delay_8
-	walk_in_place_faster_left
-	step_end
-
-NewBarkTown_ProfessorElmsLab_Movement_RivalEnter::
-	walk_up
-	walk_up
-	walk_up
-	walk_up
-	walk_up
-	walk_up
-	step_end
-
-NewBarkTown_ProfessorElmsLab_Movement_RivalExit::
-	walk_down
-	walk_down
-	walk_down
-	walk_down
-	walk_down
-	walk_down
-	step_end
-
-NewBarkTown_ProfessorElmsLab_EventScript_ChikoritaBall::
-	lock
-	faceplayer
-	setvar PLAYER_STARTER_NUM, 0
-	setvar PLAYER_STARTER_SPECIES, SPECIES_CHIKORITA
-	setvar RIVAL_STARTER_SPECIES, SPECIES_CYNDAQUIL
-	setvar RIVAL_STARTER_ID, LOCALID_CYNDAQUIL_BALL
-	goto_if_ge VAR_MAP_SCENE_NEW_BARK_TOWN_PROFESSOR_ELMS_LAB, 3, NewBarkTown_ProfessorElmsLab_EventScript_LastPokeBall
-	goto_if_eq VAR_MAP_SCENE_NEW_BARK_TOWN_PROFESSOR_ELMS_LAB, 2, NewBarkTown_ProfessorElmsLab_EventScript_ConfirmStarterChoice
-	msgbox NewBarkTown_ProfessorElmsLab_Text_ThoseArePokeBalls
-	release
-	end
-
-NewBarkTown_ProfessorElmsLab_EventScript_ConfirmStarterChoice::
-	applymovement LOCALID_PROF_OAK, Common_Movement_FaceRight
-	waitmovement 0
-	showmonpic PLAYER_STARTER_SPECIES, 10, 3
-	textcolor NPC_TEXT_COLOR_MALE
-	goto_if_eq PLAYER_STARTER_NUM, 0, NewBarkTown_ProfessorElmsLab_EventScript_ConfirmChikorita
-	goto_if_eq PLAYER_STARTER_NUM, 1, NewBarkTown_ProfessorElmsLab_EventScript_ConfirmTotodile
-	goto_if_eq PLAYER_STARTER_NUM, 2, NewBarkTown_ProfessorElmsLab_EventScript_ConfirmCyndaquil
-	end
-
-NewBarkTown_ProfessorElmsLab_EventScript_ConfirmChikorita::
-	msgbox NewBarkTown_ProfessorElmsLab_Text_OakChoosingChikorita, MSGBOX_YESNO
-	goto_if_eq VAR_RESULT, YES, NewBarkTown_ProfessorElmsLab_EventScript_ChoseStarter
-	goto_if_eq VAR_RESULT, NO, NewBarkTown_ProfessorElmsLab_EventScript_DeclinedStarter
-	end
-
-NewBarkTown_ProfessorElmsLab_EventScript_ConfirmTotodile::
-	msgbox NewBarkTown_ProfessorElmsLab_Text_OakChoosingTotodile, MSGBOX_YESNO
-	goto_if_eq VAR_RESULT, YES, NewBarkTown_ProfessorElmsLab_EventScript_ChoseStarter
-	goto_if_eq VAR_RESULT, NO, NewBarkTown_ProfessorElmsLab_EventScript_DeclinedStarter
-	end
-
-NewBarkTown_ProfessorElmsLab_EventScript_ConfirmCyndaquil::
-	msgbox NewBarkTown_ProfessorElmsLab_Text_OakChoosingCyndaquil, MSGBOX_YESNO
-	goto_if_eq VAR_RESULT, YES, NewBarkTown_ProfessorElmsLab_EventScript_ChoseStarter
-	goto_if_eq VAR_RESULT, NO, NewBarkTown_ProfessorElmsLab_EventScript_DeclinedStarter
-	end
-
-NewBarkTown_ProfessorElmsLab_EventScript_DeclinedStarter::
-	hidemonpic
-	release
-	end
-
-NewBarkTown_ProfessorElmsLab_EventScript_ChoseStarter::
-	hidemonpic
-	removeobject VAR_LAST_TALKED
-	msgbox NewBarkTown_ProfessorElmsLab_Text_OakThisMonIsEnergetic
-	call EventScript_RestorePrevTextColor
-	setflag FLAG_SYS_POKEMON_GET
-	setflag FLAG_PALLET_LADY_NOT_BLOCKING_SIGN
-	givemon PLAYER_STARTER_SPECIES, 5
-	copyvar VAR_STARTER_MON, PLAYER_STARTER_NUM
-	bufferspeciesname STR_VAR_1, PLAYER_STARTER_SPECIES
-	message NewBarkTown_ProfessorElmsLab_Text_ReceivedMonFromOak
-	waitmessage
-	playfanfare MUS_OBTAIN_KEY_ITEM
-	waitfanfare
-	msgbox Text_GiveNicknameToThisMon, MSGBOX_YESNO
-	goto_if_eq VAR_RESULT, YES, NewBarkTown_ProfessorElmsLab_EventScript_GiveNicknameToStarter
-	goto_if_eq VAR_RESULT, NO, NewBarkTown_ProfessorElmsLab_EventScript_RivalPicksStarter
-	end
-
-NewBarkTown_ProfessorElmsLab_EventScript_GiveNicknameToStarter::
-	setvar VAR_0x8004, 0
-	call EventScript_ChangePokemonNickname
-	goto NewBarkTown_ProfessorElmsLab_EventScript_RivalPicksStarter
-	end
-
-NewBarkTown_ProfessorElmsLab_EventScript_RivalPicksStarter::
-	closemessage
-	goto_if_eq PLAYER_STARTER_NUM, 0, NewBarkTown_ProfessorElmsLab_EventScript_RivalWalksToCyndaquil
-	goto_if_eq PLAYER_STARTER_NUM, 1, NewBarkTown_ProfessorElmsLab_EventScript_RivalWalksToChikorita
-	goto_if_eq PLAYER_STARTER_NUM, 2, NewBarkTown_ProfessorElmsLab_EventScript_RivalWalksToTotodile
-	end
-
-NewBarkTown_ProfessorElmsLab_EventScript_RivalWalksToCyndaquil::
-	applymovement LOCALID_RIVAL, NewBarkTown_ProfessorElmsLab_Movement_RivalWalksToCyndaquil
-	waitmovement 0
-	goto NewBarkTown_ProfessorElmsLab_EventScript_RivalTakesStarter
-	end
-
-NewBarkTown_ProfessorElmsLab_EventScript_RivalWalksToTotodile::
-	applymovement LOCALID_RIVAL, NewBarkTown_ProfessorElmsLab_Movement_RivalWalksToTotodile
-	waitmovement 0
-	goto NewBarkTown_ProfessorElmsLab_EventScript_RivalTakesStarter
-	end
-
-NewBarkTown_ProfessorElmsLab_EventScript_RivalWalksToChikorita::
-	applymovement LOCALID_RIVAL, NewBarkTown_ProfessorElmsLab_Movement_RivalWalksToChikorita
-	waitmovement 0
-	goto NewBarkTown_ProfessorElmsLab_EventScript_RivalTakesStarter
-	end
-
-NewBarkTown_ProfessorElmsLab_EventScript_RivalTakesStarter::
-	textcolor NPC_TEXT_COLOR_MALE
-	msgbox NewBarkTown_ProfessorElmsLab_Text_RivalIllTakeThisOneThen
-	removeobject RIVAL_STARTER_ID
-	textcolor NPC_TEXT_COLOR_NEUTRAL
-	bufferspeciesname STR_VAR_1, RIVAL_STARTER_SPECIES
-	message NewBarkTown_ProfessorElmsLab_Text_RivalReceivedMonFromOak
-	waitmessage
-	playfanfare MUS_OBTAIN_KEY_ITEM
-	waitfanfare
-	setvar VAR_MAP_SCENE_NEW_BARK_TOWN_PROFESSOR_ELMS_LAB, 3
-	call_if_set FLAG_OPENED_START_MENU, NewBarkTown_ProfessorElmsLab_EventScript_ReadyEndSignLadyScene
-	release
-	end
-
-NewBarkTown_ProfessorElmsLab_EventScript_ReadyEndSignLadyScene::
-	setvar VAR_MAP_SCENE_PALLET_TOWN_SIGN_LADY, 1
-	return
-
-NewBarkTown_ProfessorElmsLab_Movement_RivalWalksToCyndaquil::
-	walk_down
-	walk_down
-	walk_right
-	walk_right
-	walk_right
-	walk_right
-	walk_right
-	walk_up
-	step_end
-
-NewBarkTown_ProfessorElmsLab_Movement_RivalWalksToTotodile::
-	walk_down
-	walk_right
-	walk_right
-	walk_right
-	walk_right
-	walk_in_place_faster_up
-	step_end
-
-NewBarkTown_ProfessorElmsLab_Movement_RivalWalksToChikorita::
-	walk_down
-	walk_right
-	walk_right
-	walk_right
-	walk_in_place_faster_up
-	step_end
-
-NewBarkTown_ProfessorElmsLab_EventScript_TotodileBall::
-	lock
-	faceplayer
-	setvar PLAYER_STARTER_NUM, 1
-	setvar PLAYER_STARTER_SPECIES, SPECIES_TOTODILE
-	setvar RIVAL_STARTER_SPECIES, SPECIES_CHIKORITA
-	setvar RIVAL_STARTER_ID, LOCALID_CHIKORITA_BALL
-	goto_if_ge VAR_MAP_SCENE_NEW_BARK_TOWN_PROFESSOR_ELMS_LAB, 3, NewBarkTown_ProfessorElmsLab_EventScript_LastPokeBall
-	goto_if_eq VAR_MAP_SCENE_NEW_BARK_TOWN_PROFESSOR_ELMS_LAB, 2, NewBarkTown_ProfessorElmsLab_EventScript_ConfirmStarterChoice
-	msgbox NewBarkTown_ProfessorElmsLab_Text_ThoseArePokeBalls
-	release
-	end
-
-NewBarkTown_ProfessorElmsLab_EventScript_CyndaquilBall::
-	lock
-	faceplayer
-	setvar PLAYER_STARTER_NUM, 2
-	setvar PLAYER_STARTER_SPECIES, SPECIES_CYNDAQUIL
-	setvar RIVAL_STARTER_SPECIES, SPECIES_TOTODILE
-	setvar RIVAL_STARTER_ID, LOCALID_TOTODILE_BALL
-	goto_if_ge VAR_MAP_SCENE_NEW_BARK_TOWN_PROFESSOR_ELMS_LAB, 3, NewBarkTown_ProfessorElmsLab_EventScript_LastPokeBall
-	goto_if_eq VAR_MAP_SCENE_NEW_BARK_TOWN_PROFESSOR_ELMS_LAB, 2, NewBarkTown_ProfessorElmsLab_EventScript_ConfirmStarterChoice
-	msgbox NewBarkTown_ProfessorElmsLab_Text_ThoseArePokeBalls
-	release
-	end
-
-NewBarkTown_ProfessorElmsLab_EventScript_LastPokeBall::
-	msgbox NewBarkTown_ProfessorElmsLab_Text_OaksLastMon
-	release
-	end
-
-NewBarkTown_ProfessorElmsLab_EventScript_Aide1::
-	lock
-	faceplayer
-	goto_if_set FLAG_SYS_GAME_CLEAR, NewBarkTown_ProfessorElmsLab_EventScript_Aide1GameClear
-	msgbox NewBarkTown_ProfessorElmsLab_Text_StudyAsOaksAide
-	release
-	end
-
-NewBarkTown_ProfessorElmsLab_EventScript_Aide1GameClear::
-	famechecker FAMECHECKER_OAK, 5
-	msgbox NewBarkTown_ProfessorElmsLab_Text_OakIsGoingToHaveRadioShow
-	release
-	end
-
-NewBarkTown_ProfessorElmsLab_EventScript_Aide2::
-	lock
-	faceplayer
-	goto_if_set FLAG_SYS_GAME_CLEAR, NewBarkTown_ProfessorElmsLab_EventScript_Aide2GameClear
-	msgbox NewBarkTown_ProfessorElmsLab_Text_StudyAsOaksAide
-	release
-	end
-
-NewBarkTown_ProfessorElmsLab_EventScript_Aide2GameClear::
-	famechecker FAMECHECKER_DAISY, 0
-	msgbox NewBarkTown_ProfessorElmsLab_Text_DaisyWillGroomMons
-	release
-	end
-
-NewBarkTown_ProfessorElmsLab_EventScript_Aide3::
-	lock
-	faceplayer
-	famechecker FAMECHECKER_OAK, 2
-	msgbox NewBarkTown_ProfessorElmsLab_Text_OakIsAuthorityOnMons
-	release
-	end
-
-NewBarkTown_ProfessorElmsLab_EventScript_Pokedex::
-	msgbox NewBarkTown_ProfessorElmsLab_Text_BlankEncyclopedia, MSGBOX_NPC
-	end
-
-NewBarkTown_ProfessorElmsLab_EventScript_Computer::
-	msgbox NewBarkTown_ProfessorElmsLab_Text_EmailMessage, MSGBOX_SIGN
-	end
-
-NewBarkTown_ProfessorElmsLab_EventScript_LeftSign::
-	msgbox NewBarkTown_ProfessorElmsLab_Text_PressStartToOpenMenu, MSGBOX_SIGN
-	end
-
-NewBarkTown_ProfessorElmsLab_EventScript_RightSign::
-	lockall
-	goto_if_ge VAR_MAP_SCENE_NEW_BARK_TOWN_PROFESSOR_ELMS_LAB, 6, NewBarkTown_ProfessorElmsLab_EventScript_RightSignAlt
-	msgbox NewBarkTown_ProfessorElmsLab_Text_SaveOptionInMenu
-	releaseall
-	end
-
-NewBarkTown_ProfessorElmsLab_EventScript_RightSignAlt::
-	msgbox NewBarkTown_ProfessorElmsLab_Text_AllMonTypesHaveStrongAndWeakPoints
-	releaseall
-	end
+// NewBarkTown_ProfessorElmsLab_EventScript_SetSkipPokeBallCheck::
+// 	setflag FLAG_OAK_SKIP_22_RIVAL_CHECK
+// 	return
+
+// NewBarkTown_ProfessorElmsLab_EventScript_SetNationalDexSceneFinished::
+// 	setvar VAR_MAP_SCENE_NEW_BARK_TOWN_PROFESSOR_ELMS_LAB, 9
+// 	return
+
+// NewBarkTown_ProfessorElmsLab_EventScript_ReadyElmForStarterScene::
+// 	setobjectxyperm LOCALID_PROF_ELM, 6, 11
+// 	setobjectmovementtype LOCALID_PROF_OAK, MOVEMENT_TYPE_FACE_UP
+// 	savebgm MUS_OAK
+// 	return
+
+// NewBarkTown_ProfessorElmsLab_EventScript_ReadyOakForNationalDexScene::
+// 	setobjectxyperm LOCALID_PROF_OAK, 6, 11
+// 	setobjectmovementtype LOCALID_PROF_OAK, MOVEMENT_TYPE_FACE_UP
+// 	return
+
+// NewBarkTown_ProfessorElmsLab_EventScript_ReadyOakForUnlockJohtoScene::
+// 	setobjectxyperm LOCALID_PROF_OAK, 6, 11
+// 	setobjectmovementtype LOCALID_PROF_OAK, MOVEMENT_TYPE_FACE_UP
+// 	return
+
+
+
+// NewBarkTown_ProfessorElmsLab_OnFrame::
+// 	map_script_2 VAR_MAP_SCENE_NEW_BARK_TOWN_PROFESSOR_ELMS_LAB, 1, NewBarkTown_ProfessorElmsLab_ChooseStarterScene
+// 	map_script_2 VAR_MAP_SCENE_NEW_BARK_TOWN_PROFESSOR_ELMS_LAB, 7, NewBarkTown_ProfessorElmsLab_EventScript_EnterForNationalDexScene
+// 	map_script_2 VAR_MAP_SCENE_NEW_BARK_TOWN_PROFESSOR_ELMS_LAB, 10, NewBarkTown_ProfessorElmsLab_EventScript_EnterForUnlockJohtoScene
+// 	.2byte 0
+
+// NewBarkTown_ProfessorElmsLab_EventScript_EnterForUnlockJohtoScene::
+// 	lockall
+// 	setvar VAR_FACING, DIR_NORTH
+// 	textcolor NPC_TEXT_COLOR_MALE
+// 	applymovement LOCALID_PROF_OAK, NewBarkTown_ProfessorElmsLab_Movement_OakEnter
+// 	waitmovement 0
+// 	removeobject LOCALID_PROF_OAK
+// 	setobjectxyperm LOCALID_PROF_OAK, 6, 3
+// 	setobjectmovementtype LOCALID_PROF_OAK, MOVEMENT_TYPE_FACE_DOWN
+// 	clearflag FLAG_HIDE_OAK_IN_HIS_LAB
+// 	applymovement OBJ_EVENT_ID_PLAYER, NewBarkTown_ProfessorElmsLab_Movement_PlayerEnter
+// 	waitmovement 0
+// 	goto NewBarkTown_ProfessorElmsLab_EventScript_UnlockJohtoScene
+// 	end
+
+// NewBarkTown_ProfessorElmsLab_EventScript_UnlockJohtoScene::
+// 	msgbox NewBarkTown_ProfessorElmsLab_Text_NeighbouringJohtoRegionNeedsHelp
+// 	closemessage
+// 	msgbox NewBarkTown_ProfessorElmsLab_Text_PokemonWillBeStoredSafely
+// 	setvar VAR_MAP_SCENE_NEW_BARK_TOWN_PROFESSOR_ELMS_LAB, 11
+// 	@ TODO: Fade out and teleport in front of Professor ELM's lab in New Bark Town with Professor OAK, continue the conversation and then OAK walks off to Mr Pokemon on Route 30
+// 	goto NewBarkTown_ProfessorElmsLab_EventScript_UnlockJohtoScene_FadeOut
+// 	end
+
+// NewBarkTown_ProfessorElmsLab_EventScript_UnlockJohtoScene_FadeOut::
+// 	setvar VAR_TEMP_1, 1
+// 	setrespawn SPAWN_NEW_BARK_TOWN
+// 	fadescreenspeed FADE_TO_BLACK, 24
+// 	special TeleportToNewBarkTown
+// 	releaseall
+// 	end
+
+// NewBarkTown_ProfessorElmsLab_EventScript_EnterForNationalDexScene:: @ 8169002 
+// 	lockall
+// 	setvar VAR_FACING, DIR_NORTH
+// 	textcolor NPC_TEXT_COLOR_MALE
+// 	applymovement LOCALID_PROF_OAK, NewBarkTown_ProfessorElmsLab_Movement_OakEnter
+// 	waitmovement 0
+// 	removeobject LOCALID_PROF_OAK
+// 	setobjectxyperm LOCALID_PROF_OAK, 6, 3
+// 	setobjectmovementtype LOCALID_PROF_OAK, MOVEMENT_TYPE_FACE_DOWN
+// 	clearflag FLAG_HIDE_OAK_IN_HIS_LAB
+// 	applymovement OBJ_EVENT_ID_PLAYER, NewBarkTown_ProfessorElmsLab_Movement_PlayerEnter
+// 	waitmovement 0
+// 	goto NewBarkTown_ProfessorElmsLab_EventScript_NationalDexScene
+// 	end
+
+// NewBarkTown_ProfessorElmsLab_EventScript_NationalDexScene::
+// 	msgbox NewBarkTown_ProfessorElmsLab_Text_OakSightingsOfRareMons
+// 	closemessage
+// 	call_if_eq VAR_FACING, DIR_NORTH, NewBarkTown_ProfessorElmsLab_EventScript_NationalDexSceneRivalEnterNorth
+// 	call_if_eq VAR_FACING, DIR_SOUTH, NewBarkTown_ProfessorElmsLab_EventScript_NationalDexSceneRivalEnterSouth
+// 	call_if_eq VAR_FACING, DIR_EAST, NewBarkTown_ProfessorElmsLab_EventScript_NationalDexSceneRivalEnterEastWest
+// 	call_if_eq VAR_FACING, DIR_WEST, NewBarkTown_ProfessorElmsLab_EventScript_NationalDexSceneRivalEnterEastWest
+// 	msgbox NewBarkTown_ProfessorElmsLab_Text_RivalJustLetMeHandleEverything
+// 	fadedefaultbgm
+// 	msgbox NewBarkTown_ProfessorElmsLab_Text_OakNeedYourHelpTooNeedToSeePokedexes
+// 	call_if_eq VAR_FACING, DIR_NORTH, NewBarkTown_ProfessorElmsLab_EventScript_PlayerFaceOakNorth
+// 	call_if_eq VAR_FACING, DIR_WEST, NewBarkTown_ProfessorElmsLab_EventScript_PlayerFaceOakWest
+// 	textcolor NPC_TEXT_COLOR_NEUTRAL
+// 	msgbox NewBarkTown_ProfessorElmsLab_Text_OakTookBothPokedexUnits
+// 	closemessage
+// 	call EventScript_RestorePrevTextColor
+// 	call_if_eq VAR_FACING, DIR_NORTH, NewBarkTown_ProfessorElmsLab_EventScript_OakBringDexesToDeskNorth
+// 	call_if_eq VAR_FACING, DIR_SOUTH, NewBarkTown_ProfessorElmsLab_EventScript_OakBringDexesToDeskSouth
+// 	call_if_eq VAR_FACING, DIR_EAST, NewBarkTown_ProfessorElmsLab_EventScript_OakBringDexesToDeskEast
+// 	call_if_eq VAR_FACING, DIR_WEST, NewBarkTown_ProfessorElmsLab_EventScript_OakBringDexesToDeskWest
+// 	addobject LOCALID_POKEDEX_1
+// 	addobject LOCALID_POKEDEX_2
+// 	delay 30
+// 	msgbox NewBarkTown_ProfessorElmsLab_Text_OakNowTheseUnitsCanRecordMoreData
+// 	closemessage
+// 	removeobject LOCALID_POKEDEX_1
+// 	removeobject LOCALID_POKEDEX_2
+// 	delay 30
+// 	call_if_eq VAR_FACING, DIR_NORTH, NewBarkTown_ProfessorElmsLab_EventScript_OakBringDexesOverNorth
+// 	call_if_eq VAR_FACING, DIR_SOUTH, NewBarkTown_ProfessorElmsLab_EventScript_OakBringDexesOverSouth
+// 	call_if_eq VAR_FACING, DIR_EAST, NewBarkTown_ProfessorElmsLab_EventScript_OakBringDexesOverEast
+// 	call_if_eq VAR_FACING, DIR_WEST, NewBarkTown_ProfessorElmsLab_EventScript_OakBringDexesOverWest
+// 	textcolor NPC_TEXT_COLOR_NEUTRAL
+// 	playfanfare MUS_OBTAIN_KEY_ITEM
+// 	message NewBarkTown_ProfessorElmsLab_Text_PlayersPokedexWasUpgraded
+// 	waitmessage
+// 	waitfanfare
+// 	call EventScript_RestorePrevTextColor
+// 	special EnableNationalPokedex
+// 	msgbox NewBarkTown_ProfessorElmsLab_Text_OakMustReallyWorkToFillPokedex
+// 	msgbox NewBarkTown_ProfessorElmsLab_Text_RivalIllCompleteThePokedex
+// 	closemessage
+// 	playbgm MUS_RIVAL_EXIT, 0
+// 	call_if_eq VAR_FACING, DIR_NORTH, NewBarkTown_ProfessorElmsLab_EventScript_RivalExitNorth
+// 	call_if_eq VAR_FACING, DIR_SOUTH, NewBarkTown_ProfessorElmsLab_EventScript_RivalExit
+// 	call_if_eq VAR_FACING, DIR_EAST, NewBarkTown_ProfessorElmsLab_EventScript_RivalExit
+// 	call_if_eq VAR_FACING, DIR_WEST, NewBarkTown_ProfessorElmsLab_EventScript_RivalExit
+// 	removeobject LOCALID_RIVAL
+// 	fadedefaultbgm
+// 	setvar VAR_MAP_SCENE_NEW_BARK_TOWN_PROFESSOR_ELMS_LAB, 8
+// 	releaseall
+// 	end
+
+// NewBarkTown_ProfessorElmsLab_EventScript_NationalDexSceneRivalEnterNorth::
+// 	setobjectxyperm LOCALID_RIVAL, 5, 10
+// 	addobject LOCALID_RIVAL
+// 	playbgm MUS_ENCOUNTER_RIVAL, 0
+// 	applymovement OBJ_EVENT_ID_PLAYER, NewBarkTown_ProfessorElmsLab_Movement_WatchRivalEnterNorth
+// 	applymovement LOCALID_RIVAL, NewBarkTown_ProfessorElmsLab_Movement_RivalEnter
+// 	waitmovement 0
+// 	return
+
+// NewBarkTown_ProfessorElmsLab_EventScript_NationalDexSceneRivalEnterEastWest::
+// 	setobjectxyperm LOCALID_RIVAL, 6, 10
+// 	addobject LOCALID_RIVAL
+// 	playbgm MUS_ENCOUNTER_RIVAL, 0
+// 	applymovement LOCALID_PROF_OAK, Common_Movement_WalkInPlaceFasterDown
+// 	applymovement OBJ_EVENT_ID_PLAYER, NewBarkTown_ProfessorElmsLab_Movement_WatchRivalEnterEastWest
+// 	applymovement LOCALID_RIVAL, NewBarkTown_ProfessorElmsLab_Movement_RivalEnter
+// 	waitmovement 0
+// 	return
+
+// NewBarkTown_ProfessorElmsLab_EventScript_NationalDexSceneRivalEnterSouth::
+// 	setobjectxyperm LOCALID_RIVAL, 6, 10
+// 	addobject LOCALID_RIVAL
+// 	playbgm MUS_ENCOUNTER_RIVAL, 0
+// 	applymovement LOCALID_PROF_OAK, Common_Movement_WalkInPlaceFasterDown
+// 	applymovement LOCALID_RIVAL, NewBarkTown_ProfessorElmsLab_Movement_RivalEnter
+// 	waitmovement 0
+// 	return
+
+// NewBarkTown_ProfessorElmsLab_EventScript_PlayerFaceOakNorth::
+// 	applymovement OBJ_EVENT_ID_PLAYER, Common_Movement_WalkInPlaceFasterUp
+// 	waitmovement 0
+// 	return
+
+// NewBarkTown_ProfessorElmsLab_EventScript_PlayerFaceOakWest::
+// 	applymovement OBJ_EVENT_ID_PLAYER, Common_Movement_WalkInPlaceFasterLeft
+// 	waitmovement 0
+// 	return
+
+// NewBarkTown_ProfessorElmsLab_EventScript_OakBringDexesToDeskNorth::
+// 	applymovement LOCALID_PROF_OAK, NewBarkTown_ProfessorElmsLab_Movement_OakBringDexesToDesk
+// 	waitmovement 0
+// 	return
+
+// NewBarkTown_ProfessorElmsLab_EventScript_OakBringDexesToDeskSouth::
+// 	applymovement LOCALID_PROF_OAK, NewBarkTown_ProfessorElmsLab_Movement_OakBringDexesToDeskSouth
+// 	applymovement OBJ_EVENT_ID_PLAYER, NewBarkTown_ProfessorElmsLab_Movement_WatchOakWalkToDesk
+// 	applymovement LOCALID_RIVAL, NewBarkTown_ProfessorElmsLab_Movement_WatchOakWalkToDesk
+// 	waitmovement LOCALID_PROF_OAK
+// 	return
+
+// NewBarkTown_ProfessorElmsLab_EventScript_OakBringDexesToDeskEast::
+// 	applymovement LOCALID_PROF_OAK, NewBarkTown_ProfessorElmsLab_Movement_OakBringDexesToDesk
+// 	applymovement OBJ_EVENT_ID_PLAYER, NewBarkTown_ProfessorElmsLab_Movement_WatchOakWalkToDeskEast
+// 	waitmovement LOCALID_PROF_OAK
+// 	return
+
+// NewBarkTown_ProfessorElmsLab_EventScript_OakBringDexesToDeskWest::
+// 	applymovement LOCALID_PROF_OAK, NewBarkTown_ProfessorElmsLab_Movement_OakBringDexesToDesk
+// 	waitmovement 0
+// 	return
+
+// NewBarkTown_ProfessorElmsLab_Movement_OakBringDexesToDesk::
+// 	walk_up
+// 	walk_left
+// 	walk_in_place_faster_up
+// 	delay_16
+// 	delay_4
+// 	step_end
+
+// NewBarkTown_ProfessorElmsLab_Movement_OakBringDexesToDeskSouth::
+// 	walk_left
+// 	walk_left
+// 	walk_up
+// 	delay_16
+// 	delay_4
+// 	step_end
+
+// NewBarkTown_ProfessorElmsLab_ChooseStarterScene::
+// 	lockall
+// 	textcolor NPC_TEXT_COLOR_MALE
+// 	applymovement LOCALID_PROF_OAK, NewBarkTown_ProfessorElmsLab_Movement_OakEnter
+// 	waitmovement 0
+// 	removeobject LOCALID_PROF_OAK
+// 	setobjectxyperm LOCALID_PROF_OAK, 6, 3
+// 	setobjectmovementtype LOCALID_PROF_OAK, MOVEMENT_TYPE_FACE_DOWN
+// 	clearflag FLAG_HIDE_OAK_IN_HIS_LAB
+// 	applymovement OBJ_EVENT_ID_PLAYER, NewBarkTown_ProfessorElmsLab_Movement_PlayerEnter
+// 	waitmovement 0
+// 	applymovement LOCALID_RIVAL, Common_Movement_WalkInPlaceFasterUp
+// 	waitmovement 0
+// 	clearflag FLAG_DONT_TRANSITION_MUSIC
+// 	savebgm MUS_DUMMY
+// 	fadedefaultbgm
+// 	msgbox NewBarkTown_ProfessorElmsLab_Text_RivalFedUpWithWaiting
+// 	closemessage
+// 	delay 60
+// 	msgbox NewBarkTown_ProfessorElmsLab_Text_OakThreeMonsChooseOne
+// 	closemessage
+// 	delay 30
+// 	applymovement LOCALID_RIVAL, NewBarkTown_ProfessorElmsLab_Movement_RivalReact
+// 	waitmovement 0
+// 	msgbox NewBarkTown_ProfessorElmsLab_Text_RivalNoFairWhatAboutMe
+// 	msgbox NewBarkTown_ProfessorElmsLab_Text_OakBePatientRival
+// 	setvar VAR_MAP_SCENE_NEW_BARK_TOWN_PROFESSOR_ELMS_LAB, 2
+// 	releaseall
+// 	end
+
+// NewBarkTown_ProfessorElmsLab_Movement_OakEnter::
+// 	walk_up
+// 	walk_up
+// 	walk_up
+// 	walk_up
+// 	walk_up
+// 	walk_up
+// 	step_end
+
+// NewBarkTown_ProfessorElmsLab_Movement_PlayerEnter::
+// 	walk_up
+// 	walk_up
+// 	walk_up
+// 	walk_up
+// 	walk_up
+// 	walk_up
+// 	walk_up
+// 	walk_up
+// 	step_end
+
+// NewBarkTown_ProfessorElmsLab_Movement_RivalReact::
+// 	walk_in_place_up
+// 	walk_in_place_up
+// 	step_end
+
+// NewBarkTown_ProfessorElmsLab_EventScript_LeaveStarterSceneTrigger::
+// 	lockall
+// 	textcolor NPC_TEXT_COLOR_MALE
+// 	applymovement LOCALID_PROF_OAK, Common_Movement_FaceDown
+// 	waitmovement 0
+// 	msgbox NewBarkTown_ProfessorElmsLab_Text_OakHeyDontGoAwayYet
+// 	closemessage
+// 	applymovement OBJ_EVENT_ID_PLAYER, NewBarkTown_ProfessorElmsLab_Movement_PlayerWalkUp
+// 	waitmovement 0
+// 	releaseall
+// 	end
+
+// NewBarkTown_ProfessorElmsLab_Movement_PlayerWalkUp::
+// 	walk_up
+// 	step_end
+
+// NewBarkTown_ProfessorElmsLab_EventScript_RivalBattleTriggerLeft::
+// 	lockall
+// 	setvar VAR_TEMP_2, 1
+// 	goto NewBarkTown_ProfessorElmsLab_EventScript_RivalBattle
+// 	end
+
+// NewBarkTown_ProfessorElmsLab_EventScript_RivalBattleTriggerMid::
+// 	lockall
+// 	setvar VAR_TEMP_2, 2
+// 	goto NewBarkTown_ProfessorElmsLab_EventScript_RivalBattle
+// 	end
+
+// NewBarkTown_ProfessorElmsLab_EventScript_RivalBattleTriggerRight::
+// 	lockall
+// 	setvar VAR_TEMP_2, 3
+// 	goto NewBarkTown_ProfessorElmsLab_EventScript_RivalBattle
+// 	end
+
+// NewBarkTown_ProfessorElmsLab_EventScript_RivalBattle::
+// 	textcolor NPC_TEXT_COLOR_MALE
+// 	playbgm MUS_ENCOUNTER_RIVAL, 0
+// 	applymovement LOCALID_RIVAL, Common_Movement_WalkInPlaceFasterDown
+// 	waitmovement 0
+// 	applymovement OBJ_EVENT_ID_PLAYER, Common_Movement_WalkInPlaceFasterUp
+// 	waitmovement 0
+// 	msgbox NewBarkTown_ProfessorElmsLab_Text_RivalLetsCheckOutMons
+// 	closemessage
+// 	applymovement LOCALID_PROF_OAK, Common_Movement_FaceDown
+// 	waitmovement 0
+// 	goto_if_eq VAR_STARTER_MON, 0, NewBarkTown_ProfessorElmsLab_EventScript_RivalApproachForBattleCyndaquil
+// 	goto_if_eq VAR_STARTER_MON, 1, NewBarkTown_ProfessorElmsLab_EventScript_RivalApproachForBattleChikorita
+// 	goto_if_eq VAR_STARTER_MON, 2, NewBarkTown_ProfessorElmsLab_EventScript_RivalApproachForBattleTotodile
+// 	end
+
+// @ The scripts for the rival approaching the player for battle are a bit bloated because
+// @ both the player and rival can be in 3 different positions, so theres 9 different approaches
+// @ NOTE: Names below refer to the Rival's mon (e.g. for RivalBattleTotodile, player has Cyndaquil)
+
+// NewBarkTown_ProfessorElmsLab_EventScript_RivalApproachForBattleTotodile::
+// 	goto_if_eq VAR_TEMP_2, 1, NewBarkTown_ProfessorElmsLab_EventScript_RivalApproachForBattleTotodileLeft
+// 	goto_if_eq VAR_TEMP_2, 2, NewBarkTown_ProfessorElmsLab_EventScript_RivalApproachForBattleTotodileMid
+// 	goto_if_eq VAR_TEMP_2, 3, NewBarkTown_ProfessorElmsLab_EventScript_RivalApproachForBattleTotodileRight
+// 	end
+
+// NewBarkTown_ProfessorElmsLab_EventScript_RivalApproachForBattleTotodileLeft::
+// 	applymovement LOCALID_RIVAL, NewBarkTown_ProfessorElmsLab_Movement_RivalApproachForBattleTotodileLeft
+// 	waitmovement 0
+// 	goto NewBarkTown_ProfessorElmsLab_EventScript_RivalBattleTotodile
+// 	end
+
+// NewBarkTown_ProfessorElmsLab_EventScript_RivalApproachForBattleTotodileMid::
+// 	applymovement LOCALID_RIVAL, NewBarkTown_ProfessorElmsLab_Movement_RivalApproachForBattleTotodileMid
+// 	waitmovement 0
+// 	goto NewBarkTown_ProfessorElmsLab_EventScript_RivalBattleTotodile
+// 	end
+
+// NewBarkTown_ProfessorElmsLab_EventScript_RivalApproachForBattleTotodileRight::
+// 	applymovement LOCALID_RIVAL, NewBarkTown_ProfessorElmsLab_Movement_RivalApproachForBattleTotodileRight
+// 	waitmovement 0
+// 	goto NewBarkTown_ProfessorElmsLab_EventScript_RivalBattleTotodile
+// 	end
+
+// NewBarkTown_ProfessorElmsLab_EventScript_RivalBattleTotodile::
+// 	trainerbattle_earlyrival TRAINER_RIVAL_OAKS_LAB_TOTODILE, RIVAL_BATTLE_TUTORIAL, NewBarkTown_ProfessorElmsLab_Text_RivalDefeat, Text_RivalVictory
+// 	goto NewBarkTown_ProfessorElmsLab_EventScript_EndRivalBattle
+// 	end
+
+// NewBarkTown_ProfessorElmsLab_Movement_RivalApproachForBattleTotodileLeft::
+// 	walk_left
+// 	walk_left
+// 	walk_left
+// 	walk_left
+// 	walk_down
+// 	walk_down
+// 	step_end
+
+// NewBarkTown_ProfessorElmsLab_Movement_RivalApproachForBattleTotodileMid::
+// 	walk_left
+// 	walk_left
+// 	walk_left
+// 	walk_down
+// 	walk_down
+// 	step_end
+
+// NewBarkTown_ProfessorElmsLab_Movement_RivalApproachForBattleTotodileRight::
+// 	walk_left
+// 	walk_left
+// 	walk_down
+// 	walk_down
+// 	step_end
+
+// NewBarkTown_ProfessorElmsLab_EventScript_RivalApproachForBattleCyndaquil::
+// 	goto_if_eq VAR_TEMP_2, 1, NewBarkTown_ProfessorElmsLab_EventScript_RivalApproachForBattleCyndaquilLeft
+// 	goto_if_eq VAR_TEMP_2, 2, NewBarkTown_ProfessorElmsLab_EventScript_RivalApproachForBattleCyndaquilMid
+// 	goto_if_eq VAR_TEMP_2, 3, NewBarkTown_ProfessorElmsLab_EventScript_RivalApproachForBattleCyndaquilRight
+// 	end
+
+// NewBarkTown_ProfessorElmsLab_EventScript_RivalApproachForBattleCyndaquilLeft::
+// 	applymovement LOCALID_RIVAL, NewBarkTown_ProfessorElmsLab_Movement_ApproachForBattleCyndaquilLeft
+// 	waitmovement 0
+// 	goto NewBarkTown_ProfessorElmsLab_EventScript_RivalBattleCyndaquil
+// 	end
+
+// NewBarkTown_ProfessorElmsLab_EventScript_RivalApproachForBattleCyndaquilMid::
+// 	applymovement LOCALID_RIVAL, NewBarkTown_ProfessorElmsLab_Movement_ApproachForBattleCyndaquilMid
+// 	waitmovement 0
+// 	goto NewBarkTown_ProfessorElmsLab_EventScript_RivalBattleCyndaquil
+// 	end
+
+// NewBarkTown_ProfessorElmsLab_EventScript_RivalApproachForBattleCyndaquilRight::
+// 	applymovement LOCALID_RIVAL, NewBarkTown_ProfessorElmsLab_Movement_ApproachForBattleCyndaquilRight
+// 	waitmovement 0
+// 	goto NewBarkTown_ProfessorElmsLab_EventScript_RivalBattleCyndaquil
+// 	end
+
+// NewBarkTown_ProfessorElmsLab_EventScript_RivalBattleCyndaquil::
+// 	trainerbattle_earlyrival TRAINER_RIVAL_OAKS_LAB_CYNDAQUIL, RIVAL_BATTLE_TUTORIAL, NewBarkTown_ProfessorElmsLab_Text_RivalDefeat, Text_RivalVictory
+// 	goto NewBarkTown_ProfessorElmsLab_EventScript_EndRivalBattle
+// 	end
+
+// NewBarkTown_ProfessorElmsLab_Movement_ApproachForBattleCyndaquilLeft::
+// 	walk_left
+// 	walk_left
+// 	walk_left
+// 	walk_left
+// 	walk_left
+// 	walk_down
+// 	walk_down
+// 	step_end
+
+// NewBarkTown_ProfessorElmsLab_Movement_ApproachForBattleCyndaquilMid::
+// 	walk_left
+// 	walk_left
+// 	walk_left
+// 	walk_left
+// 	walk_down
+// 	walk_down
+// 	step_end
+
+// NewBarkTown_ProfessorElmsLab_Movement_ApproachForBattleCyndaquilRight::
+// 	walk_left
+// 	walk_left
+// 	walk_left
+// 	walk_down
+// 	walk_down
+// 	step_end
+
+// NewBarkTown_ProfessorElmsLab_EventScript_RivalApproachForBattleChikorita::
+// 	goto_if_eq VAR_TEMP_2, 1, NewBarkTown_ProfessorElmsLab_EventScript_RivalApproachForBattleChikoritaLeft
+// 	goto_if_eq VAR_TEMP_2, 2, NewBarkTown_ProfessorElmsLab_EventScript_RivalApproachForBattleChikoritaMid
+// 	goto_if_eq VAR_TEMP_2, 3, NewBarkTown_ProfessorElmsLab_EventScript_RivalApproachForBattleChikoritaRight
+// 	end
+
+// NewBarkTown_ProfessorElmsLab_EventScript_RivalApproachForBattleChikoritaLeft::
+// 	applymovement LOCALID_RIVAL, NewBarkTown_ProfessorElmsLab_Movement_RivalApproachForBattleChikoritaLeft
+// 	waitmovement 0
+// 	goto NewBarkTown_ProfessorElmsLab_EventScript_RivalBattleChikorita
+// 	end
+
+// NewBarkTown_ProfessorElmsLab_EventScript_RivalApproachForBattleChikoritaMid::
+// 	applymovement LOCALID_RIVAL, NewBarkTown_ProfessorElmsLab_Movement_RivalApproachForBattleChikoritaMid
+// 	waitmovement 0
+// 	goto NewBarkTown_ProfessorElmsLab_EventScript_RivalBattleChikorita
+// 	end
+
+// NewBarkTown_ProfessorElmsLab_EventScript_RivalApproachForBattleChikoritaRight::
+// 	applymovement LOCALID_RIVAL, NewBarkTown_ProfessorElmsLab_Movement_RivalApproachForBattleChikoritaRight
+// 	waitmovement 0
+// 	goto NewBarkTown_ProfessorElmsLab_EventScript_RivalBattleChikorita
+// 	end
+
+// NewBarkTown_ProfessorElmsLab_EventScript_RivalBattleChikorita::
+// 	trainerbattle_earlyrival TRAINER_RIVAL_OAKS_LAB_CHIKORITA, RIVAL_BATTLE_TUTORIAL, NewBarkTown_ProfessorElmsLab_Text_RivalDefeat, Text_RivalVictory
+// 	goto NewBarkTown_ProfessorElmsLab_EventScript_EndRivalBattle
+// 	end
+
+// NewBarkTown_ProfessorElmsLab_Movement_RivalApproachForBattleChikoritaLeft::
+// 	walk_left
+// 	walk_left
+// 	walk_left
+// 	walk_down
+// 	walk_down
+// 	step_end
+
+// NewBarkTown_ProfessorElmsLab_Movement_RivalApproachForBattleChikoritaMid::
+// 	walk_left
+// 	walk_left
+// 	walk_down
+// 	walk_down
+// 	step_end
+
+// NewBarkTown_ProfessorElmsLab_Movement_RivalApproachForBattleChikoritaRight::
+// 	walk_left
+// 	walk_down
+// 	walk_down
+// 	step_end
+
+// NewBarkTown_ProfessorElmsLab_EventScript_EndRivalBattle::
+// 	special HealPlayerParty
+// 	msgbox NewBarkTown_ProfessorElmsLab_Text_RivalGoToughenMyMon
+// 	closemessage
+// 	playbgm MUS_RIVAL_EXIT, 0
+// 	call_if_eq VAR_TEMP_2, 1, NewBarkTown_ProfessorElmsLab_EventScript_RivalExitAfterBattleLeft
+// 	call_if_eq VAR_TEMP_2, 2, NewBarkTown_ProfessorElmsLab_EventScript_RivalExitAfterBattleMid
+// 	call_if_eq VAR_TEMP_2, 3, NewBarkTown_ProfessorElmsLab_EventScript_RivalExitAfterBattleRight
+// 	removeobject LOCALID_RIVAL
+// 	playse SE_EXIT
+// 	fadedefaultbgm
+// 	setvar VAR_MAP_SCENE_NEW_BARK_TOWN_PROFESSOR_ELMS_LAB, 4
+// 	setflag FLAG_BEAT_RIVAL_IN_OAKS_LAB
+// 	releaseall
+// 	end
+
+// NewBarkTown_ProfessorElmsLab_EventScript_RivalExitAfterBattleLeft::
+// 	applymovement LOCALID_RIVAL, NewBarkTown_ProfessorElmsLab_Movement_RivalExitAfterBattleLeft
+// 	applymovement OBJ_EVENT_ID_PLAYER, NewBarkTown_ProfessorElmsLab_Movement_PlayerWatchRivalExitAfterBattle
+// 	waitmovement LOCALID_RIVAL
+// 	return
+
+// NewBarkTown_ProfessorElmsLab_EventScript_RivalExitAfterBattleMid::
+// 	applymovement LOCALID_RIVAL, NewBarkTown_ProfessorElmsLab_Movement_RivalExitAfterBattleMid
+// 	applymovement OBJ_EVENT_ID_PLAYER, NewBarkTown_ProfessorElmsLab_Movement_PlayerWatchRivalExitAfterBattle
+// 	waitmovement LOCALID_RIVAL
+// 	return
+
+// NewBarkTown_ProfessorElmsLab_EventScript_RivalExitAfterBattleRight::
+// 	applymovement LOCALID_RIVAL, NewBarkTown_ProfessorElmsLab_Movement_RivalExitAfterBattleRight
+// 	applymovement OBJ_EVENT_ID_PLAYER, NewBarkTown_ProfessorElmsLab_Movement_PlayerWatchRivalExitAfterBattleRight
+// 	waitmovement LOCALID_RIVAL
+// 	return
+
+// NewBarkTown_ProfessorElmsLab_Movement_RivalExitAfterBattleLeft::
+// 	walk_right
+// 	walk_down
+// 	walk_down
+// 	walk_down
+// 	walk_down
+// 	walk_down
+// 	delay_8
+// 	step_end
+
+// NewBarkTown_ProfessorElmsLab_Movement_RivalExitAfterBattleRight::
+// 	walk_left
+// 	walk_down
+// 	walk_down
+// 	walk_down
+// 	walk_down
+// 	walk_down
+// 	delay_8
+// 	step_end
+
+// NewBarkTown_ProfessorElmsLab_Movement_RivalExitAfterBattleMid::
+// 	walk_right
+// 	walk_down
+// 	walk_down
+// 	walk_down
+// 	walk_left
+// 	walk_down
+// 	walk_down
+// 	delay_8
+// 	step_end
+
+// NewBarkTown_ProfessorElmsLab_Movement_PlayerWatchRivalExitAfterBattle::
+// 	delay_16
+// 	delay_8
+// 	walk_in_place_faster_right
+// 	delay_16
+// 	walk_in_place_faster_down
+// 	step_end
+
+// NewBarkTown_ProfessorElmsLab_Movement_PlayerWatchRivalExitAfterBattleRight::
+// 	delay_16
+// 	delay_8
+// 	walk_in_place_faster_left
+// 	delay_16
+// 	walk_in_place_faster_down
+// 	step_end
+
+// NewBarkTown_ProfessorElmsLab_EventScript_Rival::
+// 	lock
+// 	faceplayer
+// 	goto_if_eq VAR_MAP_SCENE_NEW_BARK_TOWN_PROFESSOR_ELMS_LAB, 3, NewBarkTown_ProfessorElmsLab_EventScript_RivalChoseStarter
+// 	goto_if_eq VAR_MAP_SCENE_NEW_BARK_TOWN_PROFESSOR_ELMS_LAB, 2, NewBarkTown_ProfessorElmsLab_EventScript_RivalWaitingForStarter
+// 	msgbox NewBarkTown_ProfessorElmsLab_Text_RivalGrampsIsntAround
+// 	release
+// 	end
+
+// NewBarkTown_ProfessorElmsLab_EventScript_RivalWaitingForStarter::
+// 	msgbox NewBarkTown_ProfessorElmsLab_Text_RivalGoChoosePlayer
+// 	release
+// 	end
+
+// NewBarkTown_ProfessorElmsLab_EventScript_RivalChoseStarter::
+// 	msgbox NewBarkTown_ProfessorElmsLab_Text_RivalMyMonLooksTougher
+// 	release
+// 	end
+
+// @ TODO: Add VAR_MAP_SCENE_NEW_BARK_TOWN_PROFESSOR_ELMS_LAB value 10 here? Or value 11?
+// NewBarkTown_ProfessorElmsLab_EventScript_ProfOak::
+// 	lock
+// 	faceplayer
+// 	goto_if_set SHOWED_OAK_COMPLETE_DEX, NewBarkTown_ProfessorElmsLab_EventScript_OakJustShownCompleteDex
+// 	goto_if_eq VAR_MAP_SCENE_NEW_BARK_TOWN_PROFESSOR_ELMS_LAB, 9, NewBarkTown_ProfessorElmsLab_EventScript_RatePokedex
+// 	goto_if_eq VAR_MAP_SCENE_NEW_BARK_TOWN_PROFESSOR_ELMS_LAB, 8, NewBarkTown_ProfessorElmsLab_EventScript_MonsAroundWorldWait
+// 	goto_if_set FLAG_SYS_GAME_CLEAR, NewBarkTown_ProfessorElmsLab_EventScript_TryStartNationalDexScene
+// 	goto_if_eq VAR_MAP_SCENE_CERULEAN_CITY_RIVAL, 1, NewBarkTown_ProfessorElmsLab_EventScript_RatePokedex
+// 	goto_if_eq VAR_MAP_SCENE_NEW_BARK_TOWN_PROFESSOR_ELMS_LAB, 6, NewBarkTown_ProfessorElmsLab_EventScript_RatePokedexOrTryGiveBalls
+// 	goto_if_ge VAR_MAP_SCENE_VIRIDIAN_CITY_MART, 1, NewBarkTown_ProfessorElmsLab_EventScript_ReceiveDexScene
+// 	goto_if_eq VAR_MAP_SCENE_NEW_BARK_TOWN_PROFESSOR_ELMS_LAB, 4, NewBarkTown_ProfessorElmsLab_EventScript_OakBattleMonForItToGrow
+// 	goto_if_eq VAR_MAP_SCENE_NEW_BARK_TOWN_PROFESSOR_ELMS_LAB, 3, NewBarkTown_ProfessorElmsLab_EventScript_OakCanReachNextTownWithMon
+// 	msgbox NewBarkTown_ProfessorElmsLab_Text_OakWhichOneWillYouChoose
+// 	release
+// 	end
+
+// NewBarkTown_ProfessorElmsLab_EventScript_OakJustShownCompleteDex::
+// 	msgbox PokedexRating_Text_ThankYouMadeDreamReality
+// 	release
+// 	end
+
+// NewBarkTown_ProfessorElmsLab_EventScript_OakCanReachNextTownWithMon::
+// 	msgbox NewBarkTown_ProfessorElmsLab_Text_OakCanReachNextTownWithMon
+// 	release
+// 	end
+
+// NewBarkTown_ProfessorElmsLab_EventScript_OakBattleMonForItToGrow::
+// 	msgbox NewBarkTown_ProfessorElmsLab_Text_OakBattleMonForItToGrow
+// 	release
+// 	end
+
+// NewBarkTown_ProfessorElmsLab_EventScript_ReceiveDexScene::
+// 	msgbox NewBarkTown_ProfessorElmsLab_Text_OakHaveSomethingForMe
+// 	textcolor NPC_TEXT_COLOR_NEUTRAL
+// 	playfanfare MUS_OBTAIN_TMHM
+// 	message NewBarkTown_ProfessorElmsLab_Text_DeliveredOaksParcel
+// 	waitmessage
+// 	waitfanfare
+// 	call EventScript_RestorePrevTextColor
+// 	removeitem ITEM_OAKS_PARCEL
+// 	msgbox NewBarkTown_ProfessorElmsLab_Text_OakCustomBallIOrdered
+// 	playbgm MUS_ENCOUNTER_RIVAL, 0
+// 	msgbox NewBarkTown_ProfessorElmsLab_Text_RivalGramps
+// 	closemessage
+// 	call_if_eq VAR_FACING, DIR_NORTH, NewBarkTown_ProfessorElmsLab_EventScript_DexSceneRivalEnterNorth
+// 	call_if_eq VAR_FACING, DIR_SOUTH, NewBarkTown_ProfessorElmsLab_EventScript_DexSceneRivalEnterSouth
+// 	call_if_eq VAR_FACING, DIR_EAST, NewBarkTown_ProfessorElmsLab_EventScript_DexSceneRivalEnterEastWest
+// 	call_if_eq VAR_FACING, DIR_WEST, NewBarkTown_ProfessorElmsLab_EventScript_DexSceneRivalEnterEastWest
+// 	fadedefaultbgm
+// 	msgbox NewBarkTown_ProfessorElmsLab_Text_RivalWhatDidYouCallMeFor
+// 	closemessage
+// 	delay 30
+// 	playse SE_PIN
+// 	applymovement LOCALID_PROF_OAK, Common_Movement_ExclamationMark
+// 	waitmovement 0
+// 	applymovement LOCALID_PROF_OAK, Common_Movement_Delay48
+// 	waitmovement 0
+// 	call_if_eq VAR_FACING, DIR_SOUTH, NewBarkTown_ProfessorElmsLab_EventScript_DexSceneOakFacePlayerAndRivalSouth
+// 	call_if_eq VAR_FACING, DIR_EAST, NewBarkTown_ProfessorElmsLab_EventScript_DexSceneOakFacePlayerAndRivalEast
+// 	call_if_eq VAR_FACING, DIR_WEST, NewBarkTown_ProfessorElmsLab_EventScript_DexSceneOakFacePlayerAndRivalWest
+// 	call_if_eq VAR_FACING, DIR_NORTH, NewBarkTown_ProfessorElmsLab_EventScript_DexSceneOakFacePlayerAndRivalNorth
+// 	msgbox NewBarkTown_ProfessorElmsLab_Text_OakHaveRequestForYouTwo
+// 	closemessage
+// 	call_if_eq VAR_FACING, DIR_NORTH, NewBarkTown_ProfessorElmsLab_EventScript_DexSceneOakWalkToDeskNorth
+// 	call_if_eq VAR_FACING, DIR_SOUTH, NewBarkTown_ProfessorElmsLab_EventScript_DexSceneOakWalkToDeskSouth
+// 	call_if_eq VAR_FACING, DIR_EAST, NewBarkTown_ProfessorElmsLab_EventScript_DexSceneOakWalkToDeskEast
+// 	call_if_eq VAR_FACING, DIR_WEST, NewBarkTown_ProfessorElmsLab_EventScript_DexSceneOakWalkToDeskWest
+// 	msgbox NewBarkTown_ProfessorElmsLab_Text_OakPokedexOnDesk
+// 	closemessage
+// 	delay 40
+// 	msgbox NewBarkTown_ProfessorElmsLab_Text_OakTakeTheseWithYou
+// 	closemessage
+// 	applymovement LOCALID_PROF_OAK, Common_Movement_WalkInPlaceFasterUp
+// 	waitmovement 0
+// 	removeobject LOCALID_POKEDEX_1
+// 	delay 10
+// 	removeobject LOCALID_POKEDEX_2
+// 	delay 25
+// 	call_if_eq VAR_FACING, DIR_NORTH, NewBarkTown_ProfessorElmsLab_EventScript_OakBringDexesOverNorth
+// 	call_if_eq VAR_FACING, DIR_SOUTH, NewBarkTown_ProfessorElmsLab_EventScript_OakBringDexesOverSouth
+// 	call_if_eq VAR_FACING, DIR_EAST, NewBarkTown_ProfessorElmsLab_EventScript_OakBringDexesOverEast
+// 	call_if_eq VAR_FACING, DIR_WEST, NewBarkTown_ProfessorElmsLab_EventScript_OakBringDexesOverWest
+// 	delay 10
+// 	textcolor NPC_TEXT_COLOR_NEUTRAL
+// 	playfanfare MUS_OBTAIN_KEY_ITEM
+// 	message NewBarkTown_ProfessorElmsLab_Text_ReceivedPokedexFromOak
+// 	waitmessage
+// 	waitfanfare
+// 	call EventScript_RestorePrevTextColor
+// 	setflag FLAG_SYS_POKEDEX_GET
+// 	setvar VAR_MAP_SCENE_POKEMON_CENTER_TEALA, 1
+// 	msgbox NewBarkTown_ProfessorElmsLab_Text_OakCatchMonsForDataTakeThese
+// 	giveitem_msg NewBarkTown_ProfessorElmsLab_Text_ReceivedFivePokeBalls, ITEM_POKE_BALL, 5
+// 	msgbox NewBarkTown_ProfessorElmsLab_Text_OakExplainCatching
+// 	famechecker FAMECHECKER_OAK, 1
+// 	msgbox NewBarkTown_ProfessorElmsLab_Text_OakCompleteMonGuideWasMyDream
+// 	msgbox NewBarkTown_ProfessorElmsLab_Text_RivalLeaveItToMeGramps
+// 	call_if_eq VAR_FACING, DIR_NORTH, NewBarkTown_ProfessorElmsLab_EventScript_DexSceneRivalFacePlayerNorth
+// 	call_if_eq VAR_FACING, DIR_SOUTH, NewBarkTown_ProfessorElmsLab_EventScript_DexSceneRivalFacePlayerSouth
+// 	call_if_eq VAR_FACING, DIR_EAST, NewBarkTown_ProfessorElmsLab_EventScript_DexSceneRivalFacePlayerEastWest
+// 	call_if_eq VAR_FACING, DIR_WEST, NewBarkTown_ProfessorElmsLab_EventScript_DexSceneRivalFacePlayerEastWest
+// 	msgbox NewBarkTown_ProfessorElmsLab_Text_RivalTellSisNotToGiveYouMap
+// 	closemessage
+// 	playbgm MUS_RIVAL_EXIT, 0
+// 	call_if_eq VAR_FACING, DIR_NORTH, NewBarkTown_ProfessorElmsLab_EventScript_RivalExitNorth
+// 	call_if_eq VAR_FACING, DIR_SOUTH, NewBarkTown_ProfessorElmsLab_EventScript_RivalExit
+// 	call_if_eq VAR_FACING, DIR_EAST, NewBarkTown_ProfessorElmsLab_EventScript_RivalExit
+// 	call_if_eq VAR_FACING, DIR_WEST, NewBarkTown_ProfessorElmsLab_EventScript_RivalExit
+// 	removeobject LOCALID_RIVAL
+// 	fadedefaultbgm
+// 	setvar VAR_MAP_SCENE_NEW_BARK_TOWN_PROFESSOR_ELMS_LAB, 6
+// 	setvar VAR_MAP_SCENE_VIRIDIAN_CITY_MART, 2
+// 	setvar VAR_MAP_SCENE_VIRIDIAN_CITY_OLD_MAN, 1
+// 	setvar VAR_MAP_SCENE_PALLET_TOWN_RIVALS_HOUSE, 1
+// 	setvar VAR_MAP_SCENE_ROUTE22, 1
+// 	release
+// 	end
+
+// NewBarkTown_ProfessorElmsLab_EventScript_OakBringDexesOverNorth::
+// 	applymovement LOCALID_PROF_OAK, NewBarkTown_ProfessorElmsLab_Movement_OakBringDexesOver
+// 	waitmovement 0
+// 	return
+
+// NewBarkTown_ProfessorElmsLab_EventScript_OakBringDexesOverSouth::
+// 	applymovement LOCALID_PROF_OAK, NewBarkTown_ProfessorElmsLab_Movement_OakBringDexesOverSouth
+// 	waitmovement 0
+// 	return
+
+// NewBarkTown_ProfessorElmsLab_EventScript_OakBringDexesOverEast::
+// 	applymovement LOCALID_PROF_OAK, NewBarkTown_ProfessorElmsLab_Movement_OakBringDexesOver
+// 	applymovement OBJ_EVENT_ID_PLAYER, NewBarkTown_ProfessorElmsLab_Movement_PlayerFaceOakForDexEast
+// 	waitmovement 0
+// 	return
+
+// NewBarkTown_ProfessorElmsLab_EventScript_OakBringDexesOverWest::
+// 	applymovement LOCALID_PROF_OAK, NewBarkTown_ProfessorElmsLab_Movement_OakBringDexesOver
+// 	waitmovement 0
+// 	return
+
+// NewBarkTown_ProfessorElmsLab_Movement_PlayerFaceOakForDexEast::
+// 	delay_16
+// 	delay_8
+// 	walk_in_place_faster_right
+// 	step_end
+
+// NewBarkTown_ProfessorElmsLab_Movement_OakBringDexesOver::
+// 	walk_right
+// 	walk_down
+// 	step_end
+
+// NewBarkTown_ProfessorElmsLab_Movement_OakBringDexesOverSouth::
+// 	walk_down
+// 	walk_right
+// 	step_end
+
+// NewBarkTown_ProfessorElmsLab_EventScript_DexSceneOakWalkToDeskNorth::
+// 	applymovement LOCALID_PROF_OAK, NewBarkTown_ProfessorElmsLab_Movement_OakWalkToDesk
+// 	waitmovement 0
+// 	return
+
+// NewBarkTown_ProfessorElmsLab_EventScript_DexSceneOakWalkToDeskSouth::
+// 	applymovement LOCALID_PROF_OAK, NewBarkTown_ProfessorElmsLab_Movement_OakWalkToDeskSouth
+// 	applymovement OBJ_EVENT_ID_PLAYER, NewBarkTown_ProfessorElmsLab_Movement_WatchOakWalkToDesk
+// 	applymovement LOCALID_RIVAL, NewBarkTown_ProfessorElmsLab_Movement_WatchOakWalkToDesk
+// 	waitmovement LOCALID_PROF_OAK
+// 	return
+
+// NewBarkTown_ProfessorElmsLab_EventScript_DexSceneOakWalkToDeskEast::
+// 	applymovement LOCALID_PROF_OAK, NewBarkTown_ProfessorElmsLab_Movement_OakWalkToDesk
+// 	applymovement OBJ_EVENT_ID_PLAYER, NewBarkTown_ProfessorElmsLab_Movement_WatchOakWalkToDeskEast
+// 	waitmovement LOCALID_PROF_OAK
+// 	return
+
+// NewBarkTown_ProfessorElmsLab_EventScript_DexSceneOakWalkToDeskWest::
+// 	applymovement LOCALID_PROF_OAK, NewBarkTown_ProfessorElmsLab_Movement_OakWalkToDesk
+// 	waitmovement 0
+// 	return
+
+// NewBarkTown_ProfessorElmsLab_Movement_WatchOakWalkToDeskEast::
+// 	delay_16
+// 	delay_8
+// 	walk_in_place_faster_up
+// 	step_end
+
+// NewBarkTown_ProfessorElmsLab_Movement_WatchOakWalkToDesk::
+// 	delay_16
+// 	delay_8
+// 	walk_in_place_faster_left
+// 	step_end
+
+// NewBarkTown_ProfessorElmsLab_Movement_OakWalkToDesk::
+// 	walk_up
+// 	walk_left
+// 	delay_16
+// 	walk_in_place_faster_down
+// 	step_end
+
+// NewBarkTown_ProfessorElmsLab_Movement_OakWalkToDeskSouth::
+// 	walk_left
+// 	walk_left
+// 	walk_up
+// 	delay_16
+// 	walk_in_place_faster_right
+// 	step_end
+
+// NewBarkTown_ProfessorElmsLab_EventScript_RatePokedexOrTryGiveBalls::
+// 	setvar VAR_0x8004, 0
+// 	specialvar VAR_RESULT, GetPokedexCount
+// 	copyvar VAR_0x8008, VAR_0x8005
+// 	copyvar VAR_0x8009, VAR_0x8006
+// 	buffernumberstring STR_VAR_1, VAR_0x8008
+// 	buffernumberstring STR_VAR_2, VAR_0x8009
+// 	goto_if_eq VAR_0x8009, 1, NewBarkTown_ProfessorElmsLab_EventScript_CheckIfPlayerNeedsBalls  @ Player only has starter
+// 	goto NewBarkTown_ProfessorElmsLab_EventScript_RatePokedex
+// 	end
+
+// NewBarkTown_ProfessorElmsLab_EventScript_RatePokedex::
+// 	call PokedexRating_EventScript_RateInPerson
+// 	goto_if_set FLAG_OAK_SAW_DEX_COMPLETION, NewBarkTown_ProfessorElmsLab_EventScript_DexCompleted
+// 	release
+// 	end
+
+// NewBarkTown_ProfessorElmsLab_EventScript_DexCompleted::
+// 	closemessage
+// 	delay 40
+// 	message PokedexRating_Text_Wroooaaarrr
+// 	waitmessage
+// 	call_if_eq VAR_FACING, DIR_NORTH, NewBarkTown_ProfessorElmsLab_EventScript_OakExcitedNorth
+// 	call_if_eq VAR_FACING, DIR_SOUTH, NewBarkTown_ProfessorElmsLab_EventScript_OakExcitedSouth
+// 	call_if_eq VAR_FACING, DIR_EAST, NewBarkTown_ProfessorElmsLab_EventScript_OakExcitedEast
+// 	call_if_eq VAR_FACING, DIR_WEST, NewBarkTown_ProfessorElmsLab_EventScript_OakExcitedWest
+// 	applymovement LOCALID_PROF_OAK, Common_Movement_FacePlayer
+// 	waitmovement 0
+// 	closemessage
+// 	delay 70
+// 	msgbox PokedexRating_Text_ThankYouMadeDreamReality
+// 	setflag SHOWED_OAK_COMPLETE_DEX
+// 	release
+// 	end
+
+// NewBarkTown_ProfessorElmsLab_EventScript_OakExcitedNorth::
+// 	applymovement LOCALID_PROF_OAK, NewBarkTown_ProfessorElmsLab_Movement_OakExcitedNorth
+// 	waitmovement 0
+// 	return
+
+// NewBarkTown_ProfessorElmsLab_EventScript_OakExcitedSouth::
+// 	applymovement LOCALID_PROF_OAK, NewBarkTown_ProfessorElmsLab_Movement_OakExcitedSouth
+// 	waitmovement 0
+// 	return
+
+// NewBarkTown_ProfessorElmsLab_EventScript_OakExcitedEast::
+// 	applymovement LOCALID_PROF_OAK, NewBarkTown_ProfessorElmsLab_Movement_OakExcitedEast
+// 	waitmovement 0
+// 	return
+
+// NewBarkTown_ProfessorElmsLab_EventScript_OakExcitedWest::
+// 	applymovement LOCALID_PROF_OAK, NewBarkTown_ProfessorElmsLab_Movement_OakExcitedWest
+// 	waitmovement 0
+// 	return
+
+// NewBarkTown_ProfessorElmsLab_Movement_OakExcitedNorth::
+// 	walk_in_place_down
+// 	walk_in_place_fast_down
+// 	walk_in_place_down
+// 	walk_in_place_down
+// 	walk_in_place_fast_down
+// 	walk_in_place_down
+// 	step_end
+
+// NewBarkTown_ProfessorElmsLab_Movement_OakExcitedSouth::
+// 	walk_in_place_up
+// 	walk_in_place_fast_up
+// 	walk_in_place_up
+// 	walk_in_place_up
+// 	walk_in_place_fast_up
+// 	walk_in_place_up
+// 	step_end
+
+// NewBarkTown_ProfessorElmsLab_Movement_OakExcitedEast::
+// 	walk_in_place_left
+// 	walk_in_place_fast_left
+// 	walk_in_place_left
+// 	walk_in_place_left
+// 	walk_in_place_fast_left
+// 	walk_in_place_left
+// 	step_end
+
+// NewBarkTown_ProfessorElmsLab_Movement_OakExcitedWest::
+// 	walk_in_place_right
+// 	walk_in_place_fast_right
+// 	walk_in_place_right
+// 	walk_in_place_right
+// 	walk_in_place_fast_right
+// 	walk_in_place_right
+// 	step_end
+
+// @ Unused
+// NewBarkTown_ProfessorElmsLab_Movement_Search:
+// 	walk_left
+// 	walk_in_place_faster_down
+// 	delay_8
+// 	walk_in_place_faster_right
+// 	delay_8
+// 	walk_in_place_faster_up
+// 	delay_8
+// 	walk_in_place_faster_left
+// 	delay_8
+// 	walk_in_place_faster_down
+// 	delay_8
+// 	walk_right
+// 	walk_right
+// 	walk_in_place_faster_up
+// 	delay_8
+// 	walk_in_place_faster_left
+// 	delay_8
+// 	walk_in_place_faster_down
+// 	delay_8
+// 	walk_in_place_faster_right
+// 	delay_8
+// 	walk_in_place_faster_up
+// 	delay_8
+// 	walk_left
+// 	step_end
+
+// @ Unused
+// NewBarkTown_ProfessorElmsLab_Movement_VerticalPacing:
+// 	walk_up
+// 	walk_down
+// 	walk_down
+// 	walk_in_place_down
+// 	walk_up
+// 	delay_16
+// 	delay_16
+// 	delay_16
+// 	step_end
+
+// NewBarkTown_ProfessorElmsLab_EventScript_TryStartNationalDexScene::
+// 	call PokedexRating_EventScript_RateInPerson
+// 	closemessage
+// 	goto_if_lt VAR_0x8009, 60, NewBarkTown_ProfessorElmsLab_EventScript_DontStartNationalDexScene
+// 	goto_if_unset FLAG_WORLD_MAP_ONE_ISLAND, NewBarkTown_ProfessorElmsLab_EventScript_DontStartNationalDexScene
+// 	delay 30
+// 	msgbox NewBarkTown_ProfessorElmsLab_Text_OakFavorToAskYouPlayer
+// 	goto NewBarkTown_ProfessorElmsLab_EventScript_NationalDexScene
+// 	end
+
+// NewBarkTown_ProfessorElmsLab_EventScript_DontStartNationalDexScene::
+// 	release
+// 	end
+
+// NewBarkTown_ProfessorElmsLab_EventScript_CheckIfPlayerNeedsBalls::
+// 	goto_if_questlog EventScript_ReleaseEnd
+// 	special QuestLog_CutRecording
+// 	goto_if_set FLAG_OAK_SKIP_22_RIVAL_CHECK, NewBarkTown_ProfessorElmsLab_EventScript_MonsAroundWorldWait
+// 	goto_if_set FLAG_GOT_POKEBALLS_FROM_OAK_AFTER_22_RIVAL, NewBarkTown_ProfessorElmsLab_EventScript_PlayerAlreadyGotBalls
+// 	checkitem ITEM_POKE_BALL
+// 	goto_if_eq VAR_RESULT, FALSE, NewBarkTown_ProfessorElmsLab_EventScript_PlayerOutOfBalls
+// 	goto NewBarkTown_ProfessorElmsLab_EventScript_MonsAroundWorldWait
+// 	end
+
+// NewBarkTown_ProfessorElmsLab_EventScript_PlayerOutOfBalls::
+// 	goto_if_ge VAR_MAP_SCENE_ROUTE22, 2, NewBarkTown_ProfessorElmsLab_EventScript_GivePlayerMoreBalls
+// 	goto NewBarkTown_ProfessorElmsLab_EventScript_MonsAroundWorldWait
+// 	end
+
+// NewBarkTown_ProfessorElmsLab_EventScript_GivePlayerMoreBalls::
+// 	msgbox NewBarkTown_ProfessorElmsLab_Text_OakAddedNothingToPokedex
+// 	giveitem_msg NewBarkTown_ProfessorElmsLab_Text_ReceivedFivePokeBalls, ITEM_POKE_BALL, 5
+// 	setflag FLAG_GOT_POKEBALLS_FROM_OAK_AFTER_22_RIVAL
+// 	release
+// 	end
+
+// NewBarkTown_ProfessorElmsLab_EventScript_MonsAroundWorldWait::
+// 	msgbox NewBarkTown_ProfessorElmsLab_Text_OakMonsAroundWorldWait
+// 	release
+// 	end
+
+// NewBarkTown_ProfessorElmsLab_EventScript_PlayerAlreadyGotBalls::
+// 	msgbox NewBarkTown_ProfessorElmsLab_Text_OakComeSeeMeSometime
+// 	release
+// 	end
+
+// NewBarkTown_ProfessorElmsLab_EventScript_DexSceneRivalEnterNorth::
+// 	setobjectxyperm LOCALID_RIVAL, 5, 10
+// 	addobject LOCALID_RIVAL
+// 	applymovement OBJ_EVENT_ID_PLAYER, NewBarkTown_ProfessorElmsLab_Movement_WatchRivalEnterNorth
+// 	applymovement LOCALID_RIVAL, NewBarkTown_ProfessorElmsLab_Movement_RivalEnter
+// 	waitmovement 0
+// 	return
+
+// NewBarkTown_ProfessorElmsLab_EventScript_DexSceneRivalEnterEastWest::
+// 	setobjectxyperm LOCALID_RIVAL, 6, 10
+// 	addobject LOCALID_RIVAL
+// 	applymovement LOCALID_PROF_OAK, Common_Movement_WalkInPlaceFasterDown
+// 	applymovement OBJ_EVENT_ID_PLAYER, NewBarkTown_ProfessorElmsLab_Movement_WatchRivalEnterEastWest
+// 	applymovement LOCALID_RIVAL, NewBarkTown_ProfessorElmsLab_Movement_RivalEnter
+// 	waitmovement 0
+// 	return
+
+// NewBarkTown_ProfessorElmsLab_EventScript_DexSceneRivalEnterSouth::
+// 	setobjectxyperm LOCALID_RIVAL, 6, 10
+// 	addobject LOCALID_RIVAL
+// 	applymovement LOCALID_PROF_OAK, Common_Movement_WalkInPlaceFasterDown
+// 	applymovement LOCALID_RIVAL, NewBarkTown_ProfessorElmsLab_Movement_RivalEnter
+// 	waitmovement 0
+// 	return
+
+// NewBarkTown_ProfessorElmsLab_EventScript_DexSceneOakFacePlayerAndRivalSouth::
+// 	applymovement LOCALID_PROF_OAK, Common_Movement_FacePlayer
+// 	waitmovement 0
+// 	delay 15
+// 	applymovement LOCALID_PROF_OAK, Common_Movement_WalkInPlaceFasterDown
+// 	waitmovement 0
+// 	return
+
+// NewBarkTown_ProfessorElmsLab_EventScript_DexSceneOakFacePlayerAndRivalWest::
+// 	applymovement LOCALID_PROF_OAK, Common_Movement_FacePlayer
+// 	waitmovement 0
+// 	delay 15
+// 	applymovement OBJ_EVENT_ID_PLAYER, Common_Movement_WalkInPlaceFasterLeft
+// 	applymovement LOCALID_PROF_OAK, Common_Movement_WalkInPlaceFasterDown
+// 	waitmovement 0
+// 	return
+
+// NewBarkTown_ProfessorElmsLab_EventScript_DexSceneOakFacePlayerAndRivalEast::
+// 	applymovement LOCALID_PROF_OAK, Common_Movement_FacePlayer
+// 	waitmovement 0
+// 	delay 15
+// 	applymovement OBJ_EVENT_ID_PLAYER, Common_Movement_WalkInPlaceFasterRight
+// 	applymovement LOCALID_PROF_OAK, Common_Movement_WalkInPlaceFasterDown
+// 	waitmovement 0
+// 	return
+
+// NewBarkTown_ProfessorElmsLab_EventScript_DexSceneRivalFacePlayerNorth::
+// 	applymovement LOCALID_RIVAL, Common_Movement_FacePlayer
+// 	applymovement OBJ_EVENT_ID_PLAYER, Common_Movement_WalkInPlaceFasterLeft
+// 	waitmovement 0
+// 	return
+
+// NewBarkTown_ProfessorElmsLab_EventScript_DexSceneRivalFacePlayerSouth::
+// 	applymovement LOCALID_RIVAL, Common_Movement_WalkInPlaceFasterUp
+// 	applymovement OBJ_EVENT_ID_PLAYER, Common_Movement_WalkInPlaceFasterDown
+// 	waitmovement 0
+// 	return
+
+// NewBarkTown_ProfessorElmsLab_EventScript_DexSceneRivalFacePlayerEastWest::
+// 	applymovement LOCALID_RIVAL, Common_Movement_FacePlayer
+// 	applymovement OBJ_EVENT_ID_PLAYER, Common_Movement_WalkInPlaceFasterDown
+// 	waitmovement 0
+// 	return
+
+// NewBarkTown_ProfessorElmsLab_EventScript_RivalExitNorth::
+// 	applymovement OBJ_EVENT_ID_PLAYER, NewBarkTown_ProfessorElmsLab_Movement_WatchRivalEnterEastWest
+// 	applymovement LOCALID_RIVAL, NewBarkTown_ProfessorElmsLab_Movement_RivalExit
+// 	waitmovement 0
+// 	return
+
+// NewBarkTown_ProfessorElmsLab_EventScript_RivalExit::
+// 	applymovement LOCALID_RIVAL, NewBarkTown_ProfessorElmsLab_Movement_RivalExit
+// 	waitmovement 0
+// 	return
+
+// NewBarkTown_ProfessorElmsLab_EventScript_DexSceneOakFacePlayerAndRivalNorth::
+// 	applymovement OBJ_EVENT_ID_PLAYER, Common_Movement_WalkInPlaceFasterUp
+// 	waitmovement 0
+// 	return
+
+// NewBarkTown_ProfessorElmsLab_Movement_WatchRivalEnterEastWest::
+// 	delay_4
+// 	walk_in_place_faster_down
+// 	step_end
+
+// NewBarkTown_ProfessorElmsLab_Movement_WatchRivalEnterNorth::
+// 	walk_in_place_faster_down
+// 	delay_16
+// 	delay_16
+// 	delay_16
+// 	delay_16
+// 	delay_16
+// 	delay_8
+// 	walk_in_place_faster_left
+// 	step_end
+
+// NewBarkTown_ProfessorElmsLab_Movement_RivalEnter::
+// 	walk_up
+// 	walk_up
+// 	walk_up
+// 	walk_up
+// 	walk_up
+// 	walk_up
+// 	step_end
+
+// NewBarkTown_ProfessorElmsLab_Movement_RivalExit::
+// 	walk_down
+// 	walk_down
+// 	walk_down
+// 	walk_down
+// 	walk_down
+// 	walk_down
+// 	step_end
+
+// NewBarkTown_ProfessorElmsLab_EventScript_ConfirmStarterChoice::
+// 	applymovement LOCALID_PROF_OAK, Common_Movement_FaceRight
+// 	waitmovement 0
+// 	showmonpic PLAYER_STARTER_SPECIES, 10, 3
+// 	textcolor NPC_TEXT_COLOR_MALE
+// 	goto_if_eq PLAYER_STARTER_NUM, 0, NewBarkTown_ProfessorElmsLab_EventScript_ConfirmChikorita
+// 	goto_if_eq PLAYER_STARTER_NUM, 1, NewBarkTown_ProfessorElmsLab_EventScript_ConfirmTotodile
+// 	goto_if_eq PLAYER_STARTER_NUM, 2, NewBarkTown_ProfessorElmsLab_EventScript_ConfirmCyndaquil
+// 	end
+
+// NewBarkTown_ProfessorElmsLab_EventScript_ConfirmChikorita::
+// 	msgbox NewBarkTown_ProfessorElmsLab_Text_OakChoosingChikorita, MSGBOX_YESNO
+// 	goto_if_eq VAR_RESULT, YES, NewBarkTown_ProfessorElmsLab_EventScript_ChoseStarter
+// 	goto_if_eq VAR_RESULT, NO, NewBarkTown_ProfessorElmsLab_EventScript_DeclinedStarter
+// 	end
+
+// NewBarkTown_ProfessorElmsLab_EventScript_ConfirmTotodile::
+// 	msgbox NewBarkTown_ProfessorElmsLab_Text_OakChoosingTotodile, MSGBOX_YESNO
+// 	goto_if_eq VAR_RESULT, YES, NewBarkTown_ProfessorElmsLab_EventScript_ChoseStarter
+// 	goto_if_eq VAR_RESULT, NO, NewBarkTown_ProfessorElmsLab_EventScript_DeclinedStarter
+// 	end
+
+// NewBarkTown_ProfessorElmsLab_EventScript_ConfirmCyndaquil::
+// 	msgbox NewBarkTown_ProfessorElmsLab_Text_OakChoosingCyndaquil, MSGBOX_YESNO
+// 	goto_if_eq VAR_RESULT, YES, NewBarkTown_ProfessorElmsLab_EventScript_ChoseStarter
+// 	goto_if_eq VAR_RESULT, NO, NewBarkTown_ProfessorElmsLab_EventScript_DeclinedStarter
+// 	end
+
+// NewBarkTown_ProfessorElmsLab_EventScript_DeclinedStarter::
+// 	hidemonpic
+// 	release
+// 	end
+
+// NewBarkTown_ProfessorElmsLab_EventScript_ChoseStarter::
+// 	hidemonpic
+// 	removeobject VAR_LAST_TALKED
+// 	msgbox NewBarkTown_ProfessorElmsLab_Text_OakThisMonIsEnergetic
+// 	call EventScript_RestorePrevTextColor
+// 	setflag FLAG_SYS_POKEMON_GET
+// 	setflag FLAG_PALLET_LADY_NOT_BLOCKING_SIGN
+// 	givemon PLAYER_STARTER_SPECIES, 5
+// 	copyvar VAR_STARTER_MON, PLAYER_STARTER_NUM
+// 	bufferspeciesname STR_VAR_1, PLAYER_STARTER_SPECIES
+// 	message NewBarkTown_ProfessorElmsLab_Text_ReceivedMonFromOak
+// 	waitmessage
+// 	playfanfare MUS_OBTAIN_KEY_ITEM
+// 	waitfanfare
+// 	msgbox Text_GiveNicknameToThisMon, MSGBOX_YESNO
+// 	goto_if_eq VAR_RESULT, YES, NewBarkTown_ProfessorElmsLab_EventScript_GiveNicknameToStarter
+// 	goto_if_eq VAR_RESULT, NO, NewBarkTown_ProfessorElmsLab_EventScript_RivalPicksStarter
+// 	end
+
+// NewBarkTown_ProfessorElmsLab_EventScript_GiveNicknameToStarter::
+// 	setvar VAR_0x8004, 0
+// 	call EventScript_ChangePokemonNickname
+// 	goto NewBarkTown_ProfessorElmsLab_EventScript_RivalPicksStarter
+// 	end
+
+// NewBarkTown_ProfessorElmsLab_EventScript_RivalPicksStarter::
+// 	closemessage
+// 	goto_if_eq PLAYER_STARTER_NUM, 0, NewBarkTown_ProfessorElmsLab_EventScript_RivalWalksToCyndaquil
+// 	goto_if_eq PLAYER_STARTER_NUM, 1, NewBarkTown_ProfessorElmsLab_EventScript_RivalWalksToChikorita
+// 	goto_if_eq PLAYER_STARTER_NUM, 2, NewBarkTown_ProfessorElmsLab_EventScript_RivalWalksToTotodile
+// 	end
+
+// NewBarkTown_ProfessorElmsLab_EventScript_RivalWalksToCyndaquil::
+// 	applymovement LOCALID_RIVAL, NewBarkTown_ProfessorElmsLab_Movement_RivalWalksToCyndaquil
+// 	waitmovement 0
+// 	goto NewBarkTown_ProfessorElmsLab_EventScript_RivalTakesStarter
+// 	end
+
+// NewBarkTown_ProfessorElmsLab_EventScript_RivalWalksToTotodile::
+// 	applymovement LOCALID_RIVAL, NewBarkTown_ProfessorElmsLab_Movement_RivalWalksToTotodile
+// 	waitmovement 0
+// 	goto NewBarkTown_ProfessorElmsLab_EventScript_RivalTakesStarter
+// 	end
+
+// NewBarkTown_ProfessorElmsLab_EventScript_RivalWalksToChikorita::
+// 	applymovement LOCALID_RIVAL, NewBarkTown_ProfessorElmsLab_Movement_RivalWalksToChikorita
+// 	waitmovement 0
+// 	goto NewBarkTown_ProfessorElmsLab_EventScript_RivalTakesStarter
+// 	end
+
+// NewBarkTown_ProfessorElmsLab_EventScript_RivalTakesStarter::
+// 	textcolor NPC_TEXT_COLOR_MALE
+// 	msgbox NewBarkTown_ProfessorElmsLab_Text_RivalIllTakeThisOneThen
+// 	removeobject RIVAL_STARTER_ID
+// 	textcolor NPC_TEXT_COLOR_NEUTRAL
+// 	bufferspeciesname STR_VAR_1, RIVAL_STARTER_SPECIES
+// 	message NewBarkTown_ProfessorElmsLab_Text_RivalReceivedMonFromOak
+// 	waitmessage
+// 	playfanfare MUS_OBTAIN_KEY_ITEM
+// 	waitfanfare
+// 	setvar VAR_MAP_SCENE_NEW_BARK_TOWN_PROFESSOR_ELMS_LAB, 3
+// 	call_if_set FLAG_OPENED_START_MENU, NewBarkTown_ProfessorElmsLab_EventScript_ReadyEndSignLadyScene
+// 	release
+// 	end
+
+// NewBarkTown_ProfessorElmsLab_EventScript_ReadyEndSignLadyScene::
+// 	setvar VAR_MAP_SCENE_PALLET_TOWN_SIGN_LADY, 1
+// 	return
+
+// NewBarkTown_ProfessorElmsLab_Movement_RivalWalksToCyndaquil::
+// 	walk_down
+// 	walk_down
+// 	walk_right
+// 	walk_right
+// 	walk_right
+// 	walk_right
+// 	walk_right
+// 	walk_up
+// 	step_end
+
+// NewBarkTown_ProfessorElmsLab_Movement_RivalWalksToTotodile::
+// 	walk_down
+// 	walk_right
+// 	walk_right
+// 	walk_right
+// 	walk_right
+// 	walk_in_place_faster_up
+// 	step_end
+
+// NewBarkTown_ProfessorElmsLab_Movement_RivalWalksToChikorita::
+// 	walk_down
+// 	walk_right
+// 	walk_right
+// 	walk_right
+// 	walk_in_place_faster_up
+// 	step_end
+
+// NewBarkTown_ProfessorElmsLab_EventScript_LastPokeBall::
+// 	msgbox NewBarkTown_ProfessorElmsLab_Text_OaksLastMon
+// 	release
+// 	end
+
+// NewBarkTown_ProfessorElmsLab_EventScript_Aide1::
+// 	lock
+// 	faceplayer
+// 	goto_if_set FLAG_SYS_GAME_CLEAR, NewBarkTown_ProfessorElmsLab_EventScript_Aide1GameClear
+// 	msgbox NewBarkTown_ProfessorElmsLab_Text_StudyAsOaksAide
+// 	release
+// 	end
+
+// NewBarkTown_ProfessorElmsLab_EventScript_Aide1GameClear::
+// 	famechecker FAMECHECKER_OAK, 5
+// 	msgbox NewBarkTown_ProfessorElmsLab_Text_OakIsGoingToHaveRadioShow
+// 	release
+// 	end
+
+// NewBarkTown_ProfessorElmsLab_EventScript_Aide2::
+// 	lock
+// 	faceplayer
+// 	goto_if_set FLAG_SYS_GAME_CLEAR, NewBarkTown_ProfessorElmsLab_EventScript_Aide2GameClear
+// 	msgbox NewBarkTown_ProfessorElmsLab_Text_StudyAsOaksAide
+// 	release
+// 	end
+
+// NewBarkTown_ProfessorElmsLab_EventScript_Aide2GameClear::
+// 	famechecker FAMECHECKER_DAISY, 0
+// 	msgbox NewBarkTown_ProfessorElmsLab_Text_DaisyWillGroomMons
+// 	release
+// 	end
+
+// NewBarkTown_ProfessorElmsLab_EventScript_Aide3::
+// 	lock
+// 	faceplayer
+// 	famechecker FAMECHECKER_OAK, 2
+// 	msgbox NewBarkTown_ProfessorElmsLab_Text_OakIsAuthorityOnMons
+// 	release
+// 	end
+
+// NewBarkTown_ProfessorElmsLab_EventScript_Pokedex::
+// 	msgbox NewBarkTown_ProfessorElmsLab_Text_BlankEncyclopedia, MSGBOX_NPC
+// 	end
+
+// NewBarkTown_ProfessorElmsLab_EventScript_Computer::
+// 	msgbox NewBarkTown_ProfessorElmsLab_Text_EmailMessage, MSGBOX_SIGN
+// 	end
+
+// NewBarkTown_ProfessorElmsLab_EventScript_LeftSign::
+// 	msgbox NewBarkTown_ProfessorElmsLab_Text_PressStartToOpenMenu, MSGBOX_SIGN
+// 	end
+
+// NewBarkTown_ProfessorElmsLab_EventScript_RightSign::
+// 	lockall
+// 	goto_if_ge VAR_MAP_SCENE_NEW_BARK_TOWN_PROFESSOR_ELMS_LAB, 6, NewBarkTown_ProfessorElmsLab_EventScript_RightSignAlt
+// 	msgbox NewBarkTown_ProfessorElmsLab_Text_SaveOptionInMenu
+// 	releaseall
+// 	end
+
+// NewBarkTown_ProfessorElmsLab_EventScript_RightSignAlt::
+// 	msgbox NewBarkTown_ProfessorElmsLab_Text_AllMonTypesHaveStrongAndWeakPoints
+// 	releaseall
+// 	end
 
 `

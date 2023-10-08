@@ -188,12 +188,12 @@
 #define FLAG_HIDE_LORELEIS_HOUSE_LAPRAS_DOLL               0x0AC
 #define FLAG_HIDE_MISC_KANTO_ROCKETS                       0x0AD
 #define FLAG_HIDE_SAFFRON_CITY_POKECENTER_SABRINA_JOURNALS 0x0AE
+#define FLAG_HIDE_OAK_IN_ELMS_LAB                          0x0AF
+#define FLAG_HIDE_CHIKORITA_BALL                           0x0B0
+#define FLAG_HIDE_TOTODILE_BALL                            0x0B1
+#define FLAG_HIDE_CYNDAQUIL_BALL                           0x0B2
 
 // Unused?
-#define FLAG_0x0AF               0x0AF
-#define FLAG_0x0B0               0x0B0
-#define FLAG_0x0B1               0x0B1
-#define FLAG_0x0B2               0x0B2
 #define FLAG_0x0B3               0x0B3
 #define FLAG_0x0B4               0x0B4
 #define FLAG_0x0B5               0x0B5
@@ -596,7 +596,7 @@
 #define FLAG_GOT_HM05                                    0x23B
 #define FLAG_RESCUED_MR_FUJI                             0x23C
 #define FLAG_GOT_POKE_FLUTE                              0x23D
-#define FLAG_0x23E                                       0x23E
+#define FLAG_VISITED_ELMS_LAB                            0x23E
 #define FLAG_GOT_TM28_FROM_ROCKET                        0x23F
 #define FLAG_GOT_OLD_ROD                                 0x240
 #define FLAG_GOT_BIKE_VOUCHER                            0x241
@@ -1220,14 +1220,14 @@
 #define FLAG_HIDDEN_ITEM_SEVEN_ISLAND_SEVAULT_CANYON_ENTRANCE_RAWST_BERRY  (FLAG_HIDDEN_ITEMS_START + 188)
 #define FLAG_HIDDEN_ITEM_VIRIDIAN_CITY_GYM_MACHO_BRACE                     (FLAG_HIDDEN_ITEMS_START + 189)
 #define FLAG_HIDDEN_ITEM_SSANNE_EXTERIOR_LAVA_COOKIE                       (FLAG_HIDDEN_ITEMS_START + 190)
+#define FLAG_HIDDEN_ITEM_RARE_CANDY_99_1                                   (FLAG_HIDDEN_ITEMS_START + 191) // TODO: Remove this after debugging
+#define FLAG_HIDDEN_ITEM_MASTER_BALL                                       (FLAG_HIDDEN_ITEMS_START + 192) // TODO: Remove this after debugging
+#define FLAG_HIDDEN_ITEM_RARE_CANDY_99_2                                   (FLAG_HIDDEN_ITEMS_START + 193) // TODO: Remove this after debugging
+#define FLAG_HIDDEN_ITEM_RARE_CANDY_99_3                                   (FLAG_HIDDEN_ITEMS_START + 194) // TODO: Remove this after debugging
+#define FLAG_HIDDEN_ITEM_RARE_CANDY_99_4                                   (FLAG_HIDDEN_ITEMS_START + 195) // TODO: Remove this after debugging
+#define FLAG_HIDDEN_ITEM_RARE_CANDY_99_5                                   (FLAG_HIDDEN_ITEMS_START + 196) // TODO: Remove this after debugging
 
 // Unused hidden item flags
-#define FLAG_UNUSED_0x4A7               0x4A7 // Unused Flag
-#define FLAG_UNUSED_0x4A8               0x4A8 // Unused Flag
-#define FLAG_UNUSED_0x4A9               0x4A9 // Unused Flag
-#define FLAG_UNUSED_0x4AA               0x4AA // Unused Flag
-#define FLAG_UNUSED_0x4AB               0x4AB // Unused Flag
-#define FLAG_UNUSED_0x4AC               0x4AC // Unused Flag
 #define FLAG_UNUSED_0x4AD               0x4AD // Unused Flag
 #define FLAG_UNUSED_0x4AE               0x4AE // Unused Flag
 #define FLAG_UNUSED_0x4AF               0x4AF // Unused Flag

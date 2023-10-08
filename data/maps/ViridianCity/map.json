@@ -294,7 +294,7 @@
       "y": 28,
       "elevation": 0,
       "item": "ITEM_RARE_CANDY",
-      "flag": "FLAG_TEMP_1E",
+      "flag": "FLAG_HIDDEN_ITEM_RARE_CANDY_99_1",
       "quantity": 99,
       "underfoot": false
     },
@@ -304,7 +304,7 @@
       "y": 29,
       "elevation": 0,
       "item": "ITEM_MASTER_BALL",
-      "flag": "FLAG_TEMP_1F",
+      "flag": "FLAG_HIDDEN_ITEM_MASTER_BALL",
       "quantity": 99,
       "underfoot": false
     },
@@ -314,7 +314,7 @@
       "y": 27,
       "elevation": 0,
       "item": "ITEM_RARE_CANDY",
-      "flag": "FLAG_TEMP_1D",
+      "flag": "FLAG_HIDDEN_ITEM_RARE_CANDY_99_2",
       "quantity": 99,
       "underfoot": false
     },
@@ -324,7 +324,7 @@
       "y": 26,
       "elevation": 0,
       "item": "ITEM_RARE_CANDY",
-      "flag": "FLAG_TEMP_1C",
+      "flag": "FLAG_HIDDEN_ITEM_RARE_CANDY_99_3",
       "quantity": 99,
       "underfoot": false
     },
@@ -334,7 +334,7 @@
       "y": 25,
       "elevation": 0,
       "item": "ITEM_RARE_CANDY",
-      "flag": "FLAG_TEMP_1B",
+      "flag": "FLAG_HIDDEN_ITEM_RARE_CANDY_99_4",
       "quantity": 99,
       "underfoot": false
     },
@@ -344,7 +344,7 @@
       "y": 24,
       "elevation": 0,
       "item": "ITEM_RARE_CANDY",
-      "flag": "FLAG_TEMP_1A",
+      "flag": "FLAG_HIDDEN_ITEM_RARE_CANDY_99_5",
       "quantity": 99,
       "underfoot": false
     }

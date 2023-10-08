@@ -1614,7 +1614,7 @@
 	.macro setmonmetlocation slot:req, location:req
 	.byte 0xd2
 	.2byte \slot
-	.byte \location
+	.2byte \location
 	.endm
 
 	@ Gets the width of the specified message in the Braille font and sets the result to VAR_0x8004.
