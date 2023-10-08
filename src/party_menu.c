@@ -68,7 +68,6 @@
 #include "constants/quest_log.h"
 #include "constants/songs.h"
 #include "constants/sound.h"
-#include "naming_screen.h"
 
 #define PARTY_PAL_SELECTED     (1 << 0)
 #define PARTY_PAL_FAINTED      (1 << 1)
@@ -129,7 +128,7 @@ struct PartyMenuInternal
     u32 spriteIdCancelPokeball:7;
     u32 messageId:14;
     u8 windowId[3];
-    u8 actions[9];
+    u8 actions[8];
     u8 numActions;
     u16 palBuffer[BG_PLTT_SIZE / sizeof(u16)];
     s16 data[16];
@@ -166,7 +165,6 @@ static void CursorCB_Register(u8 taskId);
 static void CursorCB_Trade1(u8 taskId);
 static void CursorCB_Trade2(u8 taskId);
 static void CursorCB_FieldMove(u8 taskId);
-static void CursorCB_Nickname(u8 taskId);
 static bool8 SetUpFieldMove_Fly(void);
 static bool8 SetUpFieldMove_Waterfall(void);
 static bool8 SetUpFieldMove_Surf(void);
@@ -2968,7 +2966,6 @@ static void SetPartyMonFieldSelectionActions(struct Pokemon *mons, u8 slotId)
 
     sPartyMenuInternal->numActions = 0;
     AppendToList(sPartyMenuInternal->actions, &sPartyMenuInternal->numActions, CURSOR_OPTION_SUMMARY);
-    AppendToList(sPartyMenuInternal->actions, &sPartyMenuInternal->numActions, CURSOR_OPTION_NICKNAME);
     // Add field moves to action list
     for (i = 0; i < MAX_MON_MOVES; ++i)
     {
@@ -3099,27 +3096,6 @@ static void CursorCB_Summary(u8 taskId)
 {
     PlaySE(SE_SELECT);
     sPartyMenuInternal->exitCallback = CB2_ShowPokemonSummaryScreen;
-    Task_ClosePartyMenu(taskId);
-}
-
-static void ChangePokemonNicknamePartyScreen_CB(void)
-{
-    SetMonData(&gPlayerParty[gSpecialVar_0x8004], MON_DATA_NICKNAME, gStringVar2);
-    CB2_ReturnToPartyMenuFromSummaryScreen();
-}
-
-static void ChangePokemonNicknamePartyScreen(void)
-{
-    GetMonData(&gPlayerParty[gSpecialVar_0x8004], MON_DATA_NICKNAME, gStringVar3);
-    GetMonData(&gPlayerParty[gSpecialVar_0x8004], MON_DATA_NICKNAME, gStringVar2);
-    DoNamingScreen(NAMING_SCREEN_NICKNAME, gStringVar2, GetMonData(&gPlayerParty[gSpecialVar_0x8004], MON_DATA_SPECIES, NULL), GetMonGender(&gPlayerParty[gSpecialVar_0x8004]), GetMonData(&gPlayerParty[gSpecialVar_0x8004], MON_DATA_PERSONALITY, NULL), ChangePokemonNicknamePartyScreen_CB);
-}
-
-static void CursorCB_Nickname(u8 taskId)
-{
-    PlaySE(SE_SELECT);
-    gSpecialVar_0x8004 = gPartyMenu.slotId;
-    sPartyMenuInternal->exitCallback = ChangePokemonNicknamePartyScreen;
     Task_ClosePartyMenu(taskId);
 }
 
@@ -3318,9 +3294,9 @@ static void Task_SlideSelectedSlotsOnscreen(u8 taskId)
         PutWindowTilemap(sPartyMenuBoxes[gPartyMenu.slotId].windowId);
         PutWindowTilemap(sPartyMenuBoxes[gPartyMenu.slotId2].windowId);
         ScheduleBgCopyTilemapToVram(0);
-        // Fix memory leak
-        Free(sSlot1TilemapBuffer);
-        Free(sSlot2TilemapBuffer);
+        // BUG: memory leak
+        // Free(sSlot1TilemapBuffer);
+        // Free(sSlot2TilemapBuffer);
         FinishTwoMonAction(taskId);
     }
     // Continue sliding
@@ -3379,12 +3355,12 @@ static void SwitchPartyMon(void)
 
 static void SetSwitchedPartyOrderQuestLogEvent(void)
 {
-    u16 *buffer = Alloc(2 * sizeof(u16));
+    struct QuestLogEvent_SwitchedPartyOrder * data = Alloc(sizeof(*data));
 
-    buffer[0] = GetMonData(&gPlayerParty[gPartyMenu.slotId], MON_DATA_SPECIES_OR_EGG);
-    buffer[1] = GetMonData(&gPlayerParty[gPartyMenu.slotId2], MON_DATA_SPECIES_OR_EGG);
-    SetQuestLogEvent(QL_EVENT_SWITCHED_PARTY_ORDER, buffer);
-    Free(buffer);
+    data->species1 = GetMonData(&gPlayerParty[gPartyMenu.slotId], MON_DATA_SPECIES_OR_EGG);
+    data->species2 = GetMonData(&gPlayerParty[gPartyMenu.slotId2], MON_DATA_SPECIES_OR_EGG);
+    SetQuestLogEvent(QL_EVENT_SWITCHED_PARTY_ORDER, (const u16 *)data);
+    Free(data);
 }
 
 // Finish switching mons or using Softboiled
@@ -4155,66 +4131,61 @@ static bool8 SetUpFieldMove_Waterfall(void)
 
 static void SetSwappedHeldItemQuestLogEvent(struct Pokemon *mon, u16 item, u16 item2)
 {
-    u16 *ptr = Alloc(4 * sizeof(u16));
+    struct QuestLogEvent_SwappedHeldItem *data = Alloc(sizeof(*data));
 
-    ptr[2] = GetMonData(mon, MON_DATA_SPECIES_OR_EGG);
-    ptr[0] = item;
-    ptr[1] = item2;
+    data->species = GetMonData(mon, MON_DATA_SPECIES_OR_EGG);
+    data->takenItemId = item;
+    data->givenItemId = item2;
     if (gPartyMenu.action == PARTY_ACTION_GIVE_PC_ITEM)
-        SetQuestLogEvent(QL_EVENT_SWAPPED_HELD_ITEM_PC, ptr);
+        SetQuestLogEvent(QL_EVENT_SWAPPED_HELD_ITEM_PC, (void *)data);
     else
-        SetQuestLogEvent(QL_EVENT_SWAPPED_HELD_ITEM, ptr);
-    Free(ptr);
+        SetQuestLogEvent(QL_EVENT_SWAPPED_HELD_ITEM, (void *)data);
+    Free(data);
 }
-
-struct FieldMoveWarpParams
-{
-    u16 species;
-    u8 fieldMove;
-    u16 regionMapSectionId;
-};
 
 static void SetUsedFieldMoveQuestLogEvent(struct Pokemon *mon, u8 fieldMove)
 {
-    struct FieldMoveWarpParams *ptr = Alloc(sizeof(*ptr));
+    struct QuestLogEvent_FieldMove *data = Alloc(sizeof(*data));
 
-    ptr->species = GetMonData(mon, MON_DATA_SPECIES_OR_EGG);
-    ptr->fieldMove = fieldMove;
-    switch (ptr->fieldMove)
+    data->species = GetMonData(mon, MON_DATA_SPECIES_OR_EGG);
+    data->fieldMove = fieldMove;
+    switch (data->fieldMove)
     {
     case FIELD_MOVE_TELEPORT:
-        ptr->regionMapSectionId = Overworld_GetMapHeaderByGroupAndId(gSaveBlock1Ptr->lastHealLocation.mapGroup, gSaveBlock1Ptr->lastHealLocation.mapNum)->regionMapSectionId;
+        data->mapSec = Overworld_GetMapHeaderByGroupAndId(gSaveBlock1Ptr->lastHealLocation.mapGroup, gSaveBlock1Ptr->lastHealLocation.mapNum)->regionMapSectionId;
         break;
     case FIELD_MOVE_DIG:
-        ptr->regionMapSectionId = gMapHeader.regionMapSectionId;
+        data->mapSec = gMapHeader.regionMapSectionId;
         break;
     default:
-        ptr->regionMapSectionId = 0x0000; // MAPSEC_NONE
+        data->mapSec = 0xFF;
     }
-    SetQuestLogEvent(QL_EVENT_USED_FIELD_MOVE, (u16 *)ptr);
-    Free(ptr);
+    SetQuestLogEvent(QL_EVENT_USED_FIELD_MOVE, (const u16 *)data);
+    Free(data);
 }
 
 void SetUsedFlyQuestLogEvent(const u8 *healLocCtrlData)
 {
     const struct MapHeader *mapHeader;
-    struct FieldMoveWarpParams *ptr2;
+    struct QuestLogEvent_FieldMove *data;
     struct
     {
-        u8 mapGroup;
-        u8 mapNum;
-    } *ptr = Alloc(sizeof(*ptr));
+        s8 group;
+        s8 num;
+        u32 unused;
+    } *map = Alloc(sizeof(*map));
 
-    ptr->mapGroup = healLocCtrlData[0];
-    ptr->mapNum = healLocCtrlData[1];
-    mapHeader = Overworld_GetMapHeaderByGroupAndId(ptr->mapGroup, ptr->mapNum);
-    Free(ptr);
-    ptr2 = Alloc(4);
-    ptr2->species = GetMonData(&gPlayerParty[GetCursorSelectionMonId()], MON_DATA_SPECIES_OR_EGG);
-    ptr2->fieldMove = FIELD_MOVE_FLY;
-    ptr2->regionMapSectionId = mapHeader->regionMapSectionId;
-    SetQuestLogEvent(QL_EVENT_USED_FIELD_MOVE, (u16 *)ptr2);
-    Free(ptr2);
+    map->group = healLocCtrlData[0];
+    map->num = healLocCtrlData[1];
+    mapHeader = Overworld_GetMapHeaderByGroupAndId(map->group, map->num);
+    Free(map);
+
+    data = Alloc(sizeof(*data));
+    data->species = GetMonData(&gPlayerParty[GetCursorSelectionMonId()], MON_DATA_SPECIES_OR_EGG);
+    data->fieldMove = FIELD_MOVE_FLY;
+    data->mapSec = mapHeader->regionMapSectionId;
+    SetQuestLogEvent(QL_EVENT_USED_FIELD_MOVE, (const u16 *)data);
+    Free(data);
 }
 
 void CB2_ShowPartyMenuForItemUse(void)
@@ -4314,7 +4285,7 @@ static void CB2_UseItem(void)
     {
         GiveMoveToMon(&gPlayerParty[gPartyMenu.slotId], ItemIdToBattleMoveId(gSpecialVar_ItemId));
         AdjustFriendship(&gPlayerParty[gPartyMenu.slotId], FRIENDSHIP_EVENT_LEARN_TMHM);
-        if (gSpecialVar_ItemId <= ITEM_TM50)
+        if (gSpecialVar_ItemId < ITEM_HM01)
             RemoveBagItem(gSpecialVar_ItemId, 1);
         SetMainCallback2(gPartyMenu.exitCallback);
     }
@@ -4334,7 +4305,7 @@ static void CB2_UseTMHMAfterForgettingMove(void)
         SetMonMoveSlot(mon, ItemIdToBattleMoveId(gSpecialVar_ItemId), moveIdx);
         AdjustFriendship(mon, FRIENDSHIP_EVENT_LEARN_TMHM);
         ItemUse_SetQuestLogEvent(QL_EVENT_USED_ITEM, mon, gSpecialVar_ItemId, move);
-        if (gSpecialVar_ItemId <= ITEM_TM50)
+        if (gSpecialVar_ItemId < ITEM_HM01)
             RemoveBagItem(gSpecialVar_ItemId, 1);
         SetMainCallback2(gPartyMenu.exitCallback);
     }
@@ -4838,7 +4809,7 @@ static void Task_LearnedMove(u8 taskId)
     if (learnMoveMethod == LEARN_VIA_TMHM)
     {
         AdjustFriendship(mon, FRIENDSHIP_EVENT_LEARN_TMHM);
-        if (item <= ITEM_TM50)
+        if (item < ITEM_HM01)
             RemoveBagItem(item, 1);
     }
     GetMonNickname(mon, gStringVar1);
